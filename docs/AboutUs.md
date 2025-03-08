@@ -11,15 +11,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Charvi Priyadarshi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/priyadarshicharvi.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/PriyadarshiCharvi)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Implementation of functionalities and UI
 
 ### Hu Tongyan
 
