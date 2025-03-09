@@ -28,8 +28,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/hutongyan)]
 [[portfolio](team/hutongyan.md)]
 
-* Role: Team Lead
-* Responsibilities: Deliverables and deadlines
+* Role: Developer
+* Responsibilities: Deliverables + Testing
 
 ### Arnav Bajpai
 
