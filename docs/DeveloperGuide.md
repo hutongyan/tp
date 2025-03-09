@@ -273,14 +273,34 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
+* Name: Ryan Tan
+* Age 40
+* Gender Male
+* Job Role: Senior Librarian at a mid-sized public library
+* Team Size: 5
+* Patron Base: 500-1000 active library users
+* Pain Points:
+  * Manual record-keeping is inefficient, relying on spreadsheets or paper logs for tracking borrowed books.
+  * Difficulties in monitoring overdue books, leading to unreturned books and revenue loss from unpaid fines.
+  * Limited visibility into user borrowing history, making it hard to provide services.
+  * Membership management is time-consuming, requiring frequent manual updates to renew, activate, or suspend accounts.
+  * No centralized way to track book availability, resulting in frequent patron inquiries.
+* Technical Comfort
+  * Comfortable with using desktop applications.
+  * Familiar with basic command-line interfaces.
+  * No programming experience.
+* Work Style
+  * Prefers a straightforward, easy-to-use system.
+  * Multitasks daily, handling book check-ins, assisting patrons, and managing overdue accounts.
+  * Needs quick access to information during peak hours when handling multiple requests.
+* Goals
+  * Improve efficiency in managing books.
+  * Enhance the patron experience by quickly checking borrowing history and book availability.
+  * Streamline membership management by automating activations, renewals, and suspensions.
+  * Centralize book inventory and user records for a more organized, real-time system.
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: A streamlined library management system designed for librarians to track book loans, overdue fines, 
+and membership status in a fast and efficient way. 
 
 
 ### User stories
