@@ -52,7 +52,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Anoob Hakim Nael
 
-<img src="images/naelanoob.png.jpg" width="200px">
+<img src="images/naelanoob.png" width="200px">
 
 [[github](http://github.com/naelanoob)]
 [[portfolio](team/naelanoob.md)]
