@@ -368,8 +368,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Library Management System (LMS)**: A software solution designed to help librarians manage book loans, overdue fines, and membership status efficiently.  
+* **Patron**: A registered library user who can borrow books and use library services.  
+* **Membership Status**: The current state of a patron's library account, which can be active, expired, or suspended.  
+* **Book Loan**: The process of borrowing a book from the library for a specified duration.  
+* **Overdue Book**: A book that has not been returned by its due date.  
+* **Overdue Fine**: A penalty charged to a patron for not returning a book on time.  
+* **Check-in**: The process of returning a borrowed book to the library.  
+* **Check-out**: The process of lending a book to a patron.  
+* **Book Availability**: The current status of a book, indicating whether it is available for borrowing or checked out by a patron.  
+* **Borrowing History**: A record of all books a patron has borrowed in the past.  
+* **Renewal**: Extending the borrowing period of a book before the due date.  
+* **Suspension**: Temporarily restricting a patron’s ability to borrow books due to unpaid fines or violations of library policies.  
+ 
 
 --------------------------------------------------------------------------------------------------------------------
 
