@@ -355,11 +355,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+#### Performance:
+1.  Should be able to hold up to 1000 persons and 10,000 book entries without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to handle up to 1000 commands per hour without noticeable sluggishness in performance for typical usage.
+3.  Search operations (e.g., searching for books, members) should return results within 2 second for up to 1000 results.
 
-*{More to be added}*
+#### Usability:
+1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
+2.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  The app should have an intuitive UI so that new librarians can start using it within 30 minutes.
+4. The system should provide clear error messages and tooltips to guide users.
 
 ### Glossary
 
