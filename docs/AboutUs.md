@@ -1,9 +1,11 @@
 ---
-layout: page
-title: About Us
+  layout: default.md
+  title: "About Us"
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](https://www.comp.nus.edu.sg).
+# About Us
+
+We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
@@ -19,24 +21,24 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Implementation of functionalities and UI
 
-### Jane Doe
+### Hu Tongyan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hutongyan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/hutongyan)]
+[[portfolio](team/hutongyan.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Deliverables + Testing
+
+### Arnav Bajpai
+
+<img src="images/arnavbajpai.png" width="200px">
+
+[[github](http://github.com/arnavbajpai)] [[portfolio](team/arnavbajpai.md)]
+
+* Role: Developer
+* Responsibilities: CLI Commands + Error Handling
 
 ### Jean Doe
 
@@ -48,12 +50,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Anoob Hakim Nael
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/naelanoob.png.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/naelanoob)]
+[[portfolio](team/naelanoob.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: UI + Documentation
+
