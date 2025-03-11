@@ -13,7 +13,7 @@ public enum Membership {
 
     public final static String MESSAGE_CONSTRAINTS = "Membership status can only be: ACTIVE, EXPIRED, NON-MEMBER";
 
-    private final String status;
+    public final String status;
 
 
     private Membership(String status) {
