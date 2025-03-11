@@ -40,15 +40,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: CLI Commands + Error Handling
 
-### Jean Doe
+### Kiran Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kiranlimtl.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kiranlimtl)]
+[[portfolio](team/kiranlimtl.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Code quality + Integration
 
 ### Anoob Hakim Nael
 
