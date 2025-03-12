@@ -76,7 +76,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Membership} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withMembership(String membership){
+    public EditPersonDescriptorBuilder withMembership(String membership) {
         descriptor.setMembership(Membership.createMember(membership));
         return this;
     }
