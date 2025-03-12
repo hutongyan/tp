@@ -17,10 +17,20 @@ public enum Membership {
     /** The status of the membership. */
     public final String status;
 
+    /**
+     * Represents an exception that is thrown when a membership status is null.
+     * This exception extends {@link RuntimeException} and is used to indicate
+     * that a null value was provided where a valid membership status was expected.
+     */
     public static class NullMembershipException extends RuntimeException {
 
     }
 
+    /**
+     * Represents an exception that is thrown when an invalid membership status is encountered.
+     * This exception extends {@link RuntimeException} and is used to indicate
+     * that an invalid or unsupported membership status was provided.
+     */
     public static class InvalidMembershipException extends RuntimeException {
 
     }
