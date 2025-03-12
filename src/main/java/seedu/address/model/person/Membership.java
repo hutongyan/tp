@@ -17,6 +17,14 @@ public enum Membership {
     /** The status of the membership. */
     public final String status;
 
+    public static class NullMembershipException extends RuntimeException {
+
+    }
+
+    public static class InvalidMembershipException extends RuntimeException {
+
+    }
+
     /**
      * Constructs a {@code Membership} with the given status.
      *
@@ -34,7 +42,7 @@ public enum Membership {
      * @return The corresponding {@code Membership} status.
      * @throws RuntimeException If the string does not match any valid membership status.
      */
-    public static Membership createMember(String test) throws RuntimeException {
+    public static Membership createMember(String test) throws NullMembershipException, InvalidMembershipException {
         if (test.equals("ACTIVE")) {
             return ACTIVE;
         } else if (test.equals("EXPIRED")) {
@@ -42,7 +50,10 @@ public enum Membership {
         } else if (test.equals("NON-MEMBER")) {
             return NONMEMBER;
         } else {
-            throw new RuntimeException();
+            if (test == null) {
+                throw new NullMembershipException();
+            }
+            throw new InvalidMembershipException();
         }
     }
 

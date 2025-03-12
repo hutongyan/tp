@@ -112,8 +112,12 @@ class JsonAdaptedPerson {
         final Membership modelMembership;
         try {
             modelMembership = Membership.createMember(membership);
-        } catch (RuntimeException e) {
+        } catch (Membership.InvalidMembershipException e) {
             throw new IllegalValueException(Membership.MESSAGE_CONSTRAINTS);
+        } catch (Membership.NullMembershipException e) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Membership.class.getSimpleName())
+            );
         }
 
         final Set<Tag> modelTags = new HashSet<>(personTags);

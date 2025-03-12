@@ -108,8 +108,10 @@ public class ParserUtil {
 
         try {
             return Membership.createMember(trimmedMembership);
-        } catch (RuntimeException e) {
+        } catch (Membership.InvalidMembershipException e) {
             throw new ParseException(Membership.MESSAGE_CONSTRAINTS);
+        } catch (Membership.NullMembershipException e) {
+            throw new RuntimeException(e);
         }
     }
 
