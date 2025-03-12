@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Charvi Priyadarshi 
+### Charvi Priyadarshi
 
 <img src="images/priyadarshicharvi.png" width="200px">
 
@@ -59,4 +59,3 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: UI + Documentation
-

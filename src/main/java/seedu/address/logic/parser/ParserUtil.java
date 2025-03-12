@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Membership;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -96,6 +97,27 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code membership} into {@code Membership}
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code membership} is invalid.
+     */
+    public static Membership parseMembership(String membership) throws ParseException {
+        requireNonNull(membership);
+        String trimmedMembership = membership.trim();
+
+        try {
+            return Membership.createMember(trimmedMembership);
+        } catch (Membership.InvalidMembershipException e) {
+            throw new ParseException(Membership.MESSAGE_CONSTRAINTS);
+        } catch (Membership.NullMembershipException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -121,4 +143,6 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+
 }
