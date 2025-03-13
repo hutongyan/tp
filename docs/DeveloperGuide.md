@@ -299,8 +299,11 @@ _{Explain here how the data archiving feature will be implemented}_
   * Streamline membership management by automating activations, renewals, and suspensions.
   * Centralize book inventory and user records for a more organized, real-time system.
 
-**Value proposition**: A streamlined library management system designed for librarians to track book loans, overdue fines,
-and membership status in a fast and efficient way.
+
+**Value proposition**: A streamlined library management system designed for librarians to track book loans, 
+overdue fines, and membership status in a fast and efficient way. Real-time updates, centralized records, 
+and keyboard-friendly navigation ensure that Emma and her team can manage patrons and books seamlessly 
+without relying on scattered spreadsheets or outdated systems.
 
 
 ### User stories
