@@ -40,7 +40,7 @@ class JsonAdaptedBook {
      * Converts a given {@code Book} into this class for Jackson use.
      */
     public JsonAdaptedBook(Book source) {
-        name = source.getName().bookName;
+        name = source.getName().toString();
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

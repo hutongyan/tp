@@ -37,7 +37,7 @@ public class DeleteBookCommand extends Command {
         List<Book> lastShownList = model.getFilteredBookList();
 
         for (Book book : lastShownList) {
-            if (bookName.equals(book.getName())) {
+            if (bookName.equals(book.getName().toString())) {
                 model.deleteBook(book);
                 return new CommandResult(String.format(MESSAGE_DELETE_BOOK_SUCCESS, Messages.format(book)));
             }
