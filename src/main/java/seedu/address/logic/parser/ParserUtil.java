@@ -145,6 +145,14 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a {@code String name} into a {@code BookName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param name the name of the book to parse
+     * @return the parsed book name
+     * @throws ParseException if the given {@code name} is invalid
+     */
     public static String parseBookName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();

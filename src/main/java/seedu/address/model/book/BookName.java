@@ -37,8 +37,6 @@ public class BookName {
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-    
-
 
     @Override
     public String toString() {

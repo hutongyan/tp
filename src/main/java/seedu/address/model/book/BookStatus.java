@@ -1,11 +1,19 @@
 package seedu.address.model.book;
 
-import seedu.address.model.book.exceptions.BookUnavailableException;
-import seedu.address.model.person.Person;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+import seedu.address.model.book.exceptions.BookUnavailableException;
+import seedu.address.model.person.Person;
+
+/**
+ * Represents the status of a book in the library.
+ */
 public class BookStatus {
+
+    /**
+     * Enum representing the status of a book.
+     */
     public enum Status {
         AVAILABLE, BORROWED
     }
@@ -15,6 +23,9 @@ public class BookStatus {
     private LocalDate issueDate;
     private LocalDate returnDate;
 
+    /**
+     * Constructs a {@code BookStatus} with default values.
+     */
     public BookStatus() {
         this.status = Status.AVAILABLE;
         this.borrowedMember = null;
@@ -22,7 +33,14 @@ public class BookStatus {
         this.returnDate = null;
     }
 
-    public void issueBook(LocalDate issueDate, Person member) throws RuntimeException { // For issue command to be implemented later.
+    /**
+     * Issues the book to a member.
+     *
+     * @param issueDate the date the book is issued
+     * @param member the member to whom the book is issued
+     * @throws BookUnavailableException if the book is already borrowed
+     */
+    public void issueBook(LocalDate issueDate, Person member) throws BookUnavailableException {
         if (status == Status.BORROWED) {
             throw new BookUnavailableException(checkStatus());
         }
@@ -32,7 +50,12 @@ public class BookStatus {
         this.borrowedMember = member;
     }
 
-    public void returnBook() throws RuntimeException { // For return command to be implemented later.
+    /**
+     * Returns the book.
+     *
+     * @throws BookUnavailableException if the book is already available
+     */
+    public void returnBook() throws BookUnavailableException {
         if (status == Status.AVAILABLE) {
             throw new BookUnavailableException(checkStatus());
         }
@@ -42,21 +65,31 @@ public class BookStatus {
         this.borrowedMember = null;
     }
 
+    /**
+     * Checks the status of the book.
+     *
+     * @return the status of the book
+     */
     public String checkStatus() {
         if (status == Status.AVAILABLE) {
             return "Available";
         } else {
-            return "Currently borrowed by " + borrowedMember.getName() + 
-            " from " + issueDate + " till " + returnDate;
+            return "Currently borrowed by " + borrowedMember.getName()
+                + " from " + issueDate + " till " + returnDate;
         }
     }
 
-    public int calculateFines(LocalDate currentDate) { // For check fines command to be implemented later.
+    /**
+     * Calculates the fines for overdue books.
+     *
+     * @param currentDate the current date
+     * @return the amount of fines
+     */
+    public int calculateFines(LocalDate currentDate) {
         if (status == Status.BORROWED && returnDate != null && currentDate.isAfter(returnDate)) {
             long overdueDays = ChronoUnit.DAYS.between(returnDate, currentDate);
-            return (int) overdueDays * 1; 
+            return (int) overdueDays * 1;
         }
         return 0;
     }
-
 }

@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.book.BookName;
 import seedu.address.model.book.Book;
+import seedu.address.model.book.BookName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -52,19 +52,20 @@ class JsonAdaptedBook {
      * @throws IllegalValueException if there were any data constraints violated in the adapted Book.
      */
     public Book toModelType() throws IllegalValueException {
-        final List<Tag> BookTags = new ArrayList<>();
+        final List<Tag> bookTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
-            BookTags.add(tag.toModelType());
+            bookTags.add(tag.toModelType());
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, BookName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                BookName.class.getSimpleName()));
         }
         if (!BookName.isValidName(name)) {
             throw new IllegalValueException(BookName.MESSAGE_CONSTRAINTS);
         }
         final BookName modelName = new BookName(name);
-        final Set<Tag> modelTags = new HashSet<>(BookTags);
+        final Set<Tag> modelTags = new HashSet<>(bookTags);
         return new Book(modelName, modelTags);
     }
 

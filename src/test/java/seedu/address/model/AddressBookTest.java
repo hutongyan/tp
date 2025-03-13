@@ -106,7 +106,7 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Book> getBookList(){
+        public ObservableList<Book> getBookList() {
             return books;
         }
     }

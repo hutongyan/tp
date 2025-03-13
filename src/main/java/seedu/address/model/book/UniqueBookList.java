@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.book.exceptions.DuplicateBookException;
 import seedu.address.model.book.exceptions.BookNotFoundException;
+import seedu.address.model.book.exceptions.DuplicateBookException;
 
 /**
  * A list of Books that enforces uniqueness between its elements and does not allow nulls.
@@ -69,22 +69,6 @@ public class UniqueBookList implements Iterable<Book> {
     }
 
     /**
-     * Removes the equivalent Book from the list.
-     * The book must exist in the list.
-     */
-    public void remove(Book toRemove) {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            throw new BookNotFoundException();
-        }
-    }
-
-    public void setBooks(UniqueBookList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
-    /**
      * Replaces the contents of this list with {@code books}.
      * {@code books} must not contain duplicate books.
      */
@@ -95,6 +79,22 @@ public class UniqueBookList implements Iterable<Book> {
         }
 
         internalList.setAll(books);
+    }
+
+    public void setBooks(UniqueBookList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
+    /**
+     * Removes the equivalent Book from the list.
+     * The book must exist in the list.
+     */
+    public void remove(Book toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new BookNotFoundException();
+        }
     }
 
     /**
