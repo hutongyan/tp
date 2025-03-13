@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Charvi Priyadarshi 
+### Charvi Priyadarshi
 
 <img src="images/priyadarshicharvi.png" width="200px">
 
@@ -28,8 +28,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/hutongyan)]
 [[portfolio](team/hutongyan.md)]
 
-* Role: Team Lead
-* Responsibilities: Deliverables and deadlines
+* Role: Developer
+* Responsibilities: Deliverables + Testing
 
 ### Arnav Bajpai
 
@@ -40,22 +40,22 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: CLI Commands + Error Handling
 
-### Jean Doe
+### Kiran Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kiranlimtl.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kiranlimtl)]
+[[portfolio](team/kiranlimtl.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code quality + Integration
+
+### Anoob Hakim Nael
+
+<img src="images/naelanoob.png" width="200px">
+
+[[github](http://github.com/naelanoob)]
+[[portfolio](team/naelanoob.md)]
+
+* Role: Developer
+* Responsibilities: UI + Documentation

@@ -299,6 +299,7 @@ _{Explain here how the data archiving feature will be implemented}_
   * Streamline membership management by automating activations, renewals, and suspensions.
   * Centralize book inventory and user records for a more organized, real-time system.
 
+
 **Value proposition**: A streamlined library management system designed for librarians to track book loans, 
 overdue fines, and membership status in a fast and efficient way. Real-time updates, centralized records, 
 and keyboard-friendly navigation ensure that Emma and her team can manage patrons and books seamlessly 
@@ -309,14 +310,20 @@ without relying on scattered spreadsheets or outdated systems.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​   | I want to …​                                                  | So that I can…​                                                |
+|--------|-----------|---------------------------------------------------------------|----------------------------------------------------------------|
+| `* * *` | new user  | see usage instructions                                        | refer to instructions when I forget how to use the application |
+| `* * *` | librarian | add a new library user                                        | register new users and allow them to borrow books              |
+| `* * *` | librarian | delete the details of a library users                         | remove users that no longer use the library                    |
+| `* * ` | librarian | check the membership status of a user                         | cancel or renew memberships easily                             |
+| `* *`  | librarian | mark that a user has borrowed a certain book                  | lend books to users and keep track of them                     |
+| `* *`  | librarian | edit/update details of a user                                 | keep the information accurate and up to date                   |
+| `* *`  | librarian | mark that a user has returned a certain book                  | keep track of returned books                                   |
+| `* *`  | librarian | list users based on a filter                                  | look at users based on a certain criteria                      |
+| `* *`  | librarian | check the due fees of a member                                | ensure members pay the correct fee                             |
+| `*`    | librarian | see a list of overdue books and their corresponding users     | monitor the status of borrowed books                           |
+| `* *`  | librarian | update book information                                       | ensure that book records remain accurate                       |
+| `*`    | librarian | send automated reminders for overdue books or membership fees | keep members updates on overdue books/fees                     |
 
 *{More to be added}*
 
@@ -351,23 +358,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+#### Performance:
+1.  Should be able to hold up to 1000 persons and 10,000 book entries without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to handle up to 1000 commands per hour without noticeable sluggishness in performance for typical usage.
+3.  Search operations (e.g., searching for books, members) should return results within 2 second for up to 1000 results.
 
-*{More to be added}*
+#### Usability:
+1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
+2.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  The app should have an intuitive UI so that new librarians can start using it within 30 minutes.
+4. The system should provide clear error messages and tooltips to guide users.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Library Management System (LMS)**: A software solution designed to help librarians manage book loans, overdue fines, and membership status efficiently.  
+* **Patron**: A registered library user who can borrow books and use library services.  
+* **Membership Status**: The current state of a patron's library account, which can be active, expired, or suspended.  
+* **Book Loan**: The process of borrowing a book from the library for a specified duration.  
+* **Overdue Book**: A book that has not been returned by its due date.  
+* **Overdue Fine**: A penalty charged to a patron for not returning a book on time.  
+* **Check-in**: The process of returning a borrowed book to the library.  
+* **Check-out**: The process of lending a book to a patron.  
+* **Book Availability**: The current status of a book, indicating whether it is available for borrowing or checked out by a patron.  
+* **Borrowing History**: A record of all books a patron has borrowed in the past.  
+* **Renewal**: Extending the borrowing period of a book before the due date.  
+* **Suspension**: Temporarily restricting a patron’s ability to borrow books due to unpaid fines or violations of library policies.  
+ 
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
-
 Given below are instructions to test the app manually.
-
 <box type="info" seamless>
 
 **Note:** These instructions only provide a starting point for testers to work on;
@@ -376,21 +397,18 @@ testers are expected to do more *exploratory* testing.
 </box>
 
 ### Launch and shutdown
-
 1. Initial launch
-
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
-
+2. Saving window preferences
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
 ### Deleting a person
 
@@ -398,16 +416,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -415,4 +433,4 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
