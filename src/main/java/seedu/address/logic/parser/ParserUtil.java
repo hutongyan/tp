@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.book.BookName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Membership;
@@ -144,5 +145,13 @@ public class ParserUtil {
         return tagSet;
     }
 
+    public static String parseBookName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!BookName.isValidName(trimmedName)) {
+            throw new ParseException(BookName.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedName;
+    }
 
 }
