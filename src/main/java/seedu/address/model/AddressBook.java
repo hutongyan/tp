@@ -6,6 +6,8 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.book.Book;
+import seedu.address.model.book.UniqueBookList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -17,6 +19,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
 
+    private final UniqueBookList books;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -26,6 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        books = new UniqueBookList();
     }
 
     public AddressBook() {}
@@ -48,13 +53,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    public void setBooks(List<Book> books) {
+        this.books.setBooks(books);
+    }
+
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setPersons(newData.getPersonList());
+        setBooks(newData.getBookList());
     }
 
     //// person-level operations
@@ -94,6 +104,26 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+
+    public void removeBook(Book key) {
+        books.remove(key);
+    }
+    /**
+     * Returns true if a book with the same name as {@code book} exists in the address book.
+     */
+    public boolean hasBook(Book book) {
+        requireNonNull(book);
+        return books.contains(book);
+    }
+
+    /**
+     * Adds a book to the address book.
+     * The book must not already exist in the address book.
+     */
+    public void addBook(Book book) {
+        books.add(book);
+    }
+
     //// util methods
 
     @Override
@@ -109,6 +139,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Book> getBookList() {
+        return books.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -120,7 +155,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons);
+        return persons.equals(otherAddressBook.persons) && books.equals(otherAddressBook.books);
     }
 
     @Override
