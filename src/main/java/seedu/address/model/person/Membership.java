@@ -53,16 +53,15 @@ public enum Membership {
      * @throws RuntimeException If the string does not match any valid membership status.
      */
     public static Membership createMember(String test) throws NullMembershipException, InvalidMembershipException {
-        if (test.equals("ACTIVE")) {
+        if (test == null) {
+            throw new NullMembershipException();
+        } else if (test.equals("ACTIVE")) {
             return ACTIVE;
         } else if (test.equals("EXPIRED")) {
             return EXPIRED;
         } else if (test.equals("NON-MEMBER")) {
             return NONMEMBER;
         } else {
-            if (test == null) {
-                throw new NullMembershipException();
-            }
             throw new InvalidMembershipException();
         }
     }
