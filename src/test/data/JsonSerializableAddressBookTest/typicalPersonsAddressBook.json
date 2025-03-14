@@ -49,5 +49,11 @@
     "address" : "4th street",
     "membership": "ACTIVE",
     "tags" : [ ]
-  } ]
+  } ],
+  "books": [
+    {
+      "name": "Percy Jackson",
+      "tags": ["action", "adventure"]
+    }
+  ]
 }
