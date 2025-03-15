@@ -153,13 +153,13 @@ public class ParserUtil {
      * @return the parsed book name
      * @throws ParseException if the given {@code name} is invalid
      */
-    public static String parseBookName(String name) throws ParseException {
+    public static BookName parseBookName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!BookName.isValidName(trimmedName)) {
             throw new ParseException(BookName.MESSAGE_CONSTRAINTS);
         }
-        return trimmedName;
+        return new BookName(trimmedName);
     }
 
 }

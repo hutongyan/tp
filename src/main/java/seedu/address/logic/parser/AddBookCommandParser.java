@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
 import java.util.Set;
 
 
-public class AddBookParser implements Parser<AddBookCommand> {
+public class AddBookCommandParser implements Parser<AddBookCommand> {
     
     /**
      * Parses the given {@code String} of arguments in the context of the AddBookCommand
