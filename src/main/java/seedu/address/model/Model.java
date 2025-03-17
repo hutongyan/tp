@@ -14,6 +14,9 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Book> PREDICATE_SHOW_ALL_BOOKS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -85,7 +88,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
-
+    /**
+     * Adds the given book.
+     * {@code book} must not already exist in the address book.
+     */
+    void addBook(Book book);
     /**
      * Deletes the given book.
      * The book must exist in the address book.
@@ -94,4 +101,6 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered book list */
     ObservableList<Book> getFilteredBookList();
+
+    void updateFilteredBookList(Predicate<Book> predicate);
 }

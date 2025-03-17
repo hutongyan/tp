@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.DeleteBookCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.book.BookName;
 
 /**
  * Parses input arguments and creates a new DeleteBookCommand object.
@@ -30,7 +31,7 @@ public class DeleteBookCommandParser implements Parser<DeleteBookCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_BOOK);
-        String name = ParserUtil.parseBookName(argMultimap.getValue(PREFIX_BOOK).get());
+        BookName name = ParserUtil.parseBookName(argMultimap.getValue(PREFIX_BOOK).get());
         return new DeleteBookCommand(name);
     }
 }
