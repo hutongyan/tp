@@ -417,11 +417,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 5a. Given index is invalid.
+* 5a. Given index for person is invalid.
 
   * 5a1. AddressBook shows an error message.
 
     Use case resumes at step 2.
+
+* 5b. Given index for book is invalid.
+
+    * 5b1. AddressBook shows an error message.
+
+      Use case resumes at step 4.
 
 
   
