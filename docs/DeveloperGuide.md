@@ -350,10 +350,87 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+  * 3a1. AddressBook shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
 
+**Use case: Add a person**
+
+**MSS**
+1.  User requests to add a person with specific details
+2.  AddressBook adds the person to the list
+
+    Use case ends.
+
+**Extensions**
+* 1a. The provided details are incomplete or invalid.
+    * 1a1. AddressBook shows an error message.
+  
+      Use case resumes at step 1.
+
+* 1b. The person already exists in the AddressBook.
+    * 1b1. AddressBook shows an error message.
+      
+      Use case resumes at step 1.
+
+**Use case: Add a book**
+
+**MSS**
+1.  User requests to add a book with specific details
+2.  AddressBook adds a book to the list
+
+    Use case ends.
+
+**Extensions**
+* 1a. The provided details are incomplete or invalid.
+    * 1a1. AddressBook shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The book already exists in the AddressBook.
+    * 1b1. AddressBook shows an error message.
+
+      Use case resumes at step 1.
+
+
+
+**Use case: Lend a book to a person**
+
+**MSS**
+1. User requests to list all persons
+2. AddressBook shows list of all persons
+3. User requests to list all books
+4. AddressBook shows list of all books
+5. User requests to lend a specific book to a specific person
+6. AddressBook marks book as borrowed
+7. AddressBook marks person as having borrowed the specific book
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 4a. The list is empty.
+
+  Use case ends.
+
+* 5a. Given index for person is invalid.
+
+  * 5a1. AddressBook shows an error message.
+
+    Use case resumes at step 2.
+
+* 5b. Given index for book is invalid.
+
+    * 5b1. AddressBook shows an error message.
+
+      Use case resumes at step 4.
+
+
+  
 *{More to be added}*
 
 ### Non-Functional Requirements
