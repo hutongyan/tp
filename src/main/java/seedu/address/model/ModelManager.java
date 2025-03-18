@@ -113,6 +113,11 @@ public class ModelManager implements Model {
 
         addressBook.setPerson(target, editedPerson);
     }
+    @Override 
+    public boolean hasBook(Book target) {
+        requireAllNonNull(target);
+        return addressBook.hasBook(target);
+    }
     @Override
     public void addBook(Book book) {
         addressBook.addBook(book);

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -24,70 +23,66 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.book.Book;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.BookBuilder;
 
-public class AddCommandTest {
-
-    @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+public class AddBookCommandTest {
+    @Test 
+    public void constructor_nullBook_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddBookCommand(null));
     }
-
+    
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
-
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
-
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+    public void execute_bookAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingBookAdded modelStub = new ModelStubAcceptingBookAdded();
+        Book validBook = new BookBuilder().build();
+        
+        CommandResult commandResult = new AddBookCommand(validBook).execute(modelStub);
+        
+        assertEquals(String.format(AddBookCommand.MESSAGE_ADD_BOOK_SUCCESS, Messages.format(validBook)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validBook), modelStub.booksAdded);
     }
-
-    @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
-
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+    @Test 
+    public void execute_duplicateBook_throwsCommandException() {
+        Book validBook = new BookBuilder().build();
+        AddBookCommand addBookCommand = new AddBookCommand(validBook);
+        ModelStub modelStub = new ModelStubWithBook(validBook);
+        
+        assertThrows(CommandException.class, AddBookCommand.MESSAGE_ADD_BOOK_FAIL, () -> addBookCommand.execute(modelStub));
     }
-
-    @Test
+    @Test 
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
-
-        // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
-
-        // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
-
-        // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
-
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        Book HP = new BookBuilder().withName("Harry Potter").build();
+        Book PJ = new BookBuilder().withName("Percy Jackson").build();
+        AddBookCommand addHPCommand = new AddBookCommand(HP);
+        AddBookCommand addPJCommand = new AddBookCommand(PJ);
+        
+        //same object -> returns true
+        assertTrue(addHPCommand.equals(addHPCommand));
+        
+        //same values -> returns true
+        AddBookCommand addHPCommandCopy = new AddBookCommand(HP);
+        assertTrue(addHPCommand.equals(addHPCommandCopy));
+        
+        //different types -> returns false
+        assertFalse(addHPCommand.equals(1));
+        
+        //null -> returns false
+        assertFalse(addHPCommand.equals(null));
+        
+        //different book -> returns false
+        assertFalse(addHPCommand.equals(addPJCommand));
+        
     }
-
+    
     @Test
     public void toStringMethod() {
-        AddCommand addCommand = new AddCommand(ALICE);
-        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
-        assertEquals(expected, addCommand.toString());
+        Book HP = new BookBuilder().withName("Harry Potter").build();
+        AddBookCommand addHPCommand = new AddBookCommand(HP);
+        String expected = AddBookCommand.class.getCanonicalName() + "{book=" + HP + "}";
+        assertEquals(expected, addHPCommand.toString());
     }
 
-    /**
-     * A default model stub that have all of the methods failing.
-     */
     private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -182,41 +177,36 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
     }
+    private class ModelStubWithBook extends ModelStub {
+        private final Book book;
 
-    /**
-     * A Model stub that contains a single person.
-     */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
-
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithBook(Book book) {
+            requireNonNull(book);
+            this.book = book;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasBook(Book book) {
+            requireNonNull(book);
+            return this.book.isSameBook(book);
         }
     }
-
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the book being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingBookAdded extends ModelStub {
+        final ArrayList<Book> booksAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasBook(Book book) {
+            requireNonNull(book);
+            return booksAdded.stream().anyMatch(book::isSameBook);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addBook(Book book) {
+            requireNonNull(book);
+            booksAdded.add(book);
         }
 
         @Override
@@ -224,5 +214,4 @@ public class AddCommandTest {
             return new AddressBook();
         }
     }
-
 }

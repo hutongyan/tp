@@ -94,6 +94,10 @@ public interface Model {
      */
     void addBook(Book book);
     /**
+     * Returns true if a book with the same identity as {@code book} exists in the address book.
+     */
+    boolean hasBook(Book book);
+    /**
      * Deletes the given book.
      * The book must exist in the address book.
      */
