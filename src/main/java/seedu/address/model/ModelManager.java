@@ -113,6 +113,11 @@ public class ModelManager implements Model {
 
         addressBook.setPerson(target, editedPerson);
     }
+    @Override
+    public void addBook(Book book) {
+        addressBook.addBook(book);
+        updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
+    }
 
     @Override
     public void deleteBook(Book target) {
@@ -139,6 +144,12 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+    
+    @Override
+    public void updateFilteredBookList(Predicate<Book> predicate) {
+        requireNonNull(predicate);
+        filteredBooks.setPredicate(predicate);
     }
 
     @Override

@@ -23,7 +23,7 @@ public class BookName {
     /**
      * Constructs a {@code Name}.
      *
-     * @param name A valid name.
+     * @param bookName A valid name.
      */
     public BookName(String bookName) {
         requireNonNull(bookName);

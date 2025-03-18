@@ -10,6 +10,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.book.Book;
+import seedu.address.model.book.BookName;
 
 /**
  * Deletes a book identified using its name from the address book.
@@ -25,9 +26,9 @@ public class DeleteBookCommand extends Command {
 
     public static final String MESSAGE_DELETE_BOOK_SUCCESS = "Deleted Book: %1$s";
     public static final String MESSAGE_DELETE_BOOK_FAIL = "Book: %1$s not found in book list.";
-    private final String bookName;
+    private final BookName bookName;
 
-    public DeleteBookCommand(String bookName) {
+    public DeleteBookCommand(BookName bookName) {
         this.bookName = bookName;
     }
 
@@ -37,7 +38,7 @@ public class DeleteBookCommand extends Command {
         List<Book> lastShownList = model.getFilteredBookList();
 
         for (Book book : lastShownList) {
-            if (bookName.equals(book.getName().toString())) {
+            if (bookName.equals(book.getName())) {
                 model.deleteBook(book);
                 return new CommandResult(String.format(MESSAGE_DELETE_BOOK_SUCCESS, Messages.format(book)));
             }
