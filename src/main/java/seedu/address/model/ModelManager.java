@@ -145,7 +145,6 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
-    
     @Override
     public void updateFilteredBookList(Predicate<Book> predicate) {
         requireNonNull(predicate);
