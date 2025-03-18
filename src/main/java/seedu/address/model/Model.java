@@ -14,7 +14,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-    
+
     /** {@code Predicate} that always evaluate to true */
     Predicate<Book> PREDICATE_SHOW_ALL_BOOKS = unused -> true;
 

@@ -26,18 +26,15 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.BookBuilder;
 
 public class AddBookCommandTest {
-    @Test 
+    @Test
     public void constructor_nullBook_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddBookCommand(null));
     }
-    
     @Test
     public void execute_bookAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingBookAdded modelStub = new ModelStubAcceptingBookAdded();
         Book validBook = new BookBuilder().build();
-        
         CommandResult commandResult = new AddBookCommand(validBook).execute(modelStub);
-        
         assertEquals(String.format(AddBookCommand.MESSAGE_ADD_BOOK_SUCCESS, Messages.format(validBook)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validBook), modelStub.booksAdded);
@@ -47,7 +44,6 @@ public class AddBookCommandTest {
         Book validBook = new BookBuilder().build();
         AddBookCommand addBookCommand = new AddBookCommand(validBook);
         ModelStub modelStub = new ModelStubWithBook(validBook);
-        
         assertThrows(CommandException.class, AddBookCommand.MESSAGE_ADD_BOOK_FAIL, () -> addBookCommand.execute(modelStub));
     }
     @Test 
@@ -56,20 +52,15 @@ public class AddBookCommandTest {
         Book PJ = new BookBuilder().withName("Percy Jackson").build();
         AddBookCommand addHPCommand = new AddBookCommand(HP);
         AddBookCommand addPJCommand = new AddBookCommand(PJ);
-        
         //same object -> returns true
         assertTrue(addHPCommand.equals(addHPCommand));
-        
         //same values -> returns true
         AddBookCommand addHPCommandCopy = new AddBookCommand(HP);
         assertTrue(addHPCommand.equals(addHPCommandCopy));
-        
         //different types -> returns false
         assertFalse(addHPCommand.equals(1));
-        
         //null -> returns false
         assertFalse(addHPCommand.equals(null));
-        
         //different book -> returns false
         assertFalse(addHPCommand.equals(addPJCommand));
         
@@ -88,7 +79,6 @@ public class AddBookCommandTest {
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
@@ -103,7 +93,6 @@ public class AddBookCommandTest {
         public void setGuiSettings(GuiSettings guiSettings) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public Path getAddressBookFilePath() {
             throw new AssertionError("This method should not be called.");
@@ -113,7 +102,6 @@ public class AddBookCommandTest {
         public void setAddressBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");

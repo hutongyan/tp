@@ -300,9 +300,9 @@ _{Explain here how the data archiving feature will be implemented}_
   * Centralize book inventory and user records for a more organized, real-time system.
 
 
-**Value proposition**: A streamlined library management system designed for librarians to track book loans, 
-overdue fines, and membership status in a fast and efficient way. Real-time updates, centralized records, 
-and keyboard-friendly navigation ensure that Emma and her team can manage patrons and books seamlessly 
+**Value proposition**: A streamlined library management system designed for librarians to track book loans,
+overdue fines, and membership status in a fast and efficient way. Real-time updates, centralized records,
+and keyboard-friendly navigation ensure that Emma and her team can manage patrons and books seamlessly
 without relying on scattered spreadsheets or outdated systems.
 
 
@@ -365,12 +365,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. The provided details are incomplete or invalid.
     * 1a1. AddressBook shows an error message.
-  
+
       Use case resumes at step 1.
 
 * 1b. The person already exists in the AddressBook.
     * 1b1. AddressBook shows an error message.
-      
+
       Use case resumes at step 1.
 
 **Use case: Add a book**
@@ -429,8 +429,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 4.
 
+    
 
-  
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -448,19 +448,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Library Management System (LMS)**: A software solution designed to help librarians manage book loans, overdue fines, and membership status efficiently.  
-* **Patron**: A registered library user who can borrow books and use library services.  
-* **Membership Status**: The current state of a patron's library account, which can be active, expired, or suspended.  
-* **Book Loan**: The process of borrowing a book from the library for a specified duration.  
-* **Overdue Book**: A book that has not been returned by its due date.  
-* **Overdue Fine**: A penalty charged to a patron for not returning a book on time.  
-* **Check-in**: The process of returning a borrowed book to the library.  
-* **Check-out**: The process of lending a book to a patron.  
-* **Book Availability**: The current status of a book, indicating whether it is available for borrowing or checked out by a patron.  
-* **Borrowing History**: A record of all books a patron has borrowed in the past.  
-* **Renewal**: Extending the borrowing period of a book before the due date.  
-* **Suspension**: Temporarily restricting a patron’s ability to borrow books due to unpaid fines or violations of library policies.  
- 
+* **Library Management System (LMS)**: A software solution designed to help librarians manage book loans, overdue fines, and membership status efficiently.
+* **Patron**: A registered library user who can borrow books and use library services.
+* **Membership Status**: The current state of a patron's library account, which can be active, expired, or suspended.
+* **Book Loan**: The process of borrowing a book from the library for a specified duration.
+* **Overdue Book**: A book that has not been returned by its due date.
+* **Overdue Fine**: A penalty charged to a patron for not returning a book on time.
+* **Check-in**: The process of returning a borrowed book to the library.
+* **Check-out**: The process of lending a book to a patron.
+* **Book Availability**: The current status of a book, indicating whether it is available for borrowing or checked out by a patron.
+* **Borrowing History**: A record of all books a patron has borrowed in the past.
+* **Renewal**: Extending the borrowing period of a book before the due date.
+* **Suspension**: Temporarily restricting a patron’s ability to borrow books due to unpaid fines or violations of library policies.
+
 
 --------------------------------------------------------------------------------------------------------------------
 

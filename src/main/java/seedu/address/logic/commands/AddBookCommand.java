@@ -13,7 +13,6 @@ import seedu.address.model.book.Book;
 
 public class AddBookCommand extends Command {
     public static final String COMMAND_WORD = "add_book";
-    
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a book to the address book.\n"
             + "Parameters: " + PREFIX_BOOK + "BOOK NAME" + "\n"
@@ -21,12 +20,10 @@ public class AddBookCommand extends Command {
     public static final String MESSAGE_ADD_BOOK_SUCCESS = "Added Book: %1$s";
     public static final String MESSAGE_ADD_BOOK_FAIL = "This book already exists in book list.";
     private final Book book;
-    
     public AddBookCommand(Book book) {
         requireNonNull(book);
         this.book = book;
     }
-    
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -36,7 +33,6 @@ public class AddBookCommand extends Command {
         model.addBook(book);
         return new CommandResult(String.format(MESSAGE_ADD_BOOK_SUCCESS, Messages.format(book)));
     }
-    
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -50,12 +46,10 @@ public class AddBookCommand extends Command {
         AddBookCommand otherAddCommand = (AddBookCommand) other;
         return book.equals(otherAddCommand.book);
     }
-    
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("book", book)
                 .toString();
     }
-    
 }
