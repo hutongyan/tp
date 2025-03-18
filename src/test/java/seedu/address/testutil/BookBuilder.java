@@ -18,7 +18,6 @@ public class BookBuilder {
     private BookName bookname;
     private BookStatus status;
     private Set<Tag> tags;
-    
     /**
      * Creates a {@code BookBuilder} with the default details.
      */
@@ -35,7 +34,6 @@ public class BookBuilder {
         status = bookToCopy.getStatus();
         tags = new HashSet<>();
     }
-    
     /**
      * Sets the {@code BookName} of the {@code Book} that we are building.
      */
