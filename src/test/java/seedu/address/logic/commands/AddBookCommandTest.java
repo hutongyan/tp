@@ -39,14 +39,14 @@ public class AddBookCommandTest {
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validBook), modelStub.booksAdded);
     }
-    @Test 
+    @Test
     public void execute_duplicateBook_throwsCommandException() {
         Book validBook = new BookBuilder().build();
         AddBookCommand addBookCommand = new AddBookCommand(validBook);
         ModelStub modelStub = new ModelStubWithBook(validBook);
         assertThrows(CommandException.class, AddBookCommand.MESSAGE_ADD_BOOK_FAIL, () -> addBookCommand.execute(modelStub));
     }
-    @Test 
+    @Test
     public void equals() {
         Book HP = new BookBuilder().withName("Harry Potter").build();
         Book PJ = new BookBuilder().withName("Percy Jackson").build();
@@ -63,9 +63,7 @@ public class AddBookCommandTest {
         assertFalse(addHPCommand.equals(null));
         //different book -> returns false
         assertFalse(addHPCommand.equals(addPJCommand));
-        
     }
-    
     @Test
     public void toStringMethod() {
         Book HP = new BookBuilder().withName("Harry Potter").build();
