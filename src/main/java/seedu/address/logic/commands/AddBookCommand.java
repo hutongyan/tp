@@ -11,6 +11,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.book.Book;
 
+/**
+ * Adds a book to the address book.
+ */
 public class AddBookCommand extends Command {
     public static final String COMMAND_WORD = "add_book";
     public static final String MESSAGE_USAGE = COMMAND_WORD
