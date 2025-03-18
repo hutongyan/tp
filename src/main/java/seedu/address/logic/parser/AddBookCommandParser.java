@@ -4,15 +4,19 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Set;
+
 import seedu.address.logic.commands.AddBookCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.BookName;
 import seedu.address.model.tag.Tag;
 
-import java.util.Set;
 
 
+/**
+ * Parses input arguments and creates a new AddBookCommand object
+ */
 public class AddBookCommandParser implements Parser<AddBookCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddBookCommand
