@@ -67,9 +67,9 @@ public class AddBookCommandTest {
     }
     @Test
     public void toStringMethod() {
-        Book Hp = new BookBuilder().withName("Harry Potter").build();
-        AddBookCommand addHpCommand = new AddBookCommand(Hp);
-        String expected = AddBookCommand.class.getCanonicalName() + "{book=" + Hp + "}";
+        Book hp = new BookBuilder().withName("Harry Potter").build();
+        AddBookCommand addHpCommand = new AddBookCommand(hp);
+        String expected = AddBookCommand.class.getCanonicalName() + "{book=" + hp + "}";
         assertEquals(expected, addHpCommand.toString());
     }
 
