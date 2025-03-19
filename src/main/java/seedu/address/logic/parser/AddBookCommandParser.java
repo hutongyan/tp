@@ -12,10 +12,8 @@ import seedu.address.model.book.Book;
 import seedu.address.model.book.BookName;
 import seedu.address.model.tag.Tag;
 
-
-
 /**
- * Parses input arguments and creates a new AddBookCommand object
+ * Parses input arguments and creates a new AddBookCommand object.
  */
 public class AddBookCommandParser implements Parser<AddBookCommand> {
     /**
@@ -39,6 +37,7 @@ public class AddBookCommandParser implements Parser<AddBookCommand> {
         BookName name = ParserUtil.parseBookName(argMultimap.getValue(PREFIX_BOOK).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Book book = new Book(name, tagList);
+
         return new AddBookCommand(book);
     }
 }
