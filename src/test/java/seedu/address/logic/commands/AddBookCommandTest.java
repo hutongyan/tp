@@ -49,14 +49,14 @@ public class AddBookCommandTest {
     }
     @Test
     public void equals() {
-        Book HP = new BookBuilder().withName("Harry Potter").build();
-        Book PJ = new BookBuilder().withName("Percy Jackson").build();
-        AddBookCommand addHpCommand = new AddBookCommand(HP);
-        AddBookCommand addPjCommand = new AddBookCommand(PJ);
+        Book hp = new BookBuilder().withName("Harry Potter").build();
+        Book pj = new BookBuilder().withName("Percy Jackson").build();
+        AddBookCommand addHpCommand = new AddBookCommand(hp);
+        AddBookCommand addPjCommand = new AddBookCommand(pj);
         //same object -> returns true
         assertTrue(addHpCommand.equals(addHpCommand));
         //same values -> returns true
-        AddBookCommand addHpCommandCopy = new AddBookCommand(HP);
+        AddBookCommand addHpCommandCopy = new AddBookCommand(hp);
         assertTrue(addHpCommand.equals(addHpCommandCopy));
         //different types -> returns false
         assertFalse(addHpCommand.equals(1));
