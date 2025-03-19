@@ -55,6 +55,7 @@
         "documentation-logging-testing-configuration-dev-ops": "Documentation, logging, testing, configuration, dev-ops",
         "appendix-requirements": "Appendix: Requirements",
         "product-scope": "Product scope",
+        "value-proposition-a-streamlined-library-management-system-designed-for-librarians-to-track-book-loans-overdue-fines-and-membership-status-in-a-fast-and-efficient-way-real-time-updates-centralized-records-head-and-keyboard-friendly-navigation-ensure-that-emma-and-her-team-can-manage-patrons-and-books-seamlessly-without-relying-on-scattered-spreadsheets-or-outdated-systems": "Value proposition: A streamlined library management system designed for librarians to track book loans,\noverdue fines, and membership status in a fast and efficient way. Real-time updates, centralized records,\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\nand keyboard-friendly navigation ensure that Emma and her team can manage patrons and books seamlessly\nwithout relying on scattered spreadsheets or outdated systems.",
         "user-stories": "User stories",
         "use-cases": "Use cases",
         "non-functional-requirements": "Non-Functional Requirements",
