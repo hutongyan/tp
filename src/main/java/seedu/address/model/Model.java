@@ -14,6 +14,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
     /** {@code Predicate} that always evaluate to true */
     Predicate<Book> PREDICATE_SHOW_ALL_BOOKS = unused -> true;
 
@@ -92,6 +93,10 @@ public interface Model {
      * {@code book} must not already exist in the address book.
      */
     void addBook(Book book);
+    /**
+     * Returns true if a book with the same identity as {@code book} exists in the address book.
+     */
+    boolean hasBook(Book book);
     /**
      * Deletes the given book.
      * The book must exist in the address book.

@@ -110,8 +110,12 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
+    }
+    @Override
+    public boolean hasBook(Book target) {
+        requireAllNonNull(target);
+        return addressBook.hasBook(target);
     }
     @Override
     public void addBook(Book book) {
@@ -150,7 +154,6 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredBooks.setPredicate(predicate);
     }
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {

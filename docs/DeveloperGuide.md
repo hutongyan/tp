@@ -302,8 +302,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**: A streamlined library management system designed for librarians to track book loans,
 overdue fines, and membership status in a fast and efficient way. Real-time updates, centralized records,
+<<<<<<< HEAD
+and keyboard-friendly navigation ensure that Emma and her team can manage patrons and books seamlessly
+without relying on scattered spreadsheets or outdated systems.
+=======
 and keyboard-friendly navigation ensure that Emma and her team can manage patrons
 and books seamlessly without relying on scattered spreadsheets or outdated systems.
+>>>>>>> upstream/master
 
 
 ### User stories
@@ -364,12 +369,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The provided details are incomplete or invalid.
-    * 1a1. AddressBook shows an error message.
-      Use case resumes at step 1.
+    * 1a1. AddressBook shows an error message. Use case resumes at step 1.
 
 * 1b. The person already exists in the AddressBook.
-    * 1b1. AddressBook shows an error message.
-      Use case resumes at step 1.
+    * 1b1. AddressBook shows an error message. Use case resumes at step 1.
 
 **Use case: Add a book**
 
@@ -428,7 +431,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 4.
 
 
-  
+
 *{More to be added}*
 ### Non-Functional Requirements
 

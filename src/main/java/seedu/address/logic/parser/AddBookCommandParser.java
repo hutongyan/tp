@@ -16,7 +16,6 @@ import seedu.address.model.tag.Tag;
  * Parses input arguments and creates a new AddBookCommand object.
  */
 public class AddBookCommandParser implements Parser<AddBookCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddBookCommand
      * and returns an AddBookCommand object for execution.
