@@ -44,32 +44,33 @@ public class AddBookCommandTest {
         Book validBook = new BookBuilder().build();
         AddBookCommand addBookCommand = new AddBookCommand(validBook);
         ModelStub modelStub = new ModelStubWithBook(validBook);
-        assertThrows(CommandException.class, AddBookCommand.MESSAGE_ADD_BOOK_FAIL, () -> addBookCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddBookCommand.MESSAGE_ADD_BOOK_FAIL, () -> addBookCommand.execute(modelStub));
     }
     @Test
     public void equals() {
         Book HP = new BookBuilder().withName("Harry Potter").build();
         Book PJ = new BookBuilder().withName("Percy Jackson").build();
-        AddBookCommand addHPCommand = new AddBookCommand(HP);
-        AddBookCommand addPJCommand = new AddBookCommand(PJ);
+        AddBookCommand addHpCommand = new AddBookCommand(HP);
+        AddBookCommand addPjCommand = new AddBookCommand(PJ);
         //same object -> returns true
-        assertTrue(addHPCommand.equals(addHPCommand));
+        assertTrue(addHpCommand.equals(addHpCommand));
         //same values -> returns true
-        AddBookCommand addHPCommandCopy = new AddBookCommand(HP);
-        assertTrue(addHPCommand.equals(addHPCommandCopy));
+        AddBookCommand addHpCommandCopy = new AddBookCommand(HP);
+        assertTrue(addHpCommand.equals(addHpCommandCopy));
         //different types -> returns false
-        assertFalse(addHPCommand.equals(1));
+        assertFalse(addHpCommand.equals(1));
         //null -> returns false
-        assertFalse(addHPCommand.equals(null));
+        assertFalse(addHpCommand.equals(null));
         //different book -> returns false
-        assertFalse(addHPCommand.equals(addPJCommand));
+        assertFalse(addHpCommand.equals(addPjCommand));
     }
     @Test
     public void toStringMethod() {
         Book HP = new BookBuilder().withName("Harry Potter").build();
-        AddBookCommand addHPCommand = new AddBookCommand(HP);
+        AddBookCommand addHpCommand = new AddBookCommand(HP);
         String expected = AddBookCommand.class.getCanonicalName() + "{book=" + HP + "}";
-        assertEquals(expected, addHPCommand.toString());
+        assertEquals(expected, addHpCommand.toString());
     }
 
     private class ModelStub implements Model {
