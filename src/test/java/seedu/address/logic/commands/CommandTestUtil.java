@@ -133,4 +133,28 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Asserts that executing the given {@code command} on the {@code actualModel} successfully updates
+     * the filtered person list to match the expected model state.
+     *
+     * @param command The command to be executed.
+     * @param actualModel The model on which the command is executed.
+     * @param expectedModel The model containing the expected filtered person list after execution.
+     * @throws AssertionError if the command execution fails or if the filtered lists do not match.
+     */
+    public static void assertCommandSuccessFiltering(Command command, Model actualModel, Model expectedModel) {
+        CommandResult result;
+        try {
+            result = command.execute(actualModel);
+        } catch (CommandException e) {
+            throw new AssertionError("Command execution should not fail.", e);
+        }
+
+        assertEquals(ListCommand.MESSAGE_SUCCESS, result.getFeedbackToUser());
+
+        expectedModel.updateFilteredPersonList(actualModel.getFilteredPersonList()::contains);
+
+        assertEquals(actualModel.getFilteredPersonList(), expectedModel.getFilteredPersonList(),
+                "Filtered lists should match after executing command");
+    }
 }
