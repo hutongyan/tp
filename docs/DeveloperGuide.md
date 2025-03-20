@@ -299,8 +299,16 @@ _{Explain here how the data archiving feature will be implemented}_
   * Streamline membership management by automating activations, renewals, and suspensions.
   * Centralize book inventory and user records for a more organized, real-time system.
 
-**Value proposition**: A streamlined library management system designed for librarians to track book loans, overdue fines,
-and membership status in a fast and efficient way.
+
+**Value proposition**: A streamlined library management system designed for librarians to track book loans,
+overdue fines, and membership status in a fast and efficient way. Real-time updates, centralized records,
+<<<<<<< HEAD
+and keyboard-friendly navigation ensure that Emma and her team can manage patrons and books seamlessly
+without relying on scattered spreadsheets or outdated systems.
+=======
+and keyboard-friendly navigation ensure that Emma and her team can manage patrons
+and books seamlessly without relying on scattered spreadsheets or outdated systems.
+>>>>>>> upstream/master
 
 
 ### User stories
@@ -347,12 +355,84 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+  * 3a1. AddressBook shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
+
+**Use case: Add a person**
+
+**MSS**
+1.  User requests to add a person with specific details
+2.  AddressBook adds the person to the list
+
+    Use case ends.
+
+**Extensions**
+* 1a. The provided details are incomplete or invalid.
+    * 1a1. AddressBook shows an error message. Use case resumes at step 1.
+
+* 1b. The person already exists in the AddressBook.
+    * 1b1. AddressBook shows an error message. Use case resumes at step 1.
+
+**Use case: Add a book**
+
+**MSS**
+1.  User requests to add a book with specific details
+2.  AddressBook adds a book to the list
+
+    Use case ends.
+
+**Extensions**
+* 1a. The provided details are incomplete or invalid.
+    * 1a1. AddressBook shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The book already exists in the AddressBook.
+    * 1b1. AddressBook shows an error message.
+
+      Use case resumes at step 1.
+
+
+
+**Use case: Lend a book to a person**
+
+**MSS**
+1. User requests to list all persons
+2. AddressBook shows list of all persons
+3. User requests to list all books
+4. AddressBook shows list of all books
+5. User requests to lend a specific book to a specific person
+6. AddressBook marks book as borrowed
+7. AddressBook marks person as having borrowed the specific book
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 4a. The list is empty.
+
+  Use case ends.
+
+* 5a. Given index for person is invalid.
+
+  * 5a1. AddressBook shows an error message.
+
+    Use case resumes at step 2.
+
+* 5b. Given index for book is invalid.
+
+    * 5b1. AddressBook shows an error message.
+
+      Use case resumes at step 4.
+
+
 
 *{More to be added}*
-
 ### Non-Functional Requirements
 
 #### Performance:
@@ -370,8 +450,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Library Management System (LMS)**: A software solution designed to help librarians manage book loans, overdue fines, and membership status efficiently.  
 * **Patron**: A registered library user who can borrow books and use library services.  
-* **Membership Status**: The current state of a patron's library account, which can be active, expired, or suspended.  
-* **Book Loan**: The process of borrowing a book from the library for a specified duration.  
+* **Membership Status**: The current state of a patron's library account, which can be active, expired, or suspended.
+* **Book Loan**: The process of borrowing a book from the library for a specified duration.
 * **Overdue Book**: A book that has not been returned by its due date.  
 * **Overdue Fine**: A penalty charged to a patron for not returning a book on time.  
 * **Check-in**: The process of returning a borrowed book to the library.  

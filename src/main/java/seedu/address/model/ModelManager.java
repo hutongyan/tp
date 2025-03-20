@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.book.Book;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Book> filteredBooks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredBooks = new FilteredList<>(this.addressBook.getBookList());
     }
 
     public ModelManager() {
@@ -107,8 +110,22 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
+    }
+    @Override
+    public boolean hasBook(Book target) {
+        requireAllNonNull(target);
+        return addressBook.hasBook(target);
+    }
+    @Override
+    public void addBook(Book book) {
+        addressBook.addBook(book);
+        updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
+    }
+
+    @Override
+    public void deleteBook(Book target) {
+        addressBook.removeBook(target);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -123,11 +140,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Book> getFilteredBookList() {
+        return filteredBooks;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
-
+    @Override
+    public void updateFilteredBookList(Predicate<Book> predicate) {
+        requireNonNull(predicate);
+        filteredBooks.setPredicate(predicate);
+    }
     @Override
     public boolean equals(Object other) {
         if (other == this) {
