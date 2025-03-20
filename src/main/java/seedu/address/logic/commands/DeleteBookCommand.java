@@ -21,7 +21,7 @@ public class DeleteBookCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the book identified by the book name used in the displayed book list.\n"
-            + "Parameters: " + PREFIX_BOOK + "BOOK NAME" + "\n"
+            + "Parameters: " + PREFIX_BOOK + " BOOK NAME" + "\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_BOOK + " Percy Jackson";
 
     public static final String MESSAGE_DELETE_BOOK_SUCCESS = "Deleted Book: %1$s";
