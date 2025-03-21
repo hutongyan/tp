@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.Messages.MESSAGE_ADD_BOOK_FAIL;
+import static seedu.address.logic.Messages.MESSAGE_ADD_BOOK_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -35,7 +37,7 @@ public class AddBookCommandTest {
         ModelStubAcceptingBookAdded modelStub = new ModelStubAcceptingBookAdded();
         Book validBook = new BookBuilder().build();
         CommandResult commandResult = new AddBookCommand(validBook).execute(modelStub);
-        assertEquals(String.format(AddBookCommand.MESSAGE_ADD_BOOK_SUCCESS, Messages.format(validBook)),
+        assertEquals(String.format(MESSAGE_ADD_BOOK_SUCCESS, Messages.format(validBook)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validBook), modelStub.booksAdded);
     }
@@ -45,7 +47,7 @@ public class AddBookCommandTest {
         AddBookCommand addBookCommand = new AddBookCommand(validBook);
         ModelStub modelStub = new ModelStubWithBook(validBook);
         assertThrows(CommandException.class,
-                AddBookCommand.MESSAGE_ADD_BOOK_FAIL, () -> addBookCommand.execute(modelStub));
+                MESSAGE_ADD_BOOK_FAIL, () -> addBookCommand.execute(modelStub));
     }
     @Test
     public void equals() {
@@ -175,7 +177,7 @@ public class AddBookCommandTest {
         @Override
         public boolean hasBook(Book book) {
             requireNonNull(book);
-            return this.book.isSameBook(book);
+            return this.book.isSame(book);
         }
     }
     /**
@@ -187,7 +189,7 @@ public class AddBookCommandTest {
         @Override
         public boolean hasBook(Book book) {
             requireNonNull(book);
-            return booksAdded.stream().anyMatch(book::isSameBook);
+            return booksAdded.stream().anyMatch(book::isSame);
         }
 
         @Override

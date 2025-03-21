@@ -19,7 +19,13 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_DELETE_BOOK_SUCCESS = "Deleted Book: %1$s";
+    public static final String MESSAGE_DELETE_BOOK_FAIL = "Book: %1$s not found in book list.";
 
+    public static final String MESSAGE_ADD_BOOK_SUCCESS = "Added Book: %1$s";
+    public static final String MESSAGE_ADD_BOOK_FAIL = "This book already exists in book list.";
+
+    public static final String MESSAGE_BOOK_UNAVAILABLE = "Book %1s is currently unavailable.";
     /**
      * Returns an error message indicating the duplicate prefixes.
      */

@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_DELETE_BOOK_FAIL;
+import static seedu.address.logic.Messages.MESSAGE_DELETE_BOOK_SUCCESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOK;
 
 import java.util.List;
@@ -11,6 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.BookName;
+import seedu.address.model.book.exceptions.BookNotFoundException;
 
 /**
  * Deletes a book identified using its name from the address book.
@@ -24,8 +27,7 @@ public class DeleteBookCommand extends Command {
             + "Parameters: " + PREFIX_BOOK + " BOOK NAME" + "\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_BOOK + " Percy Jackson";
 
-    public static final String MESSAGE_DELETE_BOOK_SUCCESS = "Deleted Book: %1$s";
-    public static final String MESSAGE_DELETE_BOOK_FAIL = "Book: %1$s not found in book list.";
+
     private final BookName bookName;
 
     public DeleteBookCommand(BookName bookName) {
@@ -43,7 +45,7 @@ public class DeleteBookCommand extends Command {
                 return new CommandResult(String.format(MESSAGE_DELETE_BOOK_SUCCESS, Messages.format(book)));
             }
         }
-        throw new CommandException(String.format(MESSAGE_DELETE_BOOK_FAIL, bookName));
+        throw new BookNotFoundException(bookName);
     }
 
     @Override

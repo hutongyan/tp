@@ -6,10 +6,12 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.UniqueBookList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.util.UniqueList;
 
 /**
  * Wraps all data at the address-book level
@@ -17,9 +19,9 @@ import seedu.address.model.person.UniquePersonList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniqueList<Person> persons;
 
-    private final UniqueBookList books;
+    private final UniqueList<Book> books;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,8 +31,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
-        books = new UniqueBookList();
+        persons = new UniqueList<>();
+        books = new UniqueList<>();
     }
 
     public AddressBook() {}
@@ -50,11 +52,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code persons} must not contain duplicate persons.
      */
     public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+        this.persons.set(persons);
     }
 
     public void setBooks(List<Book> books) {
-        this.books.setBooks(books);
+        this.books.set(books);
     }
 
 
@@ -81,7 +83,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
-    public void addPerson(Person p) {
+    public void addPerson(Person p) throws CommandException {
         persons.add(p);
     }
 
@@ -90,22 +92,21 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
+    public void setPerson(Person target, Person editedPerson) throws CommandException {
         requireNonNull(editedPerson);
-
-        persons.setPerson(target, editedPerson);
+        persons.set(target, editedPerson);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
+    public void removePerson(Person key) throws CommandException {
         persons.remove(key);
     }
 
 
-    public void removeBook(Book key) {
+    public void removeBook(Book key) throws CommandException {
         books.remove(key);
     }
     /**
@@ -120,7 +121,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a book to the address book.
      * The book must not already exist in the address book.
      */
-    public void addBook(Book book) {
+    public void addBook(Book book) throws CommandException {
         books.add(book);
     }
 

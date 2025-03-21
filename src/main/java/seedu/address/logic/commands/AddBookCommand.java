@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_ADD_BOOK_FAIL;
+import static seedu.address.logic.Messages.MESSAGE_ADD_BOOK_SUCCESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOK;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -8,6 +10,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.book.Book;
+import seedu.address.model.book.exceptions.DuplicateBookException;
 
 /**
  * Adds a book to the address book.
@@ -18,8 +21,7 @@ public class AddBookCommand extends Command {
             + ": Adds a book to the address book.\n"
             + "Parameters: " + PREFIX_BOOK + "BOOK NAME" + "\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_BOOK + " Percy Jackson";
-    public static final String MESSAGE_ADD_BOOK_SUCCESS = "Added Book: %1$s";
-    public static final String MESSAGE_ADD_BOOK_FAIL = "This book already exists in book list.";
+
     private final Book book;
 
     /**
@@ -33,7 +35,7 @@ public class AddBookCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (model.hasBook(book)) {
-            throw new CommandException(String.format(MESSAGE_ADD_BOOK_FAIL, Messages.format(book)));
+            throw new DuplicateBookException(book);
         }
 
         model.addBook(book);

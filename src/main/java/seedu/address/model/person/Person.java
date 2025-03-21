@@ -8,13 +8,17 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Entity;
+import seedu.address.model.exceptions.LibraryException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person extends Entity {
 
     // Identity fields
     private final Name name;
@@ -71,13 +75,21 @@ public class Person {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
-            return true;
-        }
 
-        return otherPerson != null
-                && otherPerson.getEmail().equals(getEmail());
+
+    @Override
+    public <T extends Entity> boolean isSame(T other) {
+        return false;
+    }
+
+    @Override
+    public void notFoundException() throws LibraryException {
+        throw new PersonNotFoundException();
+    }
+
+    @Override
+    public void duplicateException() throws CommandException {
+
     }
 
     /**

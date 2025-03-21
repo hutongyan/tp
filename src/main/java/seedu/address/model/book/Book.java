@@ -8,6 +8,11 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Entity;
+import seedu.address.model.book.exceptions.BookNotFoundException;
+import seedu.address.model.book.exceptions.DuplicateBookException;
+import seedu.address.model.exceptions.LibraryException;
 import seedu.address.model.tag.Tag;
 
 
@@ -15,7 +20,7 @@ import seedu.address.model.tag.Tag;
  * Represents a book in the library.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Book {
+public class Book extends Entity {
 
     // Identity fields
     private final BookName name;
@@ -48,18 +53,23 @@ public class Book {
         return Collections.unmodifiableSet(tags);
     }
 
-
     /**
      * Returns true if both Books have the same name.
      * This defines a weaker notion of equality between two Books.
      */
-    public boolean isSameBook(Book otherBook) {
-        if (otherBook == this) {
-            return true;
-        }
+    @Override
+    public <T extends Entity> boolean isSame(T other) {
+        return this.equals(other);
+    }
 
-        return otherBook != null
-                && otherBook.getName().equals(getName());
+    @Override
+    public void notFoundException() throws CommandException {
+        throw new BookNotFoundException(name);
+    }
+
+    @Override
+    public void duplicateException() throws CommandException {
+        throw new DuplicateBookException(this);
     }
 
     /**
@@ -68,16 +78,12 @@ public class Book {
      */
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof Book)) {
+        if (!(other instanceof Book otherBook)) {
             return false;
         }
-
-        Book otherBook = (Book) other;
+        else if (other == this) {
+            return true;
+        }
         return name.equals(otherBook.name)
                 && tags.equals(otherBook.tags);
     }
