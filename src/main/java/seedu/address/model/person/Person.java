@@ -81,8 +81,7 @@ public class Person extends Entity {
     public <T extends Entity> boolean isSame(T other) {
         if (!(other instanceof Person otherPerson)) {
             return false;
-        }
-        else if (other == this) {
+        } else if (other == this) {
             return true;
         }
         return email.equals(otherPerson.email);

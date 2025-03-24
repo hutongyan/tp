@@ -10,7 +10,6 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.book.Book;
-import seedu.address.model.book.exceptions.DuplicateBookException;
 
 /**
  * Adds a book to the address book.

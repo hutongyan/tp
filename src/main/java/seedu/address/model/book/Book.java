@@ -58,13 +58,11 @@ public class Book extends Entity {
      */
     @Override
     public <T extends Entity> boolean isSame(T other) {
-        if(this == other) {
+        if (this == other) {
             return true;
-        }
-        else if(other instanceof Book otherBook) {
+        } else if (other instanceof Book otherBook) {
             return name.equals(otherBook.name);
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -87,8 +85,7 @@ public class Book extends Entity {
     public boolean equals(Object other) {
         if (!(other instanceof Book otherBook)) {
             return false;
-        }
-        else if (other == this) {
+        } else if (other == this) {
             return true;
         }
         return name.equals(otherBook.name)

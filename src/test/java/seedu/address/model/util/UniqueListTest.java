@@ -1,6 +1,9 @@
 package seedu.address.model.util;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalBooks.BOOK_A;
 import static seedu.address.testutil.TypicalBooks.BOOK_B;
 import static seedu.address.testutil.TypicalBooks.BOOK_C;
@@ -13,8 +16,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.exceptions.AddressBookException;
 import seedu.address.model.book.Book;
+import seedu.address.model.exceptions.AddressBookException;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -112,7 +115,8 @@ public class UniqueListTest {
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, ()
+                -> uniquePersonList.asUnmodifiableObservableList().remove(0));
     }
 
     @Test

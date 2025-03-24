@@ -1,17 +1,22 @@
 package seedu.address.model.util;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Entity;
-import seedu.address.model.exceptions.AddressBookException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.Entity;
+import seedu.address.model.exceptions.AddressBookException;
 
+/**
+ * A list that enforces uniqueness among its elements and does not allow nulls.
+ * The list ensures that no duplicate entities exist based on the {@code isSame} method of {@link Entity}.
+ *
+ * @param <T> The type of elements in the list, which must extend {@link Entity}.
+ */
 public class UniqueList<T extends Entity> implements Iterable<T> {
 
     private final ObservableList<T> internalList = FXCollections.observableArrayList();
@@ -40,6 +45,17 @@ public class UniqueList<T extends Entity> implements Iterable<T> {
     }
 
     /**
+     * Removes the equivalent person from the list.
+     * The person must exist in the list.
+     */
+    public void remove(T toRemove) throws AddressBookException {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            toRemove.notFoundException();
+        }
+    }
+
+    /**
      * Replaces the person {@code target} in the list with {@code editedT}.
      * {@code target} must exist in the list.
      * The person identity of {@code editedT} must not be the same as another existing person in the list.
@@ -57,17 +73,6 @@ public class UniqueList<T extends Entity> implements Iterable<T> {
         }
 
         internalList.set(index, edited);
-    }
-
-    /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
-     */
-    public void remove(T toRemove) throws AddressBookException {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            toRemove.notFoundException();
-        }
     }
 
     public void set(UniqueList<T> replacement) {
