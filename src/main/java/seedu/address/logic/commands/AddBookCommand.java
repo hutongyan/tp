@@ -35,7 +35,7 @@ public class AddBookCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (model.hasBook(book)) {
-            throw new DuplicateBookException(book);
+            throw new CommandException(String.format(MESSAGE_ADD_BOOK_FAIL, Messages.format(book)));
         }
 
         model.addBook(book);

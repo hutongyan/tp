@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Entity;
+import seedu.address.model.exceptions.AddressBookException;
 
 import java.util.Iterator;
 import java.util.List;
@@ -30,7 +31,7 @@ public class UniqueList<T extends Entity> implements Iterable<T> {
      * Adds a person to the list.
      * The person must not already exist in the list.
      */
-    public void add(T toAdd) throws CommandException {
+    public void add(T toAdd) throws AddressBookException {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             toAdd.duplicateException();
@@ -43,7 +44,7 @@ public class UniqueList<T extends Entity> implements Iterable<T> {
      * {@code target} must exist in the list.
      * The person identity of {@code editedT} must not be the same as another existing person in the list.
      */
-    public void set(T target, T edited) throws CommandException {
+    public void set(T target, T edited) throws AddressBookException {
         requireAllNonNull(target, edited);
 
         int index = internalList.indexOf(target);
@@ -62,7 +63,7 @@ public class UniqueList<T extends Entity> implements Iterable<T> {
      * Removes the equivalent person from the list.
      * The person must exist in the list.
      */
-    public void remove(T toRemove) throws CommandException {
+    public void remove(T toRemove) throws AddressBookException {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             toRemove.notFoundException();
@@ -78,7 +79,7 @@ public class UniqueList<T extends Entity> implements Iterable<T> {
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void set(List<T> list) {
+    public void set(List<T> list) throws AddressBookException {
         requireAllNonNull(list);
         areUnique(list);
         internalList.setAll(list);
@@ -122,7 +123,7 @@ public class UniqueList<T extends Entity> implements Iterable<T> {
     /**
      * Returns true if {@code persons} contains only unique persons.
      */
-    private boolean areUnique(List<T> lst) throws CommandException {
+    private boolean areUnique(List<T> lst) throws AddressBookException {
         for (int i = 0; i < lst.size() - 1; i++) {
             T curr = lst.get(i);
             for (int j = i + 1; j < lst.size(); j++) {

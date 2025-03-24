@@ -1,12 +1,12 @@
 package seedu.address.model.book.exceptions;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.exceptions.LibraryException;
+import seedu.address.model.exceptions.AddressBookException;
+
 
 /**
  * Signals that the book is not available to be issued.
  */
-public class BookUnavailableException extends CommandException {
+public class BookUnavailableException extends AddressBookException {
     public BookUnavailableException(String msg) {
         super(msg);
     }

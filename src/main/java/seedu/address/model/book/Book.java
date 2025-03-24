@@ -8,11 +8,10 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Entity;
 import seedu.address.model.book.exceptions.BookNotFoundException;
 import seedu.address.model.book.exceptions.DuplicateBookException;
-import seedu.address.model.exceptions.LibraryException;
+import seedu.address.model.exceptions.AddressBookException;
 import seedu.address.model.tag.Tag;
 
 
@@ -59,16 +58,24 @@ public class Book extends Entity {
      */
     @Override
     public <T extends Entity> boolean isSame(T other) {
-        return this.equals(other);
+        if(this == other) {
+            return true;
+        }
+        else if(other instanceof Book otherBook) {
+            return name.equals(otherBook.name);
+        }
+        else {
+            return false;
+        }
     }
 
     @Override
-    public void notFoundException() throws CommandException {
+    public void notFoundException() throws AddressBookException {
         throw new BookNotFoundException(name);
     }
 
     @Override
-    public void duplicateException() throws CommandException {
+    public void duplicateException() throws AddressBookException {
         throw new DuplicateBookException(this);
     }
 

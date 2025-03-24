@@ -6,11 +6,9 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.book.Book;
-import seedu.address.model.book.UniqueBookList;
+import seedu.address.model.exceptions.AddressBookException;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.util.UniqueList;
 
 /**
@@ -40,7 +38,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public AddressBook(ReadOnlyAddressBook toBeCopied) throws AddressBookException {
         this();
         resetData(toBeCopied);
     }
@@ -51,11 +49,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Person> persons) {
+    public void setPersons(List<Person> persons) throws AddressBookException {
         this.persons.set(persons);
     }
 
-    public void setBooks(List<Book> books) {
+    public void setBooks(List<Book> books) throws AddressBookException {
         this.books.set(books);
     }
 
@@ -63,7 +61,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyAddressBook newData) throws AddressBookException {
         requireNonNull(newData);
         setPersons(newData.getPersonList());
         setBooks(newData.getBookList());
@@ -83,7 +81,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
-    public void addPerson(Person p) throws CommandException {
+    public void addPerson(Person p) throws AddressBookException {
         persons.add(p);
     }
 
@@ -92,7 +90,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) throws CommandException {
+    public void setPerson(Person target, Person editedPerson) throws AddressBookException {
         requireNonNull(editedPerson);
         persons.set(target, editedPerson);
     }
@@ -101,12 +99,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) throws CommandException {
+    public void removePerson(Person key) throws AddressBookException {
         persons.remove(key);
     }
 
 
-    public void removeBook(Book key) throws CommandException {
+    public void removeBook(Book key) throws AddressBookException {
         books.remove(key);
     }
     /**
@@ -121,7 +119,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a book to the address book.
      * The book must not already exist in the address book.
      */
-    public void addBook(Book book) throws CommandException {
+    public void addBook(Book book) throws AddressBookException {
         books.add(book);
     }
 

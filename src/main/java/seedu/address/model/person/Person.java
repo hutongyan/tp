@@ -8,9 +8,9 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Entity;
-import seedu.address.model.exceptions.LibraryException;
+import seedu.address.model.exceptions.AddressBookException;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tag.Tag;
 
@@ -79,17 +79,23 @@ public class Person extends Entity {
 
     @Override
     public <T extends Entity> boolean isSame(T other) {
-        return false;
+        if (!(other instanceof Person otherPerson)) {
+            return false;
+        }
+        else if (other == this) {
+            return true;
+        }
+        return email.equals(otherPerson.email);
     }
 
     @Override
-    public void notFoundException() throws LibraryException {
+    public void notFoundException() throws AddressBookException {
         throw new PersonNotFoundException();
     }
 
     @Override
-    public void duplicateException() throws CommandException {
-
+    public void duplicateException() throws AddressBookException {
+        throw new DuplicatePersonException();
     }
 
     /**

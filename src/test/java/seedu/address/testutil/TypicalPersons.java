@@ -19,9 +19,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.BookName;
+import seedu.address.model.exceptions.AddressBookException;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 

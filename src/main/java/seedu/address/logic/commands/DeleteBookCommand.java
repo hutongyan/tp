@@ -45,7 +45,7 @@ public class DeleteBookCommand extends Command {
                 return new CommandResult(String.format(MESSAGE_DELETE_BOOK_SUCCESS, Messages.format(book)));
             }
         }
-        throw new BookNotFoundException(bookName);
+        throw new CommandException(String.format(MESSAGE_DELETE_BOOK_FAIL, bookName));
     }
 
     @Override
