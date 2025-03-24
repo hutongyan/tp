@@ -92,4 +92,36 @@ public class BookStatus {
         }
         return 0;
     }
+    /**
+     * Returns the status of the book.
+     *
+     * @return the status of the book
+     */
+    public Status getStatus() {
+        return status;
+    }
+    /**
+     * Returns the issue date of the book.
+     *
+     * @return the issue date of the book
+     */
+    public LocalDate getIssueDate() {
+        return issueDate;
+    }
+    /**
+     * Returns the return date of the book.
+     *
+     * @return the return date of the book
+     */
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
+    /**
+     * Returns the member who borrowed the book.
+     *
+     * @return the member who borrowed the book
+     */
+    public Person getBorrowedMember() {
+        return borrowedMember;
+    }
 }
