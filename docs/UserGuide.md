@@ -30,7 +30,7 @@ BookVault is a **desktop app for managing library users and books**, optimized f
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * `list` : Lists all contacts.
+    * `list_users` : Lists all contacts.
 
     * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/ACTIVE` : Adds a user named `John Doe` with the newly added Membership status label.
 
@@ -157,6 +157,30 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Adding a book : `add_book`
+
+Adds a book to the catalog.
+
+Format: `add_book b/BOOK_NAME`
+
+Example:
+`add_book b/Harry Potter`
+
+### Deleting a book : `delete_book`
+
+Deletes a book from the catalog.
+
+Format: `delete_book b/BOOK_NAME`
+
+Example:
+`delete_book b/Harry Potter`
+
+### Listing all books : `list_books`
+
+Lists all books in the catalog.
+
+Format: `list_books`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -214,4 +238,7 @@ Action     | Format, Examples
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list_users [n/NAME] [e/EMAIL] [m/MEMBERSHIP_STATUS] [a/ADDRESS]` <br> e.g., `list_users m/ACTIVE`
+**Add Book**   | `add_book b/NAME_OF_BOOK` <br> e.g., `add_book b/Wizard of Oz`
+**Delete Book**   | `delete_book b/NAME_OF_BOOK` <br> e.g., `delete_book b/Wizard of Oz`
+**List Books**   | `list_books`
 **Help**   | `help`
