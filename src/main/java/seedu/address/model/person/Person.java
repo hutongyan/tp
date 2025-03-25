@@ -75,10 +75,8 @@ public class Person extends Entity {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-
-
     @Override
-    public <T extends Entity> boolean isSame(T other) {
+    public boolean isSame(Entity other) {
         if (!(other instanceof Person otherPerson)) {
             return false;
         } else if (other == this) {

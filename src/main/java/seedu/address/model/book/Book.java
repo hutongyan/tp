@@ -57,7 +57,7 @@ public class Book extends Entity {
      * This defines a weaker notion of equality between two Books.
      */
     @Override
-    public <T extends Entity> boolean isSame(T other) {
+    public boolean isSame(Entity other) {
         if (this == other) {
             return true;
         } else if (other instanceof Book otherBook) {

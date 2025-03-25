@@ -11,14 +11,10 @@ public abstract class Entity {
 
     /**
      * Checks if this entity is the same as another entity.
-     * This method is used to compare two entities of the same type
-     * to determine if they represent the same underlying object.
-     *
-     * @param <T>   The type of the entity being compared.
      * @param other The other entity to compare with.
      * @return true if both entities are considered the same, false otherwise.
      */
-    public abstract <T extends Entity> boolean isSame(T other);
+    public abstract boolean isSame(Entity other);
 
     /**
      * Throws an exception indicating that the entity was not found.
