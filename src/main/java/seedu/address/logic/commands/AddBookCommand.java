@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_ADD_BOOK_FAIL;
+import static seedu.address.logic.Messages.MESSAGE_ADD_BOOK_SUCCESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOK;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -18,8 +20,7 @@ public class AddBookCommand extends Command {
             + ": Adds a book to the address book.\n"
             + "Parameters: " + PREFIX_BOOK + "BOOK NAME" + "\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_BOOK + " Percy Jackson";
-    public static final String MESSAGE_ADD_BOOK_SUCCESS = "Added Book: %1$s";
-    public static final String MESSAGE_ADD_BOOK_FAIL = "This book already exists in book list.";
+
     private final Book book;
 
     /**

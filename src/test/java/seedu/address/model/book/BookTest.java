@@ -22,18 +22,18 @@ public class BookTest {
     @Test
     public void isSameBook() {
         // same object -> returns true
-        assertTrue(BOOK_A.isSameBook(BOOK_A));
+        assertTrue(BOOK_A.isSame(BOOK_A));
 
         // null -> returns false
-        assertFalse(BOOK_A.isSameBook(null));
+        assertFalse(BOOK_A.isSame(null));
 
         //same bookname, all other attributes different -> returns true
         Book editedBookA = new BookBuilder(BOOK_A).withTags("newTag").build();
-        assertTrue(BOOK_A.isSameBook(editedBookA));
+        assertTrue(BOOK_A.isSame(editedBookA));
 
         //same tag, all other attributes different -> returns false
         editedBookA = new BookBuilder(BOOK_A).withName("newName").build();
-        assertFalse(BOOK_A.isSameBook(editedBookA));
+        assertFalse(BOOK_A.isSame(editedBookA));
     }
 
     @Test

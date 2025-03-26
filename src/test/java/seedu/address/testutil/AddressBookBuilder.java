@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
 
@@ -23,7 +24,7 @@ public class AddressBookBuilder {
     /**
      * Adds a new {@code Person} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withPerson(Person person) {
+    public AddressBookBuilder withPerson(Person person) throws CommandException {
         addressBook.addPerson(person);
         return this;
     }
