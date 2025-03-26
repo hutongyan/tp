@@ -34,4 +34,5 @@ public class ListBookCommandTest {
         assertEquals(expectedMessage.toString(), result.getFeedbackToUser());
         assertEquals(expectedModel, model);
     }
+
 }
