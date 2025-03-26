@@ -1,14 +1,14 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.TypicalBooks.getTypicalAddressBook;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static seedu.address.testutil.TypicalBooks.getTypicalAddressBook;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.testutil.TypicalBooks;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListBookCommand.
@@ -31,8 +31,12 @@ public class ListBookCommandTest {
 
         StringBuilder expectedMessage = new StringBuilder(ListBookCommand.MESSAGE_SUCCESS);
         expectedModel.getFilteredBookList().forEach(book -> expectedMessage.append("\n").append(book.getName()));
-        assertEquals(expectedMessage.toString(), result.getFeedbackToUser());
-        assertEquals(expectedModel, model);
+
+        assert result.getFeedbackToUser().equals(expectedMessage.toString())
+                : "Expected feedback does not match actual.";
+
+        assert model.equals(expectedModel)
+                : "Model state changed unexpectedly after executing ListBookCommand.";
     }
 
 }
