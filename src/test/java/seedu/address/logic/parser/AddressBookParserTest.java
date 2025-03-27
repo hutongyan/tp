@@ -21,7 +21,9 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListBookCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ReturnCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -86,6 +88,17 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_listBook() throws Exception {
+        assertTrue(parser.parseCommand("list_books") instanceof seedu.address.logic.commands.ListBookCommand);
+    }
+
+    @Test
+    public void parseCommand_return() throws Exception {
+        String input = "return b/Test Book on d/20/02/2025";
+        assertTrue(parser.parseCommand(input) instanceof seedu.address.logic.commands.ReturnCommand);
     }
 
     @Test
