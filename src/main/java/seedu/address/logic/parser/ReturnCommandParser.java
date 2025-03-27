@@ -10,6 +10,9 @@ import seedu.address.logic.commands.ReturnCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.book.BookName;
 
+/**
+ * Parses input arguments and creates a new ReturnCommand object
+ */
 public class ReturnCommandParser implements Parser<ReturnCommand> {
 
     private static final String PREFIX_BOOK = "b/";
