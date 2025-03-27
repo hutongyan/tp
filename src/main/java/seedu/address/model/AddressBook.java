@@ -133,7 +133,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         books.add(book);
     }
     /**
-     * Returns the book with the same bookname as {@code email} exists in the address book.
+     * Returns the book with the same bookname as {@code bookName} exists in the address book.
      */
     public Book getBookViaBookName(BookName bookName) throws AddressBookException {
         requireNonNull(bookName);

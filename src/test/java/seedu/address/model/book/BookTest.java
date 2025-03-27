@@ -38,9 +38,9 @@ public class BookTest {
 
     @Test
     public void equals() {
-        // same values -> returns false
+        // same values -> returns true
         Book bookACopy = new BookBuilder(BOOK_A).build();
-        assertFalse(BOOK_A.equals(bookACopy));
+        assertTrue(BOOK_A.equals(bookACopy));
 
         // same object -> returns true
         assertTrue(BOOK_A.equals(BOOK_A));

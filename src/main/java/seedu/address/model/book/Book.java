@@ -103,8 +103,7 @@ public class Book extends Entity {
             return true;
         }
         return name.equals(otherBook.name)
-                && tags.equals(otherBook.tags)
-                && status.equals(otherBook.status);
+                && tags.equals(otherBook.tags);
     }
 
     @Override
