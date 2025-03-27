@@ -29,7 +29,7 @@ public class IssueCommand extends Command {
             + PREFIX_BOOK + "Percy Jackson"
             + PREFIX_EMAIL + "alexyeoh@example.com";
 
-    public static final String MESSAGE_SUCCESS = "Book issued to user: %1$s";
+    public static final String MESSAGE_SUCCESS = "Book: %1$s issued to user: %2$s";
     public static final String MESSAGE_BOOK_NOT_FOUND = "This book does not exist in the address book";
     public static final String MESSAGE_USER_NOT_FOUND = "This user does not exist in the address book";
     public static final String MESSAGE_BOOK_ALREADY_ISSUED = "This book is already issued to a user";
@@ -69,7 +69,7 @@ public class IssueCommand extends Command {
         }
 
         book.issueBook(localDate, person);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(person)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(book), Messages.format(person)));
     }
 
     @Override
