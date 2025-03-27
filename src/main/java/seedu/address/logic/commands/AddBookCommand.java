@@ -48,8 +48,8 @@ public class AddBookCommand extends Command {
         if (!(other instanceof AddBookCommand)) {
             return false;
         }
-        AddBookCommand otherAddCommand = (AddBookCommand) other;
-        return book.equals(otherAddCommand.book);
+        AddBookCommand otherAddBookCommand = (AddBookCommand) other;
+        return book.equals(otherAddBookCommand.book);
     }
     @Override
     public String toString() {

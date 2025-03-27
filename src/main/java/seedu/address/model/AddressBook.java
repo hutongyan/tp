@@ -3,11 +3,14 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.book.Book;
+import seedu.address.model.book.BookName;
 import seedu.address.model.exceptions.AddressBookException;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.util.UniqueList;
 
@@ -102,7 +105,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removePerson(Person key) throws AddressBookException {
         persons.remove(key);
     }
-
+    /**
+     * Returns the person with the same email as {@code email} exists in the address book.
+     */
+    public Person getPersonViaEmail(Email email) throws AddressBookException {
+        requireNonNull(email);
+        Predicate<Person> predicate = person -> person.getEmail().equals(email);
+        return persons.get(predicate);
+    }
 
     public void removeBook(Book key) throws AddressBookException {
         books.remove(key);
@@ -121,6 +131,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addBook(Book book) throws AddressBookException {
         books.add(book);
+    }
+    /**
+     * Returns the book with the same bookname as {@code bookName} exists in the address book.
+     */
+    public Book getBookViaBookName(BookName bookName) throws AddressBookException {
+        requireNonNull(bookName);
+        Predicate<Book> predicate = book -> book.getName().equals(bookName);
+        return books.get(predicate);
     }
 
     //// util methods

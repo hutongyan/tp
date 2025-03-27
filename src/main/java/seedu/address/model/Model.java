@@ -6,6 +6,8 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.book.Book;
+import seedu.address.model.book.BookName;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 
 /**
@@ -79,6 +81,13 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+    /**
+     * Returns the person with the same email as {@code email} exists in the address book.
+     *
+     * @param email
+     * @return Person
+     */
+    Person getPersonViaEmail(Email email);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
@@ -102,6 +111,13 @@ public interface Model {
      * The book must exist in the address book.
      */
     void deleteBook(Book target);
+    /**
+     * Returns the book with the same bookName as {@code bookName} exists in the address book.
+     *
+     * @param bookName
+     * @return Book
+     */
+    Book getBookViaBookName(BookName bookName);
 
     /** Returns an unmodifiable view of the filtered book list */
     ObservableList<Book> getFilteredBookList();

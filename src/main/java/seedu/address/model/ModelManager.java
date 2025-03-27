@@ -12,6 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.book.Book;
+import seedu.address.model.book.BookName;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 
 /**
@@ -113,6 +115,10 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
     @Override
+    public Person getPersonViaEmail(Email email) {
+        return addressBook.getPersonViaEmail(email);
+    }
+    @Override
     public boolean hasBook(Book target) {
         requireAllNonNull(target);
         return addressBook.hasBook(target);
@@ -126,6 +132,11 @@ public class ModelManager implements Model {
     @Override
     public void deleteBook(Book target) {
         addressBook.removeBook(target);
+    }
+
+    @Override
+    public Book getBookViaBookName(BookName bookName) {
+        return addressBook.getBookViaBookName(bookName);
     }
 
     //=========== Filtered Person List Accessors =============================================================

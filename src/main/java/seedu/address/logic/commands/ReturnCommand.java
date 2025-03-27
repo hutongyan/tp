@@ -39,11 +39,11 @@ public class ReturnCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Book bookToReturn = model.getAddressBook().getBookList().stream()
-                .filter(book -> book.getName().equals(bookName))
-                .findFirst()
-                .orElseThrow(() ->
-                        new CommandException(String.format(MESSAGE_FAILURE, bookName, "Book not found")));
+        if (model.getBookViaBookName(bookName) == null) {
+            throw new CommandException(String.format(MESSAGE_FAILURE, bookName, "Book not found"));
+        }
+
+        Book bookToReturn = model.getBookViaBookName(bookName);
 
         try {
             int fine = bookToReturn.getStatus().calculateFines(returnDate);
