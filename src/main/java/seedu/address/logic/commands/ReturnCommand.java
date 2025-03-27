@@ -12,7 +12,6 @@ import seedu.address.model.book.exceptions.BookUnavailableException;
 
 /**
  * Marks a borrowed book as returned and calculates overdue fines.
- * Format: return b/<book_name> on d/<return_date>
  */
 public class ReturnCommand extends Command {
 
@@ -28,6 +27,9 @@ public class ReturnCommand extends Command {
     private final BookName bookName;
     private final LocalDate returnDate;
 
+    /**
+     * Creates a ReturnCommand to mark the specified {@code Book} as returned.
+     */
     public ReturnCommand(BookName bookName, LocalDate returnDate) {
         this.bookName = bookName;
         this.returnDate = returnDate;
