@@ -69,7 +69,6 @@ public class IssueCommand extends Command {
         }
 
         book.issueBook(localDate, person);
-        model.updateFilteredBookList(Model.PREDICATE_SHOW_ALL_BOOKS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(person)));
     }
 
