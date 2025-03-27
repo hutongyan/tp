@@ -89,6 +89,17 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_listBook() throws Exception {
+        assertTrue(parser.parseCommand("list_books") instanceof seedu.address.logic.commands.ListBookCommand);
+    }
+
+    @Test
+    public void parseCommand_return() throws Exception {
+        String input = "return b/Test Book on d/20/02/2025";
+        assertTrue(parser.parseCommand(input) instanceof seedu.address.logic.commands.ReturnCommand);
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
             -> parser.parseCommand(""));
