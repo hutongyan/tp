@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.IssueCommand.MESSAGE_BOOK_NOT_FOUND;
 
 import java.time.LocalDate;
 
