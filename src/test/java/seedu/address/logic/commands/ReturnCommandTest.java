@@ -66,7 +66,8 @@ public class ReturnCommandTest {
         ReturnCommand cmd = new ReturnCommand(new BookName("Available Book"), LocalDate.of(2025, 2, 20));
 
         CommandException thrown = assertThrows(CommandException.class, () -> cmd.execute(model));
-        assertEquals("Failed to return Available Book because the book is already marked as available (not borrowed).", thrown.getMessage());
+        assertEquals("Failed to return Available Book because the book is already marked as available.",
+                                thrown.getMessage());
     }
 
     @Test

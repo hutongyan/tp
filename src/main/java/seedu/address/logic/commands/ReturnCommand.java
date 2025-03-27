@@ -22,7 +22,7 @@ public class ReturnCommand extends Command {
 
     private static final String STATUS_AVAILABLE = "Available";
     private static final String HUMAN_READABLE_AVAILABLE_ERROR =
-            "the book is already marked as available (not borrowed).";
+            "the book is already marked as available.";
 
     private final BookName bookName;
     private final LocalDate returnDate;
