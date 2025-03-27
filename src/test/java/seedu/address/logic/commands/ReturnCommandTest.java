@@ -14,6 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.BookName;
+import seedu.address.model.book.BookStatus;
 import seedu.address.model.book.exceptions.BookUnavailableException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -76,6 +77,27 @@ public class ReturnCommandTest {
 
         CommandException thrown = assertThrows(CommandException.class, () -> cmd.execute(model));
         assertEquals("Failed to return Not Exist Book because Book not found", thrown.getMessage());
+    }
+
+    @Test
+    public void execute_returnThrowsUnexpectedBookUnavailableException_fallbackMessage() {
+        Book badBook = new Book(new BookName("Bad Book"), new HashSet<>()) {
+            @Override
+            public BookStatus getStatus() {
+                return new BookStatus() {
+                    @Override
+                    public void returnBook() throws BookUnavailableException {
+                        throw new BookUnavailableException("Weird error");
+                    }
+                };
+            }
+        };
+
+        model.addBook(badBook);
+        ReturnCommand cmd = new ReturnCommand(new BookName("Bad Book"), LocalDate.of(2025, 2, 20));
+
+        CommandException thrown = assertThrows(CommandException.class, () -> cmd.execute(model));
+        assertEquals("Failed to return Bad Book because Weird error", thrown.getMessage());
     }
 
 }
