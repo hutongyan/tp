@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -89,7 +90,19 @@ public class UniqueList<T extends Entity> implements Iterable<T> {
         areUnique(list);
         internalList.setAll(list);
     }
-
+    /**
+     * Returns the item of the list by predicate.
+     * {@code predicate} must not be null.
+     */
+    public T get(Predicate<T> predicate) {
+        requireNonNull(predicate);
+        for (T t : internalList) {
+            if (predicate.test(t)) {
+                return t;
+            }
+        }
+        return null;
+    }
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

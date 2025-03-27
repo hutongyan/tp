@@ -24,6 +24,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.book.Book;
+import seedu.address.model.book.BookName;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.BookBuilder;
 
@@ -80,6 +82,7 @@ public class AddBookCommandTest {
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
@@ -94,6 +97,7 @@ public class AddBookCommandTest {
         public void setGuiSettings(GuiSettings guiSettings) {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public Path getAddressBookFilePath() {
             throw new AssertionError("This method should not be called.");
@@ -103,6 +107,7 @@ public class AddBookCommandTest {
         public void setAddressBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
@@ -134,6 +139,11 @@ public class AddBookCommandTest {
         }
 
         @Override
+        public Person getPersonViaEmail(Email email) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -152,6 +162,7 @@ public class AddBookCommandTest {
         public void updateFilteredBookList(Predicate<Book> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public boolean hasBook(Book book) {
             throw new AssertionError("This method should not be called.");
@@ -161,8 +172,14 @@ public class AddBookCommandTest {
         public void addBook(Book book) {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public void deleteBook(Book target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Book getBookViaBookName(BookName bookName) {
             throw new AssertionError("This method should not be called.");
         }
     }

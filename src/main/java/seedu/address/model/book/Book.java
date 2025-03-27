@@ -2,6 +2,7 @@ package seedu.address.model.book;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -12,6 +13,7 @@ import seedu.address.model.Entity;
 import seedu.address.model.book.exceptions.BookNotFoundException;
 import seedu.address.model.book.exceptions.DuplicateBookException;
 import seedu.address.model.exceptions.AddressBookException;
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 
@@ -51,6 +53,18 @@ public class Book extends Entity {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+    /**
+     * Returns true if the book is issued.
+     */
+    public boolean isIssued() {
+        return status.getStatus() == BookStatus.Status.BORROWED;
+    }
+    /**
+     * Issue the book to a person.
+     */
+    public void issueBook(LocalDate localDate, Person person) {
+        status.issueBook(localDate, person);
+    }
 
     /**
      * Returns true if both Books have the same name.
@@ -89,7 +103,8 @@ public class Book extends Entity {
             return true;
         }
         return name.equals(otherBook.name)
-                && tags.equals(otherBook.tags);
+                && tags.equals(otherBook.tags)
+                && status.equals(otherBook.status);
     }
 
     @Override
@@ -104,5 +119,4 @@ public class Book extends Entity {
                 .add("tags", tags)
                 .toString();
     }
-
 }
