@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.PersonBuilder.DEFAULT_EMAIL;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -103,7 +105,6 @@ public class IssueCommandTest {
         // Different values
         IssueCommand command2 = new IssueCommand(bookName2, email1);
         IssueCommand command3 = new IssueCommand(bookName1, email2);
-        IssueCommand command4 = new IssueCommand(bookName1, email1);
 
         // 1. Same object -> returns true
         assertTrue(command1.equals(command1));
