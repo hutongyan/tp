@@ -33,7 +33,10 @@ public class AddBookCommandParser implements Parser<AddBookCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBookCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_BOOK);
+        if (argMultimap.getAllValues(PREFIX_BOOK).size() > 1) {
+            throw new ParseException("Invalid command format! \n" + AddBookCommand.MESSAGE_USAGE);
+        }
+
         BookName name = ParserUtil.parseBookName(argMultimap.getValue(PREFIX_BOOK).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Book book = new Book(name, tagList);
