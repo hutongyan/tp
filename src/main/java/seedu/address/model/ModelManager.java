@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -99,6 +100,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPerson(Email email) {
+        requireNonNull(email);
+        return addressBook.hasPerson(email);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -114,15 +121,19 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
     }
-    @Override
-    public Person getPersonViaEmail(Email email) {
-        return addressBook.getPersonViaEmail(email);
-    }
+
     @Override
     public boolean hasBook(Book target) {
         requireAllNonNull(target);
         return addressBook.hasBook(target);
     }
+
+    @Override
+    public boolean hasBook(BookName bookName) {
+        requireAllNonNull(bookName);
+        return addressBook.hasBook(bookName);
+    }
+
     @Override
     public void addBook(Book book) {
         addressBook.addBook(book);
@@ -135,8 +146,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Book getBookViaBookName(BookName bookName) {
-        return addressBook.getBookViaBookName(bookName);
+    public void issueBook(BookName book, Email email, LocalDate localDate) {
+        addressBook.issueBook(book, email, localDate);
+    }
+
+    @Override
+    public int returnBook(BookName bookName, LocalDate returnDate) {
+        return addressBook.returnBook(bookName, returnDate);
     }
 
     //=========== Filtered Person List Accessors =============================================================

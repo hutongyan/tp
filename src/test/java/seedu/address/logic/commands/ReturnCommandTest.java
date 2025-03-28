@@ -14,7 +14,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.BookName;
-import seedu.address.model.book.BookStatus;
 import seedu.address.model.book.exceptions.BookUnavailableException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -83,13 +82,8 @@ public class ReturnCommandTest {
     public void execute_returnThrowsUnexpectedBookUnavailableException_fallbackMessage() {
         Book badBook = new Book(new BookName("Bad Book"), new HashSet<>()) {
             @Override
-            public BookStatus getStatus() {
-                return new BookStatus() {
-                    @Override
-                    public void returnBook() throws BookUnavailableException {
-                        throw new BookUnavailableException("Weird error");
-                    }
-                };
+            public int returnBook(LocalDate localDate) throws BookUnavailableException {
+                throw new BookUnavailableException("Weird error");
             }
         };
 

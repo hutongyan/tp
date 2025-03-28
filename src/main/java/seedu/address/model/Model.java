@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -64,6 +65,11 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a person with the same identity as {@code email} exists in the address book.
+     */
+    boolean hasPerson(Email email);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -81,13 +87,6 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
-    /**
-     * Returns the person with the same email as {@code email} exists in the address book.
-     *
-     * @param email
-     * @return Person
-     */
-    Person getPersonViaEmail(Email email);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
@@ -97,27 +96,38 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
     /**
      * Adds the given book.
      * {@code book} must not already exist in the address book.
      */
     void addBook(Book book);
+
     /**
      * Returns true if a book with the same identity as {@code book} exists in the address book.
      */
     boolean hasBook(Book book);
+
+    /**
+     * Returns true if a book with the same identity as {@code bookName} exists in the address book.
+     */
+    boolean hasBook(BookName bookName);
+
     /**
      * Deletes the given book.
      * The book must exist in the address book.
      */
     void deleteBook(Book target);
+
     /**
-     * Returns the book with the same bookName as {@code bookName} exists in the address book.
-     *
-     * @param bookName
-     * @return Book
+     * Issues a book to a target user
      */
-    Book getBookViaBookName(BookName bookName);
+    void issueBook(BookName bookName, Email email, LocalDate localDate);
+
+    /**
+     * Returns the book with the same identity as {@code book} exists in the address book.
+     */
+    int returnBook(BookName bookName, LocalDate localDate);
 
     /** Returns an unmodifiable view of the filtered book list */
     ObservableList<Book> getFilteredBookList();
