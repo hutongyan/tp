@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
@@ -32,6 +33,15 @@ public class UniqueList<T extends Entity> implements Iterable<T> {
         return internalList.stream().anyMatch(toCheck::isSame);
     }
 
+    /**
+     * Returns true if the list contains an equivalent entity as the given argument.
+     */
+    public <U> boolean containsField(U field, Function<T, U> fieldExtractor) {
+        requireNonNull(field);
+        requireNonNull(fieldExtractor);
+        return internalList.stream()
+                .anyMatch(item -> field.equals(fieldExtractor.apply(item)));
+    }
 
     /**
      * Adds a person to the list.

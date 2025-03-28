@@ -11,6 +11,7 @@ import java.util.Set;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.Entity;
 import seedu.address.model.book.exceptions.BookNotFoundException;
+import seedu.address.model.book.exceptions.BookUnavailableException;
 import seedu.address.model.book.exceptions.DuplicateBookException;
 import seedu.address.model.exceptions.AddressBookException;
 import seedu.address.model.person.Person;
@@ -53,17 +54,28 @@ public class Book extends Entity {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+
     /**
      * Returns true if the book is issued.
      */
     public boolean isIssued() {
         return status.getStatus() == BookStatus.Status.BORROWED;
     }
+
     /**
      * Issue the book to a person.
      */
-    public void issueBook(LocalDate localDate, Person person) {
+    public void issueBook(LocalDate localDate, Person person) throws BookUnavailableException {
         status.issueBook(localDate, person);
+    }
+
+    /**
+     * Return the book to the library.
+     */
+    public int returnBook(LocalDate localDate) throws BookUnavailableException {
+        int fine = status.calculateFines(localDate);
+        status.returnBook();
+        return fine;
     }
 
     /**

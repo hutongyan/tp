@@ -6,7 +6,6 @@ import java.time.LocalDate;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.book.Book;
 import seedu.address.model.book.BookName;
 import seedu.address.model.book.exceptions.BookUnavailableException;
 
@@ -19,7 +18,6 @@ public class ReturnCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Marked %s as returned. Overdue Fines: %d";
     public static final String MESSAGE_FAILURE = "Failed to return %s because %s";
-
     private static final String STATUS_AVAILABLE = "Available";
     private static final String HUMAN_READABLE_AVAILABLE_ERROR =
             "the book is already marked as available.";
@@ -39,15 +37,12 @@ public class ReturnCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.getBookViaBookName(bookName) == null) {
+        if (!model.hasBook(bookName)) {
             throw new CommandException(String.format(MESSAGE_FAILURE, bookName, "Book not found"));
         }
 
-        Book bookToReturn = model.getBookViaBookName(bookName);
-
         try {
-            int fine = bookToReturn.getStatus().calculateFines(returnDate);
-            bookToReturn.getStatus().returnBook();
+            int fine = model.returnBook(bookName, returnDate);
             return new CommandResult(String.format(MESSAGE_SUCCESS, bookName, fine));
         } catch (BookUnavailableException e) {
             if (e.getMessage().equals(STATUS_AVAILABLE)) {
@@ -57,5 +52,4 @@ public class ReturnCommand extends Command {
             }
         }
     }
-
 }

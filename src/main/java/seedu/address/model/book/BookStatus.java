@@ -1,11 +1,12 @@
 package seedu.address.model.book;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 import seedu.address.model.book.exceptions.BookUnavailableException;
 import seedu.address.model.person.Person;
-
 /**
  * Represents the status of a book in the library.
  */
@@ -41,6 +42,8 @@ public class BookStatus {
      * @throws BookUnavailableException if the book is already borrowed
      */
     public void issueBook(LocalDate issueDate, Person member) throws BookUnavailableException {
+        requireNonNull(issueDate);
+        requireNonNull(member);
         if (status == Status.BORROWED) {
             throw new BookUnavailableException(checkStatus());
         }

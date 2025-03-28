@@ -9,6 +9,7 @@ import static seedu.address.logic.Messages.MESSAGE_ADD_BOOK_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -129,17 +130,17 @@ public class AddBookCommandTest {
         }
 
         @Override
+        public boolean hasPerson(Email email) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setPerson(Person target, Person editedPerson) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Person getPersonViaEmail(Email email) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -169,6 +170,11 @@ public class AddBookCommandTest {
         }
 
         @Override
+        public boolean hasBook(BookName bookName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addBook(Book book) {
             throw new AssertionError("This method should not be called.");
         }
@@ -179,7 +185,12 @@ public class AddBookCommandTest {
         }
 
         @Override
-        public Book getBookViaBookName(BookName bookName) {
+        public void issueBook(BookName bookName, Email email, LocalDate localDate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int returnBook(BookName bookName, LocalDate localDate) {
             throw new AssertionError("This method should not be called.");
         }
     }

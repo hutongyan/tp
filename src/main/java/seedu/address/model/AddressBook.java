@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -9,6 +10,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.BookName;
+import seedu.address.model.book.exceptions.BookUnavailableException;
 import seedu.address.model.exceptions.AddressBookException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
@@ -81,6 +83,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a person with the same email as {@code email} exists in the address book.
+     */
+    public boolean hasPerson(Email email) {
+        requireNonNull(email);
+        return persons.containsField(email, Person::getEmail);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
@@ -108,9 +118,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns the person with the same email as {@code email} exists in the address book.
      */
-    public Person getPersonViaEmail(Email email) throws AddressBookException {
+    public Person getPerson(Email email) throws AddressBookException {
         requireNonNull(email);
-        Predicate<Person> predicate = person -> person.getEmail().equals(email);
+        Predicate<Person> predicate = p -> p.getEmail().equals(email);
         return persons.get(predicate);
     }
 
@@ -126,19 +136,76 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a book with the same name as {@code bookName} exists in the address book.
+     */
+    public boolean hasBook(BookName bookName) {
+        requireNonNull(bookName);
+        return books.containsField(bookName, Book::getName);
+    }
+
+    /**
      * Adds a book to the address book.
      * The book must not already exist in the address book.
      */
     public void addBook(Book book) throws AddressBookException {
         books.add(book);
     }
+
     /**
      * Returns the book with the same bookname as {@code bookName} exists in the address book.
      */
-    public Book getBookViaBookName(BookName bookName) throws AddressBookException {
+    public Book getBook(BookName bookName) throws AddressBookException {
         requireNonNull(bookName);
-        Predicate<Book> predicate = book -> book.getName().equals(bookName);
-        return books.get(predicate);
+        return getBookList()
+                .stream()
+                .filter(book -> book.getName().equals(bookName))
+                .findFirst()
+                .orElseThrow(() -> new AddressBookException("Book not found"));
+    }
+    /**
+     * Issues a book to a person
+     *
+     * @param bookName
+     * @param email
+     * @param localDate
+     *
+     *
+     * @throws BookUnavailableException if the book is already issued
+     *
+     */
+    public void issueBook(BookName bookName, Email email, LocalDate localDate) throws BookUnavailableException {
+        requireNonNull(bookName);
+        requireNonNull(email);
+        requireNonNull(localDate);
+        Book bookToIssue = getBook(bookName);
+        Person personToIssue = getPerson(email);
+        bookToIssue.issueBook(localDate, personToIssue);
+    }
+    /**
+     * Returns a book to the library
+     *
+     * @param bookName
+     * @param returnDate
+     * @return fine amount if any
+     */
+    public int returnBook(BookName bookName, LocalDate returnDate) throws BookUnavailableException {
+        requireNonNull(bookName);
+        requireNonNull(returnDate);
+        Book bookToReturn = getBook(bookName);
+        return bookToReturn.returnBook(returnDate);
+    }
+
+    /**
+     * Returns true if a book with the same name as {@code bookName} is issued.
+     */
+    public boolean isIssued(BookName bookName) {
+        requireNonNull(bookName);
+        try {
+            Book book = getBook(bookName);
+            return book.isIssued();
+        } catch (AddressBookException e) {
+            return false;
+        }
     }
 
     //// util methods
@@ -179,4 +246,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
 }
