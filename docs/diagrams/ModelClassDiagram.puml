@@ -20,6 +20,11 @@ Class Name
 Class Phone
 Class Tag
 
+Class UniqueBookList
+Class Book
+Class BookName
+Class BookStatus
+
 Class I #FFFFFF
 }
 
@@ -42,6 +47,11 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+
+AddressBook *--> "1" UniqueBookList
+UniqueBookList --> "~* all" Book
+Book *--> BookName
+Book *--> BookStatus
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
