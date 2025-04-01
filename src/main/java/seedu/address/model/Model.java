@@ -12,8 +12,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * The API of the Model component.
  */
