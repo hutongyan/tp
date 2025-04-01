@@ -9,9 +9,11 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -20,6 +22,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.book.Book;
+import seedu.address.model.book.BookName;
+import seedu.address.model.book.exceptions.BookUnavailableException;
+import seedu.address.model.exceptions.AddressBookException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
@@ -83,6 +88,54 @@ public class AddressBookTest {
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    }
+
+    @Test
+    public void issueBook_issuesBookToPerson() throws BookUnavailableException, AddressBookException {
+        AddressBook addressBook = new AddressBook();
+        Book book = new Book(new BookName("Test Book"), new HashSet<>());
+        Person person = new PersonBuilder().withEmail("test@example.com").build();
+        addressBook.addBook(book);
+        addressBook.addPerson(person);
+        addressBook.issueBook(book.getName(), person.getEmail(), LocalDate.now());
+        assertTrue(person.hasBorrowed(book));
+        assertTrue(book.isIssued());
+    }
+
+    @Test
+    public void issueBook_bookAlreadyIssued_throwsBookUnavailableException() throws AddressBookException {
+        AddressBook addressBook = new AddressBook();
+        Book book = new Book(new BookName("Test Book"), new HashSet<>());
+        Person person1 = new PersonBuilder().withEmail("test1@example.com").build();
+        Person person2 = new PersonBuilder().withEmail("test2@example.com").build();
+        addressBook.addBook(book);
+        addressBook.addPerson(person1);
+        addressBook.addPerson(person2);
+        addressBook.issueBook(book.getName(), person1.getEmail(), LocalDate.now());
+        assertThrows(BookUnavailableException.class, () -> addressBook.issueBook(book.getName(),
+                person2.getEmail(), LocalDate.now()));
+    }
+
+    @Test
+    public void returnBook_returnsBookToLibrary() throws BookUnavailableException, AddressBookException {
+        AddressBook addressBook = new AddressBook();
+        Book book = new Book(new BookName("Test Book"), new HashSet<>());
+        Person person = new PersonBuilder().withEmail("test@example.com").build();
+        addressBook.addBook(book);
+        addressBook.addPerson(person);
+        addressBook.issueBook(book.getName(), person.getEmail(), LocalDate.now());
+        int fine = addressBook.returnBook(book.getName(), LocalDate.now().plusDays(1));
+        assertFalse(person.hasBorrowed(book));
+        assertFalse(book.isIssued());
+        assertEquals(0, fine); // Assuming no fine for 1 day late
+    }
+
+    @Test
+    public void returnBook_bookNotIssued_throwsBookUnavailableException() throws AddressBookException {
+        AddressBook addressBook = new AddressBook();
+        Book book = new Book(new BookName("Test Book"), new HashSet<>());
+        addressBook.addBook(book);
+        assertThrows(BookUnavailableException.class, () -> addressBook.returnBook(book.getName(), LocalDate.now()));
     }
 
     @Test
