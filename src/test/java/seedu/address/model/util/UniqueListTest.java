@@ -203,5 +203,4 @@ public class UniqueListTest {
         String expected = BOOK_A.getName().toString() + ", " + BOOK_B.getName().toString();
         assertEquals(expected, uniqueBookList.getField(book -> book.getName().toString()));
     }
-    
 }

@@ -116,7 +116,7 @@ public class AddressBookParserTest {
         String input = "list_borrowed_books e/alexyeoh@example.com";
         assertTrue(parser.parseCommand(input) instanceof seedu.address.logic.commands.ListBorrowedBooksCommand);
     }
-    
+
     @Test
     public void parseCommand_deleteBookCommand() throws Exception {
         String input = "delete_book b/Harry Potter";
