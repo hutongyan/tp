@@ -48,6 +48,15 @@ public class Book extends Entity {
     }
 
     /**
+     * Checks and returns the current status of the book.
+     *
+     * @return A string representing the current status of the book.
+     */
+    public String checkStatus() {
+        return status.checkStatus();
+    }
+
+    /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
@@ -76,6 +85,15 @@ public class Book extends Entity {
         int fine = status.calculateFines(localDate);
         status.returnBook();
         return fine;
+    }
+
+    /**
+     * Returns the person who has borrowed the book.
+     *
+     * @return The person who has borrowed the book.
+     */
+    public Person getBorrower() {
+        return status.getBorrower();
     }
 
     /**

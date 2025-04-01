@@ -46,10 +46,10 @@ public class ReturnCommandTest {
         );
 
         borrowedBook = new Book(new BookName("Borrowed Book"), new HashSet<>());
-        borrowedBook.getStatus().issueBook(LocalDate.of(2025, 2, 1), borrower);
         availableBook = new Book(new BookName("Available Book"), new HashSet<>());
-
+        model.addPerson(borrower);
         model.addBook(borrowedBook);
+        model.issueBook(new BookName("Borrowed Book"), borrower.getEmail(), LocalDate.of(2025, 2, 1));
         model.addBook(availableBook);
     }
 
@@ -88,6 +88,7 @@ public class ReturnCommandTest {
         };
 
         model.addBook(badBook);
+        model.issueBook(new BookName("Bad Book"), borrower.getEmail(), LocalDate.of(2025, 2, 1));
         ReturnCommand cmd = new ReturnCommand(new BookName("Bad Book"), LocalDate.of(2025, 2, 20));
 
         CommandException thrown = assertThrows(CommandException.class, () -> cmd.execute(model));

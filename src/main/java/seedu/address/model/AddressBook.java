@@ -180,6 +180,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         Book bookToIssue = getBook(bookName);
         Person personToIssue = getPerson(email);
         bookToIssue.issueBook(localDate, personToIssue);
+        personToIssue.borrows(bookToIssue);
     }
     /**
      * Returns a book to the library
@@ -192,20 +193,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(bookName);
         requireNonNull(returnDate);
         Book bookToReturn = getBook(bookName);
-        return bookToReturn.returnBook(returnDate);
-    }
-
-    /**
-     * Returns true if a book with the same name as {@code bookName} is issued.
-     */
-    public boolean isIssued(BookName bookName) {
-        requireNonNull(bookName);
+        Person borrower = bookToReturn.getBorrower();
         try {
-            Book book = getBook(bookName);
-            return book.isIssued();
-        } catch (AddressBookException e) {
-            return false;
+            borrower.returns(bookToReturn);
+        } catch (NullPointerException e) {
+            throw new BookUnavailableException("Available");
         }
+        return bookToReturn.returnBook(returnDate);
     }
 
     //// util methods

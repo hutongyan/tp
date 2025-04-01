@@ -9,10 +9,13 @@ import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.Entity;
+import seedu.address.model.book.Book;
+import seedu.address.model.book.exceptions.BookUnavailableException;
 import seedu.address.model.exceptions.AddressBookException;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.UniqueList;
 
 /**
  * Represents a Person in the address book.
@@ -29,6 +32,7 @@ public class Person extends Entity {
     private final Address address;
     private final Membership membership;
     private final Set<Tag> tags = new HashSet<>();
+    private UniqueList<Book> books = new UniqueList<>();
 
     /**
      * Every field must be present and not null.
@@ -61,6 +65,49 @@ public class Person extends Entity {
 
     public Membership getMembership() {
         return membership;
+    }
+
+    /**
+     * Adds the specified book to the list of books borrowed by the person.
+     *
+     * @param book The book to be borrowed.
+     */
+    public void borrows(Book book) {
+        this.books.add(book);
+    }
+
+    /**
+     * Removes the specified book from the list of books borrowed by the person.
+     *
+     * @param book The book to be borrowed.
+     */
+    public void returns(Book book) throws BookUnavailableException {
+        requireAllNonNull(book);
+        try {
+            this.books.remove(book);
+        } catch (AddressBookException e) {
+            throw new BookUnavailableException("Book not found in the borrowed list");
+        }
+    }
+
+    /**
+     * Checks if the person has borrowed the specified book.
+     *
+     * @param book The book to check.
+     * @return true if the person has borrowed the book, false otherwise.
+     */
+    public boolean hasBorrowed(Book book) {
+        requireAllNonNull(book);
+        return this.books.contains(book);
+    }
+
+    /**
+     * Returns the list of books borrowed by the person.
+     *
+     * @return A UniqueList of books borrowed by the person.
+     */
+    public UniqueList<Book> getBorrowedBooks() {
+        return books;
     }
 
     /**
