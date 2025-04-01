@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
@@ -94,5 +95,51 @@ public class ListBorrowedBooksCommandTest {
         CommandResult result = noBooksCommand.execute(model);
 
         assertEquals("User is currently not borrowing any books.", result.getFeedbackToUser());
+    }
+
+    @Test
+    void equals_sameObject_returnsTrue() {
+        ListBorrowedBooksCommand command = new ListBorrowedBooksCommand(new Email("example@example.com"));
+        assertEquals(command, command);
+    }
+
+    @Test
+    void equals_differentType_returnsFalse() {
+        ListBorrowedBooksCommand command = new ListBorrowedBooksCommand(new Email("example@example.com"));
+        assertNotEquals(command, new Object());
+    }
+
+    @Test
+    void equals_null_returnsFalse() {
+        ListBorrowedBooksCommand command = new ListBorrowedBooksCommand(new Email("example@example.com"));
+        assertNotEquals(command, null);
+    }
+
+    @Test
+    void equals_sameEmail_returnsTrue() {
+        ListBorrowedBooksCommand command1 = new ListBorrowedBooksCommand(new Email("example@example.com"));
+        ListBorrowedBooksCommand command2 = new ListBorrowedBooksCommand(new Email("example@example.com"));
+        assertEquals(command1, command2);
+    }
+
+    @Test
+    void equals_differentEmail_returnsFalse() {
+        ListBorrowedBooksCommand command1 = new ListBorrowedBooksCommand(new Email("example@example.com"));
+        ListBorrowedBooksCommand command2 = new ListBorrowedBooksCommand(new Email("different@example.com"));
+        assertNotEquals(command1, command2);
+    }
+
+    @Test
+    void hashCode_sameEmail_sameHashCode() {
+        ListBorrowedBooksCommand command1 = new ListBorrowedBooksCommand(new Email("example@example.com"));
+        ListBorrowedBooksCommand command2 = new ListBorrowedBooksCommand(new Email("example@example.com"));
+        assertEquals(command1.hashCode(), command2.hashCode());
+    }
+
+    @Test
+    void hashCode_differentEmail_differentHashCode() {
+        ListBorrowedBooksCommand command1 = new ListBorrowedBooksCommand(new Email("example@example.com"));
+        ListBorrowedBooksCommand command2 = new ListBorrowedBooksCommand(new Email("different@example.com"));
+        assertNotEquals(command1.hashCode(), command2.hashCode());
     }
 }
