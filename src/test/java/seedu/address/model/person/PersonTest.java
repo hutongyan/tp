@@ -12,9 +12,17 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.util.HashSet;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.book.Book;
+import seedu.address.model.book.BookName;
+import seedu.address.model.book.exceptions.BookUnavailableException;
+import seedu.address.model.book.exceptions.DuplicateBookException;
+import seedu.address.model.util.UniqueList;
 import seedu.address.testutil.PersonBuilder;
+
 
 public class PersonTest {
 
@@ -84,6 +92,57 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void getBorrowedBooks_returnsCorrectList() {
+        Person person = new PersonBuilder().build();
+        Book book1 = new Book(new BookName("Test Book 1"), new HashSet<>());
+        Book book2 = new Book(new BookName("Test Book 2"), new HashSet<>());
+        person.borrows(book1);
+        person.borrows(book2);
+        UniqueList<Book> borrowedBooks = person.getBorrowedBooks();
+        assertTrue(borrowedBooks.contains(book1));
+        assertTrue(borrowedBooks.contains(book2));
+    }
+
+    @Test
+    public void getBorrowedBooks_returnsEmptyListWhenNoBooksBorrowed() {
+        Person person = new PersonBuilder().build();
+        UniqueList<Book> borrowedBooks = person.getBorrowedBooks();
+        assertTrue(borrowedBooks.asUnmodifiableObservableList().isEmpty());
+    }
+
+    @Test
+    public void borrows_addsBookToBorrowedList() {
+        Person person = new PersonBuilder().build();
+        Book book = new Book(new BookName("Test Book"), new HashSet<>());
+        person.borrows(book);
+        assertTrue(person.hasBorrowed(book));
+    }
+
+    @Test
+    public void returns_removesBookFromBorrowedList() throws BookUnavailableException {
+        Person person = new PersonBuilder().build();
+        Book book = new Book(new BookName("Test Book"), new HashSet<>());
+        person.borrows(book);
+        person.returns(book);
+        assertFalse(person.hasBorrowed(book));
+    }
+
+    @Test
+    public void returns_throwsBookUnavailableException_whenBookNotBorrowed() {
+        Person person = new PersonBuilder().build();
+        Book book = new Book(new BookName("Test Book"), new HashSet<>());
+        assertThrows(BookUnavailableException.class, () -> person.returns(book));
+    }
+
+    @Test
+    public void borrows_throwsDuplicateBookException_whenAddingDuplicateBook() {
+        Person person = new PersonBuilder().build();
+        Book book = new Book(new BookName("Test Book"), new HashSet<>());
+        person.borrows(book);
+        assertThrows(DuplicateBookException.class, () -> person.borrows(book));
     }
 
     @Test

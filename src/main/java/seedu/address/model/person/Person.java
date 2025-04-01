@@ -10,6 +10,7 @@ import java.util.Set;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.Entity;
 import seedu.address.model.book.Book;
+import seedu.address.model.book.exceptions.BookUnavailableException;
 import seedu.address.model.exceptions.AddressBookException;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -80,8 +81,13 @@ public class Person extends Entity {
      *
      * @param book The book to be borrowed.
      */
-    public void returns(Book book) {
-        this.books.remove(book);
+    public void returns(Book book) throws BookUnavailableException {
+        requireAllNonNull(book);
+        try {
+            this.books.remove(book);
+        } catch (AddressBookException e) {
+            throw new BookUnavailableException("Book not found in the borrowed list");
+        }
     }
 
     /**
@@ -91,6 +97,7 @@ public class Person extends Entity {
      * @return true if the person has borrowed the book, false otherwise.
      */
     public boolean hasBorrowed(Book book) {
+        requireAllNonNull(book);
         return this.books.contains(book);
     }
 

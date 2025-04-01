@@ -23,7 +23,7 @@ public class BookStatusTest {
         assertEquals(BookStatus.Status.BORROWED, bookStatus.getStatus());
         assertEquals(DEFAULT_ISSUEDATE, bookStatus.getIssueDate());
         assertEquals(DEFAULT_RETURNDATE, bookStatus.getReturnDate());
-        assertEquals(DEFAULT_MEMBER, bookStatus.getBorrowedMember());
+        assertEquals(DEFAULT_MEMBER, bookStatus.getBorrower());
     }
     @Test
     public void testIssueBook_whenBorrowed_throwException() {

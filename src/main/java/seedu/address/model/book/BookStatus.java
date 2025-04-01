@@ -20,7 +20,7 @@ public class BookStatus {
     }
 
     private Status status;
-    private Person borrowedMember;
+    private Person borrower;
     private LocalDate issueDate;
     private LocalDate returnDate;
 
@@ -29,7 +29,7 @@ public class BookStatus {
      */
     public BookStatus() {
         this.status = Status.AVAILABLE;
-        this.borrowedMember = null;
+        this.borrower = null;
         this.issueDate = null;
         this.returnDate = null;
     }
@@ -38,19 +38,19 @@ public class BookStatus {
      * Issues the book to a member.
      *
      * @param issueDate the date the book is issued
-     * @param member the member to whom the book is issued
+     * @param borrower the member to whom the book is issued
      * @throws BookUnavailableException if the book is already borrowed
      */
-    public void issueBook(LocalDate issueDate, Person member) throws BookUnavailableException {
+    public void issueBook(LocalDate issueDate, Person borrower) throws BookUnavailableException {
         requireNonNull(issueDate);
-        requireNonNull(member);
+        requireNonNull(borrower);
         if (status == Status.BORROWED) {
             throw new BookUnavailableException(checkStatus());
         }
         this.status = Status.BORROWED;
         this.issueDate = issueDate;
         this.returnDate = issueDate.plusDays(14);
-        this.borrowedMember = member;
+        this.borrower = borrower;
     }
 
     /**
@@ -65,7 +65,7 @@ public class BookStatus {
         this.status = Status.AVAILABLE;
         this.issueDate = null;
         this.returnDate = null;
-        this.borrowedMember = null;
+        this.borrower = null;
     }
 
     /**
@@ -77,7 +77,7 @@ public class BookStatus {
         if (status == Status.AVAILABLE) {
             return "Available";
         } else {
-            return "Currently borrowed by " + borrowedMember.getName()
+            return "Currently borrowed by " + borrower.getName()
                 + " from " + issueDate + " till " + returnDate;
         }
     }
@@ -124,7 +124,7 @@ public class BookStatus {
      *
      * @return the member who borrowed the book
      */
-    public Person getBorrowedMember() {
-        return borrowedMember;
+    public Person getBorrower() {
+        return borrower;
     }
 }
