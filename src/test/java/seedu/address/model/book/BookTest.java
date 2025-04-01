@@ -1,16 +1,20 @@
 package seedu.address.model.book;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalBooks.BOOK_A;
 import static seedu.address.testutil.TypicalBooks.BOOK_B;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.book.exceptions.BookUnavailableException;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.BookBuilder;
-
-
+import seedu.address.testutil.PersonBuilder;
 
 public class BookTest {
     @Test
@@ -61,5 +65,31 @@ public class BookTest {
         // different tags -> returns false
         editedBookA = new BookBuilder(BOOK_A).withTags("newTag").build();
         assertFalse(BOOK_A.equals(editedBookA));
+    }
+
+    @Test
+    public void checkStatus_returnsAvailableWhenNotIssued() {
+        Book book = new BookBuilder().build();
+        assertEquals("Available", book.checkStatus());
+    }
+
+    @Test
+    public void checkStatus_returnsBorrowedWhenIssued() throws BookUnavailableException {
+        Book book = new BookBuilder().build();
+        Person person = new PersonBuilder().build();
+        LocalDate issueDate = LocalDate.now();
+        LocalDate returnDate = issueDate.plusDays(14);
+        book.issueBook(issueDate, person);
+        assertEquals("Currently borrowed by " + person.getName()
+                + " from " + issueDate + " till " + returnDate, book.checkStatus());
+    }
+
+    @Test
+    public void checkStatus_returnsAvailableAfterReturn() throws BookUnavailableException {
+        Book book = new BookBuilder().build();
+        Person person = new PersonBuilder().build();
+        book.issueBook(LocalDate.now(), person);
+        book.returnBook(LocalDate.now().plusDays(1));
+        assertEquals("Available", book.checkStatus());
     }
 }
