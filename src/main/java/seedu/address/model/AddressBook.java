@@ -1,6 +1,5 @@
 package seedu.address.model;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
