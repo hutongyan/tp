@@ -51,7 +51,7 @@ public class IssueCommandTest {
         IssueCommand cmd = new IssueCommand(availableBook.getName(), borrower.getEmail());
         CommandResult result = cmd.execute(model);
         assertEquals(String.format(IssueCommand.MESSAGE_SUCCESS,
-                "Available Book", DEFAULT_EMAIL), result.getFeedbackToUser());
+                "Available Book", borrower.getName()), result.getFeedbackToUser());
     }
 
     @Test

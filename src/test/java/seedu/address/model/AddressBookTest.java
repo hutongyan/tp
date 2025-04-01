@@ -25,6 +25,7 @@ import seedu.address.model.book.Book;
 import seedu.address.model.book.BookName;
 import seedu.address.model.book.exceptions.BookUnavailableException;
 import seedu.address.model.exceptions.AddressBookException;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
@@ -136,6 +137,42 @@ public class AddressBookTest {
         Book book = new Book(new BookName("Test Book"), new HashSet<>());
         addressBook.addBook(book);
         assertThrows(BookUnavailableException.class, () -> addressBook.returnBook(book.getName(), LocalDate.now()));
+    }
+
+    @Test
+    public void listBorrowedBook_noBooksBorrowed_returnsEmptyString() throws AddressBookException {
+        Person person = new PersonBuilder().withEmail("test@example.com").build();
+        addressBook.addPerson(person);
+        assertEquals("", addressBook.listBorrowedBook(person.getEmail()));
+    }
+
+    @Test
+    public void listBorrowedBook_singleBookBorrowed_returnsBookName() throws AddressBookException {
+        Person person = new PersonBuilder().withEmail("test@example.com").build();
+        Book book = new Book(new BookName("Test Book"), new HashSet<>());
+        addressBook.addPerson(person);
+        addressBook.addBook(book);
+        addressBook.issueBook(book.getName(), person.getEmail(), LocalDate.now());
+        assertEquals("Test Book", addressBook.listBorrowedBook(person.getEmail()));
+    }
+
+    @Test
+    public void listBorrowedBook_multipleBooksBorrowed_returnsCommaSeparatedBookNames() throws AddressBookException {
+        Person person = new PersonBuilder().withEmail("test@example.com").build();
+        Book book1 = new Book(new BookName("Test Book 1"), new HashSet<>());
+        Book book2 = new Book(new BookName("Test Book 2"), new HashSet<>());
+        addressBook.addPerson(person);
+        addressBook.addBook(book1);
+        addressBook.addBook(book2);
+        addressBook.issueBook(book1.getName(), person.getEmail(), LocalDate.now());
+        addressBook.issueBook(book2.getName(), person.getEmail(), LocalDate.now());
+        assertEquals("Test Book 1, Test Book 2", addressBook.listBorrowedBook(person.getEmail()));
+    }
+
+    @Test
+    public void listBorrowedBook_personNotInAddressBook_throwsAddressBookException() {
+        Email email = new Email("nonexistent@example.com");
+        assertThrows(AddressBookException.class, () -> addressBook.listBorrowedBook(email));
     }
 
     @Test

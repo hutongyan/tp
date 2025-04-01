@@ -100,6 +100,29 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_addBook() throws Exception {
+        String input = "add_book b/Test Book";
+        assertTrue(parser.parseCommand(input) instanceof seedu.address.logic.commands.AddBookCommand);
+    }
+
+    @Test
+    public void parseCommand_issueBook() throws Exception {
+        String input = "issue b/Harry Potter e/alexyeoh@example.com";
+        assertTrue(parser.parseCommand(input) instanceof seedu.address.logic.commands.IssueCommand);
+    }
+
+    @Test
+    public void parseCommand_listBorrowedBooks() throws Exception {
+        String input = "list_borrowed_books e/alexyeoh@example.com";
+        assertTrue(parser.parseCommand(input) instanceof seedu.address.logic.commands.ListBorrowedBooksCommand);
+    }
+    
+    @Test
+    public void parseCommand_deleteBookCommand() throws Exception {
+        String input = "delete_book b/Harry Potter";
+        assertTrue(parser.parseCommand(input) instanceof seedu.address.logic.commands.DeleteBookCommand);
+    }
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
             -> parser.parseCommand(""));

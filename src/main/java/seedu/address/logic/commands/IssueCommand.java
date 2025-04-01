@@ -59,7 +59,7 @@ public class IssueCommand extends Command {
         try {
             model.issueBook(bookName, email, localDate);
             return new CommandResult(String.format(MESSAGE_SUCCESS,
-                    bookName, email));
+                    bookName, model.getPersonName(email)));
         } catch (BookUnavailableException e) {
             throw new CommandException(String.format(MESSAGE_FAILURE, bookName, e.getMessage()));
         }
