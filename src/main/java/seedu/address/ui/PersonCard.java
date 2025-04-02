@@ -106,4 +106,28 @@ public class PersonCard extends UiPart<Region> {
             bookInfo.setText("");
         }
     }
+
+    public Label getNameLabel() {
+        return name;
+    }
+
+    public Label getPhoneLabel() {
+        return phone;
+    }
+
+    public Label getEmailLabel() {
+        return email;
+    }
+
+    public Label getAddressLabel() {
+        return address;
+    }
+
+    public Label getMembershipLabel() {
+        return membership;
+    }
+
+    public FlowPane getTagsPane() {
+        return tags;
+    }
 }
