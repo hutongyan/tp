@@ -2,6 +2,9 @@ package seedu.address.ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+
+import java.awt.GraphicsEnvironment;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -11,11 +14,11 @@ import javafx.scene.layout.FlowPane;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
-
 public class PersonCardTest {
 
     @BeforeAll
     public static void setup() {
+        assumeTrue(!GraphicsEnvironment.isHeadless(), "Skipping test in headless environment");
         JavaFxInitializer.init();
     }
 
