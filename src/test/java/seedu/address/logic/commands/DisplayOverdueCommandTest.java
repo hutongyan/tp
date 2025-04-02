@@ -49,8 +49,8 @@ public class DisplayOverdueCommandTest {
         DisplayOverdueCommand command = new DisplayOverdueCommand();
         CommandResult result = command.execute(model);
 
-        String expected = "Overdue books listed below:\n\n" +
-                book.getName() + "; Status: " + book.getStatus().checkStatus() + "; Tags: ";
+        String expected = "Overdue books listed below:\n\n"
+                + book.getName() + "; Status: " + book.getStatus().checkStatus() + "; Tags: ";
 
         assertEquals(expected, result.getFeedbackToUser());
     }
