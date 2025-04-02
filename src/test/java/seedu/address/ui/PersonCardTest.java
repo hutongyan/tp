@@ -60,6 +60,7 @@ public class PersonCardTest {
                 .withEmail("jane@example.com")
                 .withAddress("456 Another St")
                 .withMembership("ACTIVE")
+                .withTags() // no tags
                 .build();
 
         PersonCard personCard = new PersonCard(person, 2);
@@ -79,5 +80,21 @@ public class PersonCardTest {
         assertEquals("456 Another St", address.getText());
         assertEquals("ACTIVE", membership.getText());
         assertEquals(0, tags.getChildren().size());
+    }
+
+    @Test
+    public void equals_sameObject_returnsTrue() {
+        Person person = new PersonBuilder().withName("Sam").build();
+        PersonCard card = new PersonCard(person, 3);
+        assertEquals(card, card);
+    }
+
+    @Test
+    public void equals_differentObjectSameData_returnsFalse() {
+        Person person1 = new PersonBuilder().withName("Sam").build();
+        Person person2 = new PersonBuilder().withName("Sam").build();
+        PersonCard card1 = new PersonCard(person1, 1);
+        PersonCard card2 = new PersonCard(person2, 1);
+        assertEquals(false, card1.equals(card2));
     }
 }
