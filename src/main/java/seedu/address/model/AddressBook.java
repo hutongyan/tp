@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ import seedu.address.model.book.BookName;
 import seedu.address.model.book.exceptions.BookUnavailableException;
 import seedu.address.model.exceptions.AddressBookException;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.util.UniqueList;
 
@@ -121,7 +123,24 @@ public class AddressBook implements ReadOnlyAddressBook {
     public Person getPerson(Email email) throws AddressBookException {
         requireNonNull(email);
         Predicate<Person> predicate = p -> p.getEmail().equals(email);
-        return persons.get(predicate);
+        Person person = persons.get(predicate);
+        if (isNull(person)) {
+            throw new AddressBookException("Person not found");
+        }
+        return person;
+    }
+
+    /**
+     * Returns the name of the person with the specified email.
+     *
+     * @param email The email of the person whose name is to be retrieved. Must not be null.
+     * @return The name of the person with the specified email.
+     * @throws AddressBookException If no person with the specified email is found.
+     */
+    public Name getPersonName(Email email) throws AddressBookException {
+        requireNonNull(email);
+        Predicate<Person> predicate = p -> p.getEmail().equals(email);
+        return persons.get(predicate).getName();
     }
 
     public void removeBook(Book key) throws AddressBookException {
@@ -200,6 +219,18 @@ public class AddressBook implements ReadOnlyAddressBook {
             throw new BookUnavailableException("Available");
         }
         return bookToReturn.returnBook(returnDate);
+    }
+
+    /**
+     * Returns a string representation of the list of books borrowed by the specified user.
+     *
+     * @param email The email of the user whose borrowed books are to be listed. Must not be null.
+     * @return A string representation of the list of books borrowed by the user.
+     */
+    public String listBorrowedBook(Email email) throws AddressBookException {
+        requireNonNull(email);
+        Person user = getPerson(email);
+        return user.getBorrowedBooks().getField(Book::getName);
     }
 
     //// util methods

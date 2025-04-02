@@ -113,6 +113,19 @@ public class UniqueList<T extends Entity> implements Iterable<T> {
         }
         return null;
     }
+
+    /**
+     * Returns a string representation of the values of the specified field in the list.
+     *
+     * @param fieldExtractor A function to extract the field value from an item.
+     * @return A string representation of the values of the specified field in the list, separated by commas.
+     */
+    public String getField(Function<T, ?> fieldExtractor) {
+        return this.internalList.stream()
+                .map(item -> fieldExtractor.apply(item).toString())
+                .reduce((a, b) -> a + ", " + b)
+                .orElse("");
+    }
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

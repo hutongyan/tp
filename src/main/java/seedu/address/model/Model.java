@@ -9,6 +9,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.BookName;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -87,6 +88,22 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Returns the name of the person with the specified email.
+     *
+     * @param email The email of the person whose name is to be retrieved. Must not be null.
+     * @return The name of the person with the specified email.
+     */
+    Name getPersonName(Email email);
+
+    /**
+     * Returns a string representation of the list of books borrowed by the specified user.
+     *
+     * {@code email} The email of the user whose borrowed books are to be listed. Must not be null.
+     * @return A string representation of the list of books borrowed by the user.
+     */
+    String listBorrowedBooks(Email email);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

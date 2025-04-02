@@ -15,6 +15,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.BookName;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -120,6 +121,18 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public Name getPersonName(Email email) {
+        requireNonNull(email);
+        return addressBook.getPersonName(email);
+    }
+
+    @Override
+    public String listBorrowedBooks(Email email) {
+        requireNonNull(email);
+        return addressBook.listBorrowedBook(email);
     }
 
     @Override

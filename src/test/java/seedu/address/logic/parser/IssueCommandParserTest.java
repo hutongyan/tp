@@ -19,7 +19,7 @@ public class IssueCommandParserTest {
     private IssueCommandParser parser = new IssueCommandParser();
 
     @Test
-    public void parse_allFieldsPresent_success() throws Exception {
+    public void parse_allFieldsPresent_success() {
         String userInput = " " + PREFIX_BOOK + "Some Book " + PREFIX_EMAIL + "example@example.com";
         IssueCommand expectedCommand = new IssueCommand(new BookName("Some Book"), new Email("example@example.com"));
         assertParseSuccess(parser, userInput, expectedCommand);

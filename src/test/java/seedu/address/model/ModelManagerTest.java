@@ -11,11 +11,14 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.book.Book;
+import seedu.address.model.book.BookName;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.AddressBookBuilder;
@@ -98,6 +101,24 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void hasBook_nullBook_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasBook((Book) null));
+    }
+
+    @Test
+    public void hasBook_bookNotInAddressBook_returnsFalse() {
+        Book book = new Book(new BookName("Nonexistent Book"), new HashSet<>());
+        assertFalse(modelManager.hasBook(book));
+    }
+
+    @Test
+    public void hasBook_bookInAddressBook_returnsTrue() {
+        Book book = new Book(new BookName("Existing Book"), new HashSet<>());
+        modelManager.addBook(book);
+        assertTrue(modelManager.hasBook(book));
     }
 
     @Test

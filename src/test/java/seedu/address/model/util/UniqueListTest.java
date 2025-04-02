@@ -176,4 +176,31 @@ public class UniqueListTest {
         List<Person> listWithDuplicates = Arrays.asList(ALICE, ALICE);
         assertThrows(AddressBookException.class, () -> uniquePersonList.set(listWithDuplicates));
     }
+
+    @Test
+    public void getField_emptyList_returnsEmptyString() {
+        assertEquals("", uniquePersonList.getField(Person::getName));
+    }
+
+    @Test
+    public void getField_singleElement_returnsSingleElementString() throws AddressBookException {
+        uniquePersonList.add(ALICE);
+        assertEquals(ALICE.getName().toString(), uniquePersonList.getField(Person::getName));
+    }
+
+    @Test
+    public void getField_multipleElements_returnsCommaSeparatedString() throws AddressBookException {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        String expected = ALICE.getName().toString() + ", " + BOB.getName().toString();
+        assertEquals(expected, uniquePersonList.getField(Person::getName));
+    }
+
+    @Test
+    public void getField_nonStringField_returnsCorrectString() throws AddressBookException {
+        uniqueBookList.add(BOOK_A);
+        uniqueBookList.add(BOOK_B);
+        String expected = BOOK_A.getName().toString() + ", " + BOOK_B.getName().toString();
+        assertEquals(expected, uniqueBookList.getField(book -> book.getName().toString()));
+    }
 }
