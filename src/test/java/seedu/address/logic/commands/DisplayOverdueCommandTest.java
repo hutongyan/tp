@@ -62,7 +62,7 @@ public class DisplayOverdueCommandTest {
         model.addPerson(borrower);
 
         Book book = new Book(new BookName("Java Concurrency"), new HashSet<>());
-        book.getStatus().issueBook(LocalDate.now(), borrower); // not overdue
+        book.getStatus().issueBook(LocalDate.now(), borrower);
         model.addBook(book);
 
         CommandResult result = new DisplayOverdueCommand().execute(model);
