@@ -132,4 +132,10 @@ public class AddressBookParserTest {
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
+
+    @Test
+    public void parseCommand_displayOverdue() throws Exception {
+        assertTrue(parser.parseCommand("display_overdue") instanceof seedu.address.logic.commands.DisplayOverdueCommand);
+    }
+
 }
