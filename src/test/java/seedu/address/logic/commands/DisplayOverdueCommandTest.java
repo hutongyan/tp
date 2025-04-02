@@ -26,7 +26,7 @@ public class DisplayOverdueCommandTest {
         Model model = new ModelManager(new AddressBook(), new UserPrefs());
 
         Book book = new Book(new BookName("Clean Code"), new HashSet<>());
-        ((AddressBook) model.getAddressBook()).addBook(book);
+        model.addBook(book);
 
         DisplayOverdueCommand command = new DisplayOverdueCommand();
         CommandResult result = command.execute(model);
@@ -42,9 +42,9 @@ public class DisplayOverdueCommandTest {
         model.addPerson(borrower);
 
         Book book = new Book(new BookName("Effective Java"), new HashSet<>());
-        book.getStatus().issueBook(LocalDate.now().minusDays(20), borrower); // overdue
+        book.getStatus().issueBook(LocalDate.now().minusDays(20), borrower);
 
-        ((AddressBook) model.getAddressBook()).addBook(book);
+        model.addBook(book);
 
         DisplayOverdueCommand command = new DisplayOverdueCommand();
         CommandResult result = command.execute(model);
