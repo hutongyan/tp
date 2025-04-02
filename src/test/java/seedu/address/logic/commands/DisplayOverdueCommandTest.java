@@ -54,4 +54,20 @@ public class DisplayOverdueCommandTest {
 
         assertEquals(expected, result.getFeedbackToUser());
     }
+
+    @Test
+    public void execute_withNonOverdueBorrowedBook_doesNotListIt() throws Exception {
+        Model model = new ModelManager(new AddressBook(), new UserPrefs());
+        Person borrower = new PersonBuilder().withName("Bob").build();
+        model.addPerson(borrower);
+
+        Book book = new Book(new BookName("Java Concurrency"), new HashSet<>());
+        book.getStatus().issueBook(LocalDate.now(), borrower); // not overdue
+        model.addBook(book);
+
+        CommandResult result = new DisplayOverdueCommand().execute(model);
+
+        assertEquals("There are no overdue books.", result.getFeedbackToUser());
+    }
+
 }
