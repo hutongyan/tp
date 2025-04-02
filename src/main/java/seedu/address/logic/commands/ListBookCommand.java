@@ -10,7 +10,7 @@ import seedu.address.model.book.Book;
  */
 public class ListBookCommand extends Command {
     public static final String COMMAND_WORD = "list_books";
-    public static final String MESSAGE_SUCCESS = "Listed all books";
+    public static final String MESSAGE_SUCCESS = "Listed all books: ";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all books in the library. ";
 
