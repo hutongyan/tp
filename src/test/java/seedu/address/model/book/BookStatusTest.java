@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.book.exceptions.BookUnavailableException;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TypicalPersons;
 
 public class BookStatusTest {
     public static final LocalDate DEFAULT_ISSUEDATE = LocalDate.of(2025, 10, 10);
@@ -53,8 +54,8 @@ public class BookStatusTest {
         BookStatus bookStatus = new BookStatus();
         bookStatus.issueBook(DEFAULT_ISSUEDATE, DEFAULT_MEMBER);
         assertEquals("Currently borrowed by " + DEFAULT_MEMBER.getName()
-                + " from " + DEFAULT_ISSUEDATE
-                + " till " + DEFAULT_RETURNDATE,
+                        + " from " + DEFAULT_ISSUEDATE
+                        + " till " + DEFAULT_RETURNDATE,
                 bookStatus.checkStatus());
     }
     @Test
@@ -62,12 +63,20 @@ public class BookStatusTest {
         BookStatus bookStatus = new BookStatus();
         bookStatus.issueBook(DEFAULT_ISSUEDATE, DEFAULT_MEMBER);
         assertEquals(0, bookStatus.calculateFines(LocalDate.of(2025, 10, 24)));
+        assertEquals(0, bookStatus.calculateFines(DEFAULT_RETURNDATE.minusDays(1)));
     }
     @Test
-    public void testCalculateFines_whenBorrowedAndOverdue_returnsCorrectAmount() {
+    public void testCalculateFinesMember_whenBorrowedAndOverdue_returnsCorrectAmount() {
         BookStatus bookStatus = new BookStatus();
         bookStatus.issueBook(DEFAULT_ISSUEDATE, DEFAULT_MEMBER);
         assertEquals(1, bookStatus.calculateFines(LocalDate.of(2025, 10, 25)));
+    }
+
+    @Test
+    public void testCalculateFinesNonMember_whenBorrowedAndOverdue_returnsCorrectAmount() {
+        BookStatus bookStatus = new BookStatus();
+        bookStatus.issueBook(DEFAULT_ISSUEDATE, TypicalPersons.BENSON);
+        assertEquals(2, bookStatus.calculateFines(LocalDate.of(2025, 10, 25)));
     }
     @Test
     public void testCalculateFines_whenAvailable_returnsZero() {

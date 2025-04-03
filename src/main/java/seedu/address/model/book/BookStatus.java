@@ -8,6 +8,7 @@ import java.time.temporal.ChronoUnit;
 import seedu.address.model.book.exceptions.BookNotBorrowedException;
 import seedu.address.model.book.exceptions.BookUnavailableException;
 import seedu.address.model.book.exceptions.DifferentBorrowerException;
+import seedu.address.model.person.Membership;
 import seedu.address.model.person.Person;
 /**
  * Represents the status of a book in the library.
@@ -103,7 +104,7 @@ public class BookStatus {
             return "Available";
         } else {
             return "Currently borrowed by " + borrower.getName()
-                + " from " + issueDate + " till " + returnDate;
+                    + " from " + issueDate + " till " + returnDate;
         }
     }
 
@@ -114,9 +115,12 @@ public class BookStatus {
      * @return the amount of fines
      */
     public int calculateFines(LocalDate currentDate) {
-        if (status == Status.BORROWED && returnDate != null && currentDate.isAfter(returnDate)) {
+        boolean isOverdue = status == Status.BORROWED && currentDate.isAfter(returnDate);
+        if (isOverdue) {
+            boolean isMember = borrower.getMembership() == Membership.ACTIVE;
+            long fines = isMember ? 1 : 2;
             long overdueDays = ChronoUnit.DAYS.between(returnDate, currentDate);
-            return (int) overdueDays * 1;
+            return (int) (overdueDays * fines);
         }
         return 0;
     }
