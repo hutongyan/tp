@@ -53,8 +53,8 @@ public class BookStatusTest {
         BookStatus bookStatus = new BookStatus();
         bookStatus.issueBook(DEFAULT_ISSUEDATE, DEFAULT_MEMBER);
         assertEquals("Currently borrowed by " + DEFAULT_MEMBER.getName()
-                + " from " + DEFAULT_ISSUEDATE
-                + " till " + DEFAULT_RETURNDATE,
+                        + " from " + DEFAULT_ISSUEDATE
+                        + " till " + DEFAULT_RETURNDATE,
                 bookStatus.checkStatus());
     }
     @Test
