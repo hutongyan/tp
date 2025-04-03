@@ -331,3 +331,4 @@ Action                  | Format, Examples
 **List Borrowed Books** | `list_borrowed_books e/EMAIL` <br> e.g., `list_borrowed_books e/alexyeoh@example.com`
 **Display Overdue**     | `display_overdue` <br> e.g., `display_overdue`
 **Extend**              | `extend b/BOOK_NAME e/EMAIL` <br> e.g., `extend b/Percy Jackson e/alexyeoh@example.com`
+
