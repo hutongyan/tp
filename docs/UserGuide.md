@@ -181,6 +181,90 @@ Lists all books in the catalog.
 
 Format: `list_books`
 
+### Issuing a book : `issue`
+
+Issues a book to a user.
+
+**Format:**  
+`issue b/BOOK_NAME e/EMAIL`
+
+* Issues the specified book (`BOOK_NAME`) to the user with the given email (`EMAIL`).
+* The book must exist in the system.
+* The user must be a registered person in the system.
+* If the book is unavailable, the command will fail.
+
+**Examples:**
+* `issue b/Percy Jackson e/alexyeoh@example.com`
+    * Issues the book *Percy Jackson* to *alexyeoh@example.com*.
+* `issue b/Harry Potter e/johndoe@example.com`
+    * Issues the book *Harry Potter* to *johndoe@example.com*.
+
+### Returning a book : `return`
+
+Marks a borrowed book as returned and calculates overdue fines.
+
+**Format:**  
+`return b/BOOK_NAME`
+
+* Marks the specified book (`BOOK_NAME`) as returned.
+* The system will calculate any overdue fines.
+* If the book is already available, an error message will be shown.
+* If the book does not exist, an error message will be shown.
+
+**Examples:**
+* `return b/Percy Jackson`
+    * Marks *Percy Jackson* as returned and calculates any overdue fines.
+* `return b/Harry Potter`
+    * Marks *Harry Potter* as returned and calculates any overdue fines.
+
+### Listing borrowed books : `list_borrowed_books`
+
+Lists all books borrowed by a specified user.
+
+**Format:**  
+`list_borrowed_books e/EMAIL`
+
+* Lists all books borrowed by the user with the given email (`EMAIL`).
+* If the user does not exist, an error message will be shown.
+* If the user is not currently borrowing any books, a message will indicate that.
+
+**Examples:**
+* `list_borrowed_books e/alexyeoh@example.com`
+    * Lists all books borrowed by *alexyeoh@example.com*.
+* `list_borrowed_books e/johndoe@example.com`
+    * Lists all books borrowed by *johndoe@example.com*.
+
+### Displaying overdue books : `display_overdue`
+
+Displays a list of overdue books and the users who have borrowed them.
+
+**Format:**  
+`display_overdue`
+
+* Lists all books that are overdue and the users who have borrowed them.
+* If no books are overdue, a message will indicate that there are no overdue books.
+
+**Examples:**
+* `display_overdue`
+    * Displays a list of overdue books and the users who have borrowed them.
+
+### Extending the borrowing duration : `extend`
+
+Extends the duration for which a user can borrow a book without paying overdue fees.
+
+**Format:**  
+`extend b/BOOK_NAME e/EMAIL`
+
+* Extends the borrowing duration for the specified book (`BOOK_NAME`) for the user with the given email (`EMAIL`).
+* The book must exist in the system and must be borrowed by the specified user.
+* If the user or the book is not found, or if the book is not currently borrowed, the command will fail.
+
+**Examples:**
+* `extend b/Percy Jackson e/alexyeoh@example.com`
+    * Extends the borrowing duration for *Percy Jackson* for *alexyeoh@example.com*.
+* `extend b/Harry Potter e/johndoe@example.com`
+    * Extends the borrowing duration for *Harry Potter* for *johndoe@example.com*.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -230,15 +314,20 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/MEMBERSHIP_STATUS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 m/EXPIRED t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list_users [n/NAME] [e/EMAIL] [m/MEMBERSHIP_STATUS] [a/ADDRESS]` <br> e.g., `list_users m/ACTIVE`
-**Add Book**   | `add_book b/NAME_OF_BOOK` <br> e.g., `add_book b/Wizard of Oz`
-**Delete Book**   | `delete_book b/NAME_OF_BOOK` <br> e.g., `delete_book b/Wizard of Oz`
-**List Books**   | `list_books`
-**Help**   | `help`
+Action                  | Format, Examples
+------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Add**                 | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/MEMBERSHIP_STATUS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 m/EXPIRED t/friend t/colleague`
+**Clear**               | `clear`
+**Delete**              | `delete INDEX`<br> e.g., `delete 3`
+**Edit**                | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find**                | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**List**                | `list_users [n/NAME] [e/EMAIL] [m/MEMBERSHIP_STATUS] [a/ADDRESS]` <br> e.g., `list_users m/ACTIVE`
+**Add Book**            | `add_book b/NAME_OF_BOOK` <br> e.g., `add_book b/Wizard of Oz`
+**Delete Book**         | `delete_book b/NAME_OF_BOOK` <br> e.g., `delete_book b/Wizard of Oz`
+**List Books**          | `list_books`
+**Help**                | `help`
+**Issue**               | `issue b/BOOK_NAME e/EMAIL` <br> e.g., `issue b/Percy Jackson e/alexyeoh@example.com`
+**Return**              | `return b/BOOK_NAME` <br> e.g., `return b/Percy Jackson`
+**List Borrowed Books** | `list_borrowed_books e/EMAIL` <br> e.g., `list_borrowed_books e/alexyeoh@example.com`
+**Display Overdue**     | `display_overdue` <br> e.g., `display_overdue`
+**Extend**              | `extend b/BOOK_NAME e/EMAIL` <br> e.g., `extend b/Percy Jackson e/alexyeoh@example.com`
