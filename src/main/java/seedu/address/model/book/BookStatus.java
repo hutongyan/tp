@@ -90,7 +90,7 @@ public class BookStatus {
      * @return the amount of fines
      */
     public int calculateFines(LocalDate currentDate) {
-        boolean isOverdue = status == Status.BORROWED && returnDate != null && currentDate.isAfter(returnDate);
+        boolean isOverdue = status == Status.BORROWED && currentDate.isAfter(returnDate);
         if (isOverdue) {
             boolean isMember = borrower.getMembership() == Membership.ACTIVE;
             long fines = isMember ? 1 : 2;
