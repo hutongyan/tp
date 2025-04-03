@@ -230,7 +230,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String listBorrowedBook(Email email) throws AddressBookException {
         requireNonNull(email);
         Person user = getPerson(email);
-        return user.getBorrowedBooks().getField(Book::getName);
+        return user.getBorrowedBooks().getField(book -> book.getName()
+                + " (Due: "
+                + book.getStatus().getReturnDate() + ")");
     }
 
     //// util methods
