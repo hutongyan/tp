@@ -241,7 +241,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         Book bookToExtend = getBook(bookName);
         Person personToExtend = getPerson(email);
         bookToExtend.extendBook(localDate, personToExtend);
-        personToExtend.borrows(bookToExtend);
     }
 
     /**
