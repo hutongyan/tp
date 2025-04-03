@@ -511,3 +511,49 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 2. _{ more test cases …​ }_
+
+## **Appendix: Effort**
+
+This project involved moderate-to-high difficulty due to managing multiple entity types (books, users, loans), compared to AB3's single entity (Person). Team members contributed to custom parsing logic, dual-entity linking (user↔book), and membership tracking.
+
+### Challenges:
+- Designing flexible command parsers for new command types.
+- Ensuring data consistency across complex operations like `issue`, `return`.
+- Handling JSON serialization of nested data.
+
+### Reused Components:
+- JSON storage structure from AB3, extended for new entity classes.
+- UI base layout and controller patterns from AB3.
+
+### Effort Highlights:
+- Book and user command logic: ~40%
+- Command parsing: ~20%
+- Testing: ~5%
+- Model/storage integration: ~20%
+- UI enhancements: ~15%
+
+## **Appendix: Planned Enhancements**
+
+**Team size: 5**
+1. **Improve quality of output messages example dates and fines**
+   *Current:* Dates are printed numerically `20-04-2025` and fines are printed without currency example`15`  
+   *Planned:* Use more user-friendly format such as `20th April, 2025` and `owes 15$`
+
+2. **Implement command to fetch user index**
+   *Current:* Delete command uses `index` to delete user.   
+   *Planned:* Implement command to fetch user `index` or modify existing command to use `email`.
+
+3. **Implement membership fees and tracking**  
+   *Current:* Membership status is hard coded during insertion 
+   *Planned:* Track membership status using dates and implement renew membership command.
+
+4. **Warn before deleting user with loans**  
+   *Current:* Deletes silently  
+   *Planned:* Prompt: `User still has borrowed books. Confirm delete?`
+
+5. **Implement feature for automated reminders**  
+    *Current:* Users not notified of overdue books/ outstanding fines.
+    *Planned:* Notify users by sending an email.
+
+
+

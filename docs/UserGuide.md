@@ -204,7 +204,7 @@ Issues a book to a user.
 Marks a borrowed book as returned and calculates overdue fines.
 
 **Format:**  
-`return b/BOOK_NAME`
+`return b/BOOK_NAME on d/<return_date>`
 
 * Marks the specified book (`BOOK_NAME`) as returned.
 * The system will calculate any overdue fines.
@@ -212,9 +212,9 @@ Marks a borrowed book as returned and calculates overdue fines.
 * If the book does not exist, an error message will be shown.
 
 **Examples:**
-* `return b/Percy Jackson`
+* `return b/Percy Jackson on d/20/04/2025`
     * Marks *Percy Jackson* as returned and calculates any overdue fines.
-* `return b/Harry Potter`
+* `return b/Harry Potter on d/20/04/2025`
     * Marks *Harry Potter* as returned and calculates any overdue fines.
 
 ### Listing borrowed books : `list_borrowed_books`
@@ -327,7 +327,7 @@ Action                  | Format, Examples
 **List Books**          | `list_books`
 **Help**                | `help`
 **Issue**               | `issue b/BOOK_NAME e/EMAIL` <br> e.g., `issue b/Percy Jackson e/alexyeoh@example.com`
-**Return**              | `return b/BOOK_NAME` <br> e.g., `return b/Percy Jackson`
+**Return**              | `return b/BOOK_NAME on d/DATE` <br> e.g., `return b/Percy Jackson`
 **List Borrowed Books** | `list_borrowed_books e/EMAIL` <br> e.g., `list_borrowed_books e/alexyeoh@example.com`
 **Display Overdue**     | `display_overdue` <br> e.g., `display_overdue`
 **Extend**              | `extend b/BOOK_NAME e/EMAIL` <br> e.g., `extend b/Percy Jackson e/alexyeoh@example.com`
