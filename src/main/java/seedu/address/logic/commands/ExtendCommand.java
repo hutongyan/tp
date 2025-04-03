@@ -1,21 +1,24 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.book.BookName;
-import seedu.address.model.book.exceptions.DifferentBorrowerException;
-import seedu.address.model.person.Email;
-import seedu.address.model.book.exceptions.BookNotBorrowedException;
-
-import java.time.LocalDate;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.book.BookName;
+import seedu.address.model.book.exceptions.BookNotBorrowedException;
+import seedu.address.model.book.exceptions.DifferentBorrowerException;
+import seedu.address.model.person.Email;
 
-public class ExtendCommand extends Command{
+import java.time.LocalDate;
+
+/**
+ * Extends the duration for which a book can be borrowed without paying overdue fees
+ */
+public class ExtendCommand extends Command {
 
     public static final String COMMAND_WORD = "extend";
 
@@ -35,6 +38,9 @@ public class ExtendCommand extends Command{
     private final Email email;
     private final LocalDate localDate = LocalDate.now();
 
+    /**
+     * Creates an ExtendCommand to extend the duration for the specified {@code Book} to the specified {@code Person}
+     */
     public ExtendCommand(BookName bookName, Email email) {
         requireNonNull(bookName);
         requireNonNull(email);
