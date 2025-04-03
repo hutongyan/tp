@@ -1,9 +1,10 @@
 package seedu.address.logic.commands;
 
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+
+import java.time.LocalDate;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -13,7 +14,6 @@ import seedu.address.model.book.exceptions.BookNotBorrowedException;
 import seedu.address.model.book.exceptions.DifferentBorrowerException;
 import seedu.address.model.person.Email;
 
-import java.time.LocalDate;
 
 /**
  * Extends the duration for which a book can be borrowed without paying overdue fees
@@ -48,6 +48,7 @@ public class ExtendCommand extends Command {
         this.email = email;
     }
 
+    @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
