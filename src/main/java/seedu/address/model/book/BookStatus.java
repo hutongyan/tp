@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 import seedu.address.model.book.exceptions.BookUnavailableException;
+import seedu.address.model.person.Membership;
 import seedu.address.model.person.Person;
 /**
  * Represents the status of a book in the library.
