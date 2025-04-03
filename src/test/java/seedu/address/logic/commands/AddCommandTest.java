@@ -217,6 +217,11 @@ public class AddCommandTest {
         public int returnBook(BookName bookName, LocalDate localDate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void extendBook(BookName bookName, Email email, LocalDate localDate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
