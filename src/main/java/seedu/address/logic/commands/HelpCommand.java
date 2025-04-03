@@ -40,11 +40,14 @@ public class HelpCommand extends Command {
                                               + "    Format: list_borrowed_books e/EMAIL\n"
                                               + "12. display_overdue: Displays users with overdue books.\n"
                                               + "    Format: display_overdue\n"
-                                              + "13. clear: Clears all users and books.\n"
+                                              + "13. extend: Extends the duration for which the user can"
+                                              + "borrow a book without paying overdue fees.\n"
+                                              + "    Format: extend b/BOOK_NAME e/EMAIL\n"
+                                              + "14. clear: Clears all users and books.\n"
                                               + "    Format: clear\n"
-                                              + "14. exit: Exits the app.\n"
+                                              + "15. exit: Exits the app.\n"
                                               + "    Format: exit\n"
-                                              + "15. help: Shows this help message.\n"
+                                              + "16. help: Shows this help message.\n"
                                               + "    Format: help";
 
     @Override
