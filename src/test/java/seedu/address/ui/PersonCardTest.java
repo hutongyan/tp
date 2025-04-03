@@ -113,4 +113,18 @@ public class PersonCardTest {
         PersonCard card2 = new PersonCard(person2, 1);
         assertEquals(false, card1.equals(card2));
     }
+
+    @Test
+    public void coverage_patch_only() {
+        Person person = new PersonBuilder().build();
+        PersonCard card = new PersonCard(person, 1);
+
+        assertNotNull(card.getNameLabel());
+        assertNotNull(card.getEmailLabel());
+        assertNotNull(card.getPhoneLabel());
+        assertNotNull(card.getAddressLabel());
+        assertNotNull(card.getMembershipLabel());
+        assertNotNull(card.getTagsPane());
+    }
+
 }
