@@ -63,6 +63,7 @@ public class BookStatusTest {
         BookStatus bookStatus = new BookStatus();
         bookStatus.issueBook(DEFAULT_ISSUEDATE, DEFAULT_MEMBER);
         assertEquals(0, bookStatus.calculateFines(LocalDate.of(2025, 10, 24)));
+        assertEquals(0, bookStatus.calculateFines(DEFAULT_RETURNDATE.minusDays(1)));
     }
     @Test
     public void testCalculateFinesMember_whenBorrowedAndOverdue_returnsCorrectAmount() {
