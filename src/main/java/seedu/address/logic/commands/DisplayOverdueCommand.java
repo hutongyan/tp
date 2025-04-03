@@ -27,8 +27,7 @@ public class DisplayOverdueCommand extends Command {
         List<Book> overdueBooks = model.getAddressBook().getBookList().stream()
                 .filter(book -> {
                     BookStatus status = book.getStatus();
-                    return status != null && status.checkStatus().startsWith("Currently borrowed")
-                            && status.calculateFines(today) > 0;
+                    return status != null && status.calculateFines(today) > 0;
                 })
                 .collect(Collectors.toList());
 
