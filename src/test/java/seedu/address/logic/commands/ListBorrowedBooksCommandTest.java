@@ -33,7 +33,6 @@ public class ListBorrowedBooksCommandTest {
     private BookName bookNameTwo;
     private Book bookOne;
     private Book bookTwo;
-    private LocalDate localDate = LocalDate.now();
 
     @BeforeEach
     public void setUp() {
@@ -72,8 +71,8 @@ public class ListBorrowedBooksCommandTest {
 
     @Test
     void execute_withValidEmail_listsBorrowedBooks() throws CommandException {
-        model.issueBook(bookNameOne, validEmail, localDate);
-        model.issueBook(bookNameTwo, validEmail, localDate);
+        model.issueBook(bookNameOne, validEmail, LocalDate.of(2025, 4, 3));
+        model.issueBook(bookNameTwo, validEmail, LocalDate.of(2025, 4, 3));
         ListBorrowedBooksCommand cmd = new ListBorrowedBooksCommand(validEmail);
         CommandResult result = cmd.execute(model);
         assertEquals("Book1 (Due: 2025-04-17)"
