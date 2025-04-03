@@ -168,6 +168,11 @@ public class ModelManager implements Model {
         return addressBook.returnBook(bookName, returnDate);
     }
 
+    @Override
+    public void extendBook(BookName book, Email email, LocalDate localDate) {
+        addressBook.extendBook(book, email, localDate);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

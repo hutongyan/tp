@@ -5,7 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+import seedu.address.model.book.exceptions.BookNotBorrowedException;
 import seedu.address.model.book.exceptions.BookUnavailableException;
+import seedu.address.model.book.exceptions.DifferentBorrowerException;
 import seedu.address.model.person.Person;
 /**
  * Represents the status of a book in the library.
@@ -66,6 +68,29 @@ public class BookStatus {
         this.issueDate = null;
         this.returnDate = null;
         this.borrower = null;
+    }
+
+    /**
+     * Extends the duration for which the book can be borrowed without paying overdue fees
+     *
+     * @param issueDate
+     * @param borrower
+     */
+    public void extendBook(LocalDate issueDate, Person borrower) throws BookNotBorrowedException,
+            DifferentBorrowerException {
+        requireNonNull(issueDate);
+        requireNonNull(borrower);
+
+        if (status == Status.AVAILABLE) {
+            throw new BookUnavailableException("The given book has not been issued yet");
+        }
+        if (!this.borrower.equals(borrower)) {
+            throw new DifferentBorrowerException("This person has not borrowed this book");
+        }
+
+        this.status = Status.BORROWED;
+        this.issueDate = issueDate;
+        this.returnDate = issueDate.plusDays(14);
     }
 
     /**

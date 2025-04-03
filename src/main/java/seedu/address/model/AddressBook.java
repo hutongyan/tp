@@ -11,7 +11,9 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.book.Book;
 import seedu.address.model.book.BookName;
+import seedu.address.model.book.exceptions.BookNotBorrowedException;
 import seedu.address.model.book.exceptions.BookUnavailableException;
+import seedu.address.model.book.exceptions.DifferentBorrowerException;
 import seedu.address.model.exceptions.AddressBookException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -219,6 +221,27 @@ public class AddressBook implements ReadOnlyAddressBook {
             throw new BookUnavailableException("Available");
         }
         return bookToReturn.returnBook(returnDate);
+    }
+
+    /**
+     * Extends the duration for which a book can be borrowed without overdue fees
+     *
+     * @param bookName
+     * @param email
+     * @param localDate
+     *
+     * @throws BookNotBorrowedException if the book is not already borrowed
+     * @throws DifferentBorrowerException if the book is borrowed by a different person
+     */
+    public void extendBook(BookName bookName, Email email, LocalDate localDate) throws BookNotBorrowedException,
+            DifferentBorrowerException {
+        requireNonNull(bookName);
+        requireNonNull(email);
+        requireNonNull(localDate);
+        Book bookToExtend = getBook(bookName);
+        Person personToExtend = getPerson(email);
+        bookToExtend.extendBook(localDate, personToExtend);
+        personToExtend.borrows(bookToExtend);
     }
 
     /**
