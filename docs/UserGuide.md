@@ -44,6 +44,7 @@ Displays general help instructions.
 
 Format: `help`
 
+<img width="741" alt="Screenshot 2025-04-04 at 1 32 50 AM" src="https://github.com/user-attachments/assets/1829909d-d583-4550-8d50-e59572fcaab1" />
 ---
 
 ### Add a User: `add_user`
@@ -55,18 +56,20 @@ Format:
 
 Example:  
 `add_user n/Alex Tan p/91234567 a/123 Clementi Rd e/alex@example.com m/NON-MEMBER`
+![image](https://github.com/user-attachments/assets/23a0f746-02a1-4fdb-9a22-f85ab838953a)
 
 ---
 
 ### Delete a User: `delete_user`
 
-Deletes a user based on their email.
+Deletes a user based on index.
 
 Format:  
-`delete_user e/EMAIL`
+`delete_user number`
 
 Example:  
-`delete_user e/john@example.com`
+`delete_user 1`
+<img width="740" alt="Screenshot 2025-04-04 at 1 39 57 AM" src="https://github.com/user-attachments/assets/63f13c81-5024-4d2d-82f4-8c1e66c49e6d" />
 
 ---
 
@@ -79,6 +82,7 @@ Format:
 
 Example:  
 `add_book b/Wizard of Oz`
+![image](https://github.com/user-attachments/assets/d9558a81-58e3-46e6-98c8-d56584806cfd)
 
 ---
 
@@ -91,6 +95,7 @@ Format:
 
 Example:  
 `delete_book b/Wizard of Oz`
+![image](https://github.com/user-attachments/assets/abc8ddac-e672-44dd-a789-aaa97c23415e)
 
 ---
 
@@ -154,6 +159,7 @@ Examples:
 `list_users m/ACTIVE`  
 `list_users f/10`  
 `list_users t/Overdue Fee`
+![image](https://github.com/user-attachments/assets/d26e0825-6547-4930-8739-c4c470981a32)
 
 ---
 
@@ -162,6 +168,7 @@ Examples:
 Displays all books in the catalog.
 
 Format: `list_books`
+![image](https://github.com/user-attachments/assets/9a23fb2e-67bc-47cf-82bc-7423453d7d0c)
 
 ---
 
