@@ -130,4 +130,12 @@ public class PersonCard extends UiPart<Region> {
     public FlowPane getTagsPane() {
         return tags;
     }
+
+    public Label getIdLabel() {
+        return id;
+    }
+
+    public Label getBookInfoLabel() {
+        return bookInfo;
+    }
 }

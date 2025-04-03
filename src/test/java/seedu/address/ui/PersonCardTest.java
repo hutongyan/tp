@@ -5,12 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.awt.GraphicsEnvironment;
+import java.time.LocalDate;
+import java.util.HashSet;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
+import seedu.address.model.book.Book;
+import seedu.address.model.book.BookName;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -37,19 +40,13 @@ public class PersonCardTest {
 
         assertNotNull(personCard.getRoot());
 
-        Label name = personCard.getNameLabel();
-        Label phone = personCard.getPhoneLabel();
-        Label email = personCard.getEmailLabel();
-        Label address = personCard.getAddressLabel();
-        Label membership = personCard.getMembershipLabel();
-        FlowPane tags = personCard.getTagsPane();
-
-        assertEquals("John Doe", name.getText());
-        assertEquals("99999999", phone.getText());
-        assertEquals("john@example.com", email.getText());
-        assertEquals("123 Main St", address.getText());
-        assertEquals("EXPIRED", membership.getText());
-        assertEquals(2, tags.getChildren().size());
+        assertEquals("John Doe", personCard.getNameLabel().getText());
+        assertEquals("99999999", personCard.getPhoneLabel().getText());
+        assertEquals("john@example.com", personCard.getEmailLabel().getText());
+        assertEquals("123 Main St", personCard.getAddressLabel().getText());
+        assertEquals("EXPIRED", personCard.getMembershipLabel().getText());
+        assertEquals("1. ", personCard.getIdLabel().getText());
+        assertEquals(2, personCard.getTagsPane().getChildren().size());
     }
 
     @Test
@@ -67,20 +64,39 @@ public class PersonCardTest {
 
         assertNotNull(personCard.getRoot());
 
-        Label name = personCard.getNameLabel();
-        Label phone = personCard.getPhoneLabel();
-        Label email = personCard.getEmailLabel();
-        Label address = personCard.getAddressLabel();
-        Label membership = personCard.getMembershipLabel();
-        FlowPane tags = personCard.getTagsPane();
-
-        assertEquals("Jane Smith", name.getText());
-        assertEquals("88888888", phone.getText());
-        assertEquals("jane@example.com", email.getText());
-        assertEquals("456 Another St", address.getText());
-        assertEquals("ACTIVE", membership.getText());
-        assertEquals(0, tags.getChildren().size());
+        assertEquals("Jane Smith", personCard.getNameLabel().getText());
+        assertEquals("88888888", personCard.getPhoneLabel().getText());
+        assertEquals("jane@example.com", personCard.getEmailLabel().getText());
+        assertEquals("456 Another St", personCard.getAddressLabel().getText());
+        assertEquals("ACTIVE", personCard.getMembershipLabel().getText());
+        assertEquals("2. ", personCard.getIdLabel().getText());
+        assertEquals(0, personCard.getTagsPane().getChildren().size());
     }
+
+    @Test
+    public void display_personWithBorrowedBook_showsBookInfo() throws Exception {
+        Person person = new PersonBuilder()
+                .withName("Book Reader")
+                .withMembership("ACTIVE")
+                .withEmail("borrower@example.com")
+                .build();
+
+        Book book = new Book(new BookName("Test Book"), new HashSet<>());
+
+        book.getStatus().issueBook(LocalDate.now().minusDays(20), person);
+
+        person.getBorrowedBooks().add(book);
+
+        PersonCard personCard = new PersonCard(person, 4);
+        Label bookInfo = personCard.getBookInfoLabel();
+
+        assertNotNull(bookInfo);
+        String text = bookInfo.getText();
+
+        assertEquals(true, text.contains("Test Book"));
+        assertEquals(true, text.toLowerCase().contains("overdue"));
+    }
+
 
     @Test
     public void equals_sameObject_returnsTrue() {
