@@ -153,7 +153,8 @@ public class AddressBookTest {
         addressBook.addPerson(person);
         addressBook.addBook(book);
         addressBook.issueBook(book.getName(), person.getEmail(), LocalDate.now());
-        assertEquals("Test Book", addressBook.listBorrowedBook(person.getEmail()));
+        assertEquals("Test Book (Due: 2025-04-17)",
+                addressBook.listBorrowedBook(person.getEmail()));
     }
 
     @Test
@@ -166,7 +167,8 @@ public class AddressBookTest {
         addressBook.addBook(book2);
         addressBook.issueBook(book1.getName(), person.getEmail(), LocalDate.now());
         addressBook.issueBook(book2.getName(), person.getEmail(), LocalDate.now());
-        assertEquals("Test Book 1, Test Book 2", addressBook.listBorrowedBook(person.getEmail()));
+        assertEquals("Test Book 1 (Due: 2025-04-17), Test Book 2 (Due: 2025-04-17)",
+                addressBook.listBorrowedBook(person.getEmail()));
     }
 
     @Test

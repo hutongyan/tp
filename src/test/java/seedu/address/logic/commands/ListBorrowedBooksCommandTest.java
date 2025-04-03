@@ -76,7 +76,8 @@ public class ListBorrowedBooksCommandTest {
         model.issueBook(bookNameTwo, validEmail, localDate);
         ListBorrowedBooksCommand cmd = new ListBorrowedBooksCommand(validEmail);
         CommandResult result = cmd.execute(model);
-        assertEquals("Book1, Book2"
+        assertEquals("Book1 (Due: 2025-04-17)"
+                        + ", Book2 (Due: 2025-04-17)"
                 + "\n"
                 + "Listed all borrowed books by: Valid User",
                 result.getFeedbackToUser());
