@@ -11,6 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.book.BookName;
 import seedu.address.model.book.exceptions.BookNotBorrowedException;
+import seedu.address.model.book.exceptions.BookUnavailableException;
 import seedu.address.model.book.exceptions.DifferentBorrowerException;
 import seedu.address.model.person.Email;
 
@@ -69,6 +70,8 @@ public class ExtendCommand extends Command {
             throw new CommandException(String.format(MESSAGE_FAILURE, bookName, e.getMessage()));
         } catch (DifferentBorrowerException f) {
             throw new CommandException(String.format(MESSAGE_FAILURE, bookName, f.getMessage()));
+        } catch (BookUnavailableException g) {
+            throw new CommandException(String.format(MESSAGE_FAILURE, bookName, g.getMessage()));
         }
     }
 

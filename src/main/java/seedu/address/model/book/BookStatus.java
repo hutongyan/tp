@@ -82,9 +82,9 @@ public class BookStatus {
         requireNonNull(borrower);
 
         if (status == Status.AVAILABLE) {
-            throw new BookUnavailableException("The given book has not been issued yet");
+            throw new BookNotBorrowedException("The given book has not been issued yet");
         }
-        if (!this.borrower.equals(borrower)) {
+        if (borrower != this.borrower) {
             throw new DifferentBorrowerException("This person has not borrowed this book");
         }
 
