@@ -60,7 +60,6 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
 
-        // Membership status bubble
         Membership status = person.getMembership();
         membership.setText(status.toString());
         switch (status) {
@@ -72,7 +71,6 @@ public class PersonCard extends UiPart<Region> {
 
         membership.getStyleClass().add("membership-label");
 
-        // Tags
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> {
@@ -80,7 +78,6 @@ public class PersonCard extends UiPart<Region> {
                     tagLabel.getStyleClass().add("tag-bubble");
                     tags.getChildren().add(tagLabel);
                 });
-
 
         // Issued book info
         StringBuilder bookText = new StringBuilder();

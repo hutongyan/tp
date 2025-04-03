@@ -127,4 +127,31 @@ public class PersonCardTest {
         assertNotNull(card.getTagsPane());
     }
 
+    @Test
+    public void display_personWithDifferentMembershipsAndNonOverdueBook_displaysAllStyles() throws Exception {
+        Person active = new PersonBuilder().withMembership("ACTIVE").build();
+        PersonCard activeCard = new PersonCard(active, 1);
+        assertEquals("ACTIVE", activeCard.getMembershipLabel().getText());
+
+        Person expired = new PersonBuilder().withMembership("EXPIRED").build();
+        PersonCard expiredCard = new PersonCard(expired, 2);
+        assertEquals("EXPIRED", expiredCard.getMembershipLabel().getText());
+
+        Person non = new PersonBuilder().withMembership("NON-MEMBER").build();
+        PersonCard nonCard = new PersonCard(non, 3);
+        assertEquals("NON-MEMBER", nonCard.getMembershipLabel().getText());
+
+        Person borrower = new PersonBuilder().withName("Reader").build();
+        Book book = new Book(new BookName("Clean Book"), new HashSet<>());
+        book.getStatus().issueBook(LocalDate.now().plusDays(3), borrower); // not overdue
+        borrower.getBorrowedBooks().add(book);
+
+        PersonCard card = new PersonCard(borrower, 4);
+        String info = card.getBookInfoLabel().getText();
+        assertNotNull(info);
+        assertEquals(true, info.contains("Clean Book"));
+        assertEquals(false, info.toLowerCase().contains("overdue"));
+    }
+
+
 }
