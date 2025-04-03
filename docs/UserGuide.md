@@ -6,246 +6,329 @@
 
 # BookVault User Guide
 
-BookVault is a **desktop app for managing library users and books**, optimized for use via a Command Line Interface (CLI), while retaining the advantages of a Graphical User Interface (GUI). It allows librarians to **quickly manage user memberships**, **issue and return books**, **track overdue fees**, and **maintain an up-to-date book catalog**.
+BookVault is a **desktop app for managing library users and books**, optimized for use via a Command Line Interface (CLI), while retaining the advantages of a Graphical User Interface (GUI). It allows librarians to **quickly manage user memberships** and **maintain an up-to-date book catalog**.
 
+
+<!-- * Table of Contents -->
 <page-nav-print />
 
----
+--------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java `17` or above installed in your Computer.
-2. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
-3. Copy the file to your desired _home folder_ for BookVault.
-4. In a terminal, `cd` into the folder and run `java -jar addressbook.jar`
-5. Start typing commands like `help` or `add_user` to begin using the app.
-6. Refer to the [Features](#features) section below for detailed usage.
+1. Ensure you have Java `17` or above installed in your Computer.<br>
+   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
----
+1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+
+1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/Ui.png)
+
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   Some example commands you can try:
+
+    * `list_users` : Lists all contacts.
+
+    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/ACTIVE` : Adds a user named `John Doe` with the newly added Membership status label.
+
+    * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `clear` : Deletes all contacts.
+    * `add_book b/Wizard of Oz` : Adds a book 'Wizard of Oz'.
+    * `delete_book b/Wizard of Oz` : Deletes the book 'Wizard of Oz'
+    * `exit` : Exits the app.
+
+1. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
 <box type="info" seamless>
 
-**Notes about the command format:**
+**Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are parameters provided by the user.
-* Square brackets `[]` denote optional arguments.
-* Commands are **case-insensitive**, but parameter values are **case-sensitive**.
-* Parameters can appear in any order.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
-</box>
+* Items in square brackets are optional.<br>
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
----
+* Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-### View Help: `help`
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-Displays general help instructions.
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+  </box>
+
+### Viewing help : `help`
+
+Shows a message explaning how to access the help page.
+
+![help message](images/helpMessage.png)
 
 Format: `help`
 
----
 
-### Add a User: `add_user`
+### Adding a person: `add`
 
-Adds a new user to the library.
+Adds a person to the address book.
 
-Format:  
-`add_user n/NAME p/PHONE a/ADDRESS e/EMAIL m/MEMBERSHIP_STATUS`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/MEMBERSHIP_STATUS [t/TAG]…​`
 
-Example:  
-`add_user n/Alex Tan p/91234567 a/123 Clementi Rd e/alex@example.com m/NON-MEMBER`
+<box type="tip" seamless>
 
----
+**Tip:** A person can have any number of tags (including 0)
+</box>
 
-### Delete a User: `delete_user`
+**Membership Status** can only be **_ACTIVE, EXPIRED_** or **_NON-MEMBER_**
 
-Deletes a user based on their email.
+Examples:
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/ACTIVE`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 m/NON-MEMBER t/criminal `
 
-Format:  
-`delete_user e/EMAIL`
+### Listing all persons : `list_users`
 
-Example:  
-`delete_user e/john@example.com`
+Shows a list of all persons in the address book. Supports additional filters as well.
 
----
+Format: `list_users [e/EMAIL] [n/NAME] [m/MEMBERSHIP_STATUS] [t/TAG]`
 
-### Add Book: `add_book`
+Examples:
 
-Adds a new book to the catalog.
+`list_users`
 
-Format:  
-`add_book b/BOOK_NAME`
+`list_users n/John Doe`
 
-Example:  
-`add_book b/Wizard of Oz`
+`list_users b/The Hobbit`
 
----
+### Editing a person : `edit`
 
-### Delete Book: `delete_book`
+Edits an existing person in the address book.
+
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* You can remove all the person’s tags by typing `t/` without
+  specifying any tags after it.
+
+Examples:
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+### Locating persons by name: `find`
+
+Finds persons whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `find John` returns `john` and `John Doe`
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### Deleting a person : `delete`
+
+Deletes the specified person from the address book.
+
+Format: `delete INDEX`
+
+* Deletes the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Adding a book : `add_book`
+
+Adds a book to the catalog.
+
+Format: `add_book b/BOOK_NAME`
+
+Example:
+`add_book b/Harry Potter`
+
+### Deleting a book : `delete_book`
 
 Deletes a book from the catalog.
 
-Format:  
-`delete_book b/BOOK_NAME`
+Format: `delete_book b/BOOK_NAME`
 
-Example:  
-`delete_book b/Wizard of Oz`
+Example:
+`delete_book b/Harry Potter`
 
----
+### Listing all books : `list_books`
 
-### Issue Book to User: `issue`
-
-Issues a book to a user on a specific date.
-
-Format:  
-`issue b/BOOK_NAME to e/EMAIL on d/ISSUE_DATE`
-
-Example:  
-`issue b/Percy Jackson to e/alex@example.com on d/20/02/2025`
-
----
-
-### Return Book: `return`
-
-Marks a borrowed book as returned.
-
-Format:  
-`return b/BOOK_NAME on d/RETURN_DATE`
-
-Example:  
-`return b/Percy Jackson on d/01/03/2025`
-
----
-
-### Edit User: `edit`
-
-Edits fields for a user identified by index.
-
-Format:  
-`edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MEMBERSHIP_STATUS] [t/TAG]...`
-
----
-
-### Find Users by Name: `find`
-
-Searches users by partial/full name.
-
-Format:  
-`find KEYWORD [MORE_KEYWORDS]`
-
-Example:  
-`find John Jane`
-
----
-
-### List Users: `list_users`
-
-Lists all users or filters them based on:
-- `n/NAME`
-- `e/EMAIL`
-- `m/MEMBERSHIP_STATUS`
-- `b/BOOK_NAME`
-- `f/MIN_OVERDUE_FEE`
-- `t/TAG`
-
-Examples:  
-`list_users`  
-`list_users m/ACTIVE`  
-`list_users f/10`  
-`list_users t/Overdue Fee`
-
----
-
-### List Books: `list_books`
-
-Displays all books in the catalog.
+Lists all books in the catalog.
 
 Format: `list_books`
 
----
+### Issuing a book : `issue`
 
-### Display Overdue Books: `display_overdue`
+Issues a book to a user.
 
-Shows books that are overdue and the users who borrowed them.
+**Format:**  
+`issue b/BOOK_NAME e/EMAIL`
 
-Format:  
+* Issues the specified book (`BOOK_NAME`) to the user with the given email (`EMAIL`).
+* The book must exist in the system.
+* The user must be a registered person in the system.
+* If the book is unavailable, the command will fail.
+
+**Examples:**
+* `issue b/Percy Jackson e/alexyeoh@example.com`
+    * Issues the book *Percy Jackson* to *alexyeoh@example.com*.
+* `issue b/Harry Potter e/johndoe@example.com`
+    * Issues the book *Harry Potter* to *johndoe@example.com*.
+
+### Returning a book : `return`
+
+Marks a borrowed book as returned and calculates overdue fines.
+
+**Format:**  
+`return b/BOOK_NAME on d/<return_date>`
+
+* Marks the specified book (`BOOK_NAME`) as returned.
+* The system will calculate any overdue fines.
+* If the book is already available, an error message will be shown.
+* If the book does not exist, an error message will be shown.
+
+**Examples:**
+* `return b/Percy Jackson on d/20/04/2025`
+    * Marks *Percy Jackson* as returned and calculates any overdue fines.
+* `return b/Harry Potter on d/20/04/2025`
+    * Marks *Harry Potter* as returned and calculates any overdue fines.
+
+### Listing borrowed books : `list_borrowed_books`
+
+Lists all books borrowed by a specified user.
+
+**Format:**  
+`list_borrowed_books e/EMAIL`
+
+* Lists all books borrowed by the user with the given email (`EMAIL`).
+* If the user does not exist, an error message will be shown.
+* If the user is not currently borrowing any books, a message will indicate that.
+
+**Examples:**
+* `list_borrowed_books e/alexyeoh@example.com`
+    * Lists all books borrowed by *alexyeoh@example.com*.
+* `list_borrowed_books e/johndoe@example.com`
+    * Lists all books borrowed by *johndoe@example.com*.
+
+### Displaying overdue books : `display_overdue`
+
+Displays a list of overdue books and the users who have borrowed them.
+
+**Format:**  
 `display_overdue`
 
----
+* Lists all books that are overdue and the users who have borrowed them.
+* If no books are overdue, a message will indicate that there are no overdue books.
 
-### Show User Fees: `show_fees`
+**Examples:**
+* `display_overdue`
+    * Displays a list of overdue books and the users who have borrowed them.
 
-Displays overdue fee summary for a user.
+### Extending the borrowing duration : `extend`
 
-Format:  
-`show_fees p/PHONE_NUMBER`
+Extends the duration for which a user can borrow a book without paying overdue fees.
 
-Example:  
-`show_fees p/91234567`
+**Format:**  
+`extend b/BOOK_NAME e/EMAIL`
 
----
+* Extends the borrowing duration for the specified book (`BOOK_NAME`) for the user with the given email (`EMAIL`).
+* The book must exist in the system and must be borrowed by the specified user.
+* If the user or the book is not found, or if the book is not currently borrowed, the command will fail.
 
-### Clear All Entries: `clear`
+**Examples:**
+* `extend b/Percy Jackson e/alexyeoh@example.com`
+    * Extends the borrowing duration for *Percy Jackson* for *alexyeoh@example.com*.
+* `extend b/Harry Potter e/johndoe@example.com`
+    * Extends the borrowing duration for *Harry Potter* for *johndoe@example.com*.
 
-Removes all users and books.
+### Clearing all entries : `clear`
+
+Clears all entries from the address book.
 
 Format: `clear`
 
----
+### Exiting the program : `exit`
 
-### Exit the App: `exit`
-
-Closes the app.
+Exits the program.
 
 Format: `exit`
 
----
+### Saving the data
 
-### Saving and Editing Data
+AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-* All changes are **auto-saved** to `[jar folder]/data/addressbook.json`
-* You may manually edit the JSON file (with caution).
-* Invalid edits may cause the app to reset the file.
+### Editing the data file
+
+AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
-**Warning:** Always back up `addressbook.json` before editing it manually.
+
+**Caution:**
+If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
----
+### Archiving data files `[coming in v2.0]`
 
-## Command Summary
+_Details coming soon ..._
 
-| Action             | Format |
-|--------------------|--------|
-| Add User           | `add_user n/NAME p/PHONE a/ADDRESS e/EMAIL m/STATUS` |
-| Delete User        | `delete_user e/EMAIL` |
-| Edit User          | `edit INDEX [fields]` |
-| Find User          | `find NAME` |
-| List Users         | `list_users [filters]` |
-| Show Fees          | `show_fees p/PHONE` |
-| Add Book           | `add_book b/BOOK_NAME` |
-| Delete Book        | `delete_book b/BOOK_NAME` |
-| Issue Book         | `issue b/BOOK_NAME to e/EMAIL on d/DATE` |
-| Return Book        | `return b/BOOK_NAME on d/DATE` |
-| List Books         | `list_books` |
-| Display Overdue    | `display_overdue` |
-| Help               | `help` |
-| Clear All          | `clear` |
-| Exit               | `exit` |
-
----
+--------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q: How do I move my data to a new computer?**  
-A: Copy the `addressbook.json` file from the current computer's data folder to the same location on the new computer.
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
----
+--------------------------------------------------------------------------------------------------------------------
 
-## Known Issues
+## Known issues
 
-1. GUI might appear off-screen if used on multiple displays. Delete `preferences.json` to reset window position.
-2. Help window may not reopen if minimized. Manually restore it.
+1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
----
+--------------------------------------------------------------------------------------------------------------------
+
+## Command summary
+
+Action                  | Format, Examples
+------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Add**                 | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/MEMBERSHIP_STATUS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 m/EXPIRED t/friend t/colleague`
+**Clear**               | `clear`
+**Delete**              | `delete INDEX`<br> e.g., `delete 3`
+**Edit**                | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find**                | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**List**                | `list_users [n/NAME] [e/EMAIL] [m/MEMBERSHIP_STATUS] [a/ADDRESS]` <br> e.g., `list_users m/ACTIVE`
+**Add Book**            | `add_book b/NAME_OF_BOOK` <br> e.g., `add_book b/Wizard of Oz`
+**Delete Book**         | `delete_book b/NAME_OF_BOOK` <br> e.g., `delete_book b/Wizard of Oz`
+**List Books**          | `list_books`
+**Help**                | `help`
+**Issue**               | `issue b/BOOK_NAME e/EMAIL` <br> e.g., `issue b/Percy Jackson e/alexyeoh@example.com`
+**Return**              | `return b/BOOK_NAME on d/DATE` <br> e.g., `return b/Percy Jackson`
+**List Borrowed Books** | `list_borrowed_books e/EMAIL` <br> e.g., `list_borrowed_books e/alexyeoh@example.com`
+**Display Overdue**     | `display_overdue` <br> e.g., `display_overdue`
+**Extend**              | `extend b/BOOK_NAME e/EMAIL` <br> e.g., `extend b/Percy Jackson e/alexyeoh@example.com`
+

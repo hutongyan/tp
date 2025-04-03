@@ -31,7 +31,7 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
-
+    private static final LocalDate TEST_DATE = LocalDate.of(2025, 4, 3);
     private final AddressBook addressBook = new AddressBook();
 
     @Test
@@ -152,7 +152,7 @@ public class AddressBookTest {
         Book book = new Book(new BookName("Test Book"), new HashSet<>());
         addressBook.addPerson(person);
         addressBook.addBook(book);
-        addressBook.issueBook(book.getName(), person.getEmail(), LocalDate.now());
+        addressBook.issueBook(book.getName(), person.getEmail(), TEST_DATE);
         assertEquals("Test Book (Due: 2025-04-17)",
                 addressBook.listBorrowedBook(person.getEmail()));
     }
@@ -165,8 +165,8 @@ public class AddressBookTest {
         addressBook.addPerson(person);
         addressBook.addBook(book1);
         addressBook.addBook(book2);
-        addressBook.issueBook(book1.getName(), person.getEmail(), LocalDate.now());
-        addressBook.issueBook(book2.getName(), person.getEmail(), LocalDate.now());
+        addressBook.issueBook(book1.getName(), person.getEmail(), TEST_DATE);
+        addressBook.issueBook(book2.getName(), person.getEmail(), TEST_DATE);
         assertEquals("Test Book 1 (Due: 2025-04-17), Test Book 2 (Due: 2025-04-17)",
                 addressBook.listBorrowedBook(person.getEmail()));
     }
