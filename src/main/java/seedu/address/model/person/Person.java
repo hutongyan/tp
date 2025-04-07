@@ -119,6 +119,13 @@ public class Person extends Entity {
     }
 
     /**
+     * Returns a cleared list of borrowed books.
+     */
+    public void clearBorrowedBooks() {
+        this.books = new UniqueList<>();
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */

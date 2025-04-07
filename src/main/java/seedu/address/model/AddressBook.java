@@ -118,6 +118,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) throws AddressBookException {
         persons.remove(key);
+        UniqueList<Book> booksToRemove = key.getBorrowedBooks();
+        for (Book book : booksToRemove) {
+            try {
+                book.returnBook(LocalDate.now());
+            } catch (NullPointerException e) {
+                throw new BookUnavailableException("Book not borrowed");
+            }
+        }
+        key.clearBorrowedBooks();
     }
     /**
      * Returns the person with the same email as {@code email} exists in the address book.
