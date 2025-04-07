@@ -243,7 +243,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(email);
         Book bookToExtend = getBook(bookName);
         Person personToExtend = getPerson(email);
-        bookToExtend.extendBook(personToExtend);
+        bookToExtend.extendBook(bookToExtend, personToExtend);
     }
 
     /**
@@ -299,4 +299,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.hashCode();
     }
 
+    public Person getBorrower(BookName bookName) {
+        return getBook(bookName).getStatus().getBorrower();
+    }
 }

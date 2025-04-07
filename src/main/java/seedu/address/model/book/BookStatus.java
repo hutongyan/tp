@@ -74,10 +74,12 @@ public class BookStatus {
     /**
      * Extends the duration for which the book can be borrowed without paying overdue fees
      *
+     * @param bookName
      * @param borrower
      */
-    public void extendBook(Person borrower) throws BookNotBorrowedException,
+    public void extendBook(Book bookName, Person borrower) throws BookNotBorrowedException,
             DifferentBorrowerException {
+        requireNonNull(bookName);
         requireNonNull(borrower);
 
         if (status == Status.AVAILABLE) {
@@ -86,6 +88,7 @@ public class BookStatus {
         if (borrower != this.borrower) {
             throw new DifferentBorrowerException("This person has not borrowed this book");
         }
+
         this.status = Status.BORROWED;
         this.returnDate = returnDate.plusDays(14);
     }

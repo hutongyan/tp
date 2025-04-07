@@ -98,9 +98,9 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/ACTIVE`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 m/NON-MEMBER t/criminal `
 
-### Listing all persons : `list_users`
+### Listing users : `list_users`
 
-Shows a list of all persons in the address book. Supports additional filters as well.
+Shows a list of all persons in the library address book. Supports additional filters as well, to display specific users.
 
 Format: `list_users [e/EMAIL] [n/NAME] [m/MEMBERSHIP_STATUS] [t/TAG]`
 
