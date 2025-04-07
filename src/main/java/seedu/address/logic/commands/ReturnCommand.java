@@ -16,7 +16,7 @@ public class ReturnCommand extends Command {
 
     public static final String COMMAND_WORD = "return";
 
-    public static final String MESSAGE_SUCCESS = "Marked %s as returned. Overdue Fines: %d";
+    public static final String MESSAGE_SUCCESS = "Marked %s as returned. Overdue Fines: S$%d";
     public static final String MESSAGE_FAILURE = "Failed to return %s because %s";
     private static final String STATUS_AVAILABLE = "Available";
     private static final String HUMAN_READABLE_AVAILABLE_ERROR =

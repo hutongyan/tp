@@ -62,11 +62,13 @@ BookVault is a **desktop app for managing library users and books**, optimized f
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
   </box>
+
+**IMPORTANT NOTE:** A person is identified by their _EMAIL ID_. So, while 2 users can have the same name, they need to have a unique Email Id.
 
 ### Viewing help : `help`
 
@@ -85,8 +87,10 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/MEMBERSHIP_STATUS [t/TAG]
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** A person can have any number of tags (including 0).
 </box>
+
+**Note:** A person needs to have a unique email id to avoid duplicates!
 
 **Membership Status** can only be **_ACTIVE, EXPIRED_** or **_NON-MEMBER_**
 
@@ -112,7 +116,7 @@ Examples:
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MEMBERSHIP] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -183,7 +187,7 @@ Format: `list_books`
 
 ### Issuing a book : `issue`
 
-Issues a book to a user.
+Issues a book to a user. The issue duration is 2 weeks.
 
 **Format:**  
 `issue b/BOOK_NAME e/EMAIL`
@@ -202,6 +206,10 @@ Issues a book to a user.
 ### Returning a book : `return`
 
 Marks a borrowed book as returned and calculates overdue fines.
+
+_Overdue fines for books is calculated as follows:_ 
+<br> For members, S$1 per day after return date. 
+<br> For non-members, S\$2 per day after return date.
 
 **Format:**  
 `return b/BOOK_NAME on d/<return_date>`
@@ -250,7 +258,7 @@ Displays a list of overdue books and the users who have borrowed them.
 
 ### Extending the borrowing duration : `extend`
 
-Extends the duration for which a user can borrow a book without paying overdue fees.
+Extends the duration for which a user can borrow a book without paying overdue fees. Postpones the return date by 2 weeks.
 
 **Format:**  
 `extend b/BOOK_NAME e/EMAIL`

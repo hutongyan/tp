@@ -35,7 +35,7 @@ public class HelpCommand extends Command {
                                               + "9. issue: Issues a book to a user.\n"
                                               + "   Format: issue b/BOOK_NAME e/EMAIL\n"
                                               + "10. return: Returns a book from a user.\n"
-                                              + "    Format: return b/BOOK_NAME d/RETURN_DATE\n"
+                                              + "    Format: return b/BOOK_NAME on d/RETURN_DATE\n"
                                               + "11. list_borrowed_books: Lists borrowed books by user.\n"
                                               + "    Format: list_borrowed_books e/EMAIL\n"
                                               + "12. display_overdue: Displays users with overdue books.\n"
