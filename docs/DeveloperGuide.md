@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# BookVault Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -123,9 +123,10 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the library user data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) and all `Book` objects.
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* contains logic to track overdue fees and the borrowing status of books.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <box type="info" seamless>
@@ -299,32 +300,31 @@ _{Explain here how the data archiving feature will be implemented}_
   * Streamline membership management by automating activations, renewals, and suspensions.
   * Centralize book inventory and user records for a more organized, real-time system.
 
-
-**Value proposition**: A streamlined library management system designed for librarians to track book loans,
-overdue fines, and membership status in a fast and efficient way. Real-time updates, centralized records,
-and keyboard-friendly navigation ensure that Emma and her team can manage patrons
+### Value Proposition
+A streamlined library management system designed for librarians to track book loans,
+overdue fines, and membership status in a fast and efficient way. Real-time updates, centralized records, and keyboard-friendly navigation ensure that Emma and her team can manage patrons
 and books seamlessly without relying on scattered spreadsheets or outdated systems.
-
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​   | I want to …​                                                  | So that I can…​                                                |
-|--------|-----------|---------------------------------------------------------------|----------------------------------------------------------------|
+| Priority | As a …​   | I want to …​                                                  | So that I can…​                                               |
+|--------|-----------|---------------------------------------------------------------|---------------------------------------------------------------|
 | `* * *` | new user  | see usage instructions                                        | refer to instructions when I forget how to use the application |
-| `* * *` | librarian | add a new library user                                        | register new users and allow them to borrow books              |
-| `* * *` | librarian | delete the details of a library users                         | remove users that no longer use the library                    |
-| `* * ` | librarian | check the membership status of a user                         | cancel or renew memberships easily                             |
-| `* *`  | librarian | mark that a user has borrowed a certain book                  | lend books to users and keep track of them                     |
-| `* *`  | librarian | edit/update details of a user                                 | keep the information accurate and up to date                   |
-| `* *`  | librarian | mark that a user has returned a certain book                  | keep track of returned books                                   |
-| `* *`  | librarian | list users based on a filter                                  | look at users based on a certain criteria                      |
-| `* *`  | librarian | check the due fees of a member                                | ensure members pay the correct fee                             |
-| `*`    | librarian | see a list of overdue books and their corresponding users     | monitor the status of borrowed books                           |
-| `* *`  | librarian | update book information                                       | ensure that book records remain accurate                       |
-| `*`    | librarian | send automated reminders for overdue books or membership fees | keep members updates on overdue books/fees                     |
+| `* * *` | librarian | add a new library user                                        | register new users and allow them to borrow books             |
+| `* * *` | librarian | delete the details of a library users                         | remove users that no longer use the library                   |
+| `* * ` | librarian | check the membership status of a user                         | cancel or renew memberships easily                            |
+| `* *`  | librarian | issue a certain book to a certain user                        | lend books to users and keep track of them                    |
+| `* *`  | librarian | edit/update details of a user                                 | keep the information accurate and up to date                  |
+| `* *`  | librarian | mark that a user has returned a certain book                  | keep track of returned books                                  |
+| `* *`  | librarian | let users extends their book return dates                     | ensure users have the option of avoiding overdue fees         |
+| `* *`  | librarian | list users based on a filter                                  | look at users based on a certain criteria                     |
+| `* *`  | librarian | check the due fees of a member                                | ensure members pay the correct fee                            |
+| `*`    | librarian | see a list of overdue books and their corresponding users     | monitor the status of borrowed books                          |
+| `* *`  | librarian | update book information                                       | ensure that book records remain accurate                      |
+| `*`    | librarian | send automated reminders for overdue books or membership fees | keep members updates on overdue books/fees                    |
 
 *{More to be added}*
 

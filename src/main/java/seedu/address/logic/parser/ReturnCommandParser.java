@@ -31,7 +31,9 @@ public class ReturnCommandParser implements Parser<ReturnCommand> {
             String dateStr = parts[1].trim();
 
             BookName bookName = new BookName(bookNameStr);
-            LocalDate returnDate = LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu")
+                    .withResolverStyle(java.time.format.ResolverStyle.STRICT);
+            LocalDate returnDate = LocalDate.parse(dateStr, formatter);
 
             return new ReturnCommand(bookName, returnDate);
         } catch (DateTimeParseException | ArrayIndexOutOfBoundsException | IllegalArgumentException e) {
