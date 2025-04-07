@@ -82,6 +82,9 @@ public class Book extends Entity {
      * Return the book to the library.
      */
     public int returnBook(LocalDate localDate) throws BookUnavailableException {
+        if (localDate.isBefore(status.getIssueDate())) {
+            throw new BookUnavailableException("Date is before today.");
+        }
         int fine = status.calculateFines(localDate);
         status.returnBook();
         return fine;

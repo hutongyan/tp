@@ -92,4 +92,16 @@ public class BookTest {
         book.returnBook(LocalDate.now().plusDays(1));
         assertEquals("Available", book.checkStatus());
     }
+
+    @Test
+    public void returnBook_dateBeforeIssueDate_throwsBookUnavailableException() {
+        Book book = new BookBuilder().build();
+        Person person = new PersonBuilder().build();
+        LocalDate issueDate = LocalDate.of(2023, 1, 1);
+        LocalDate returnDate = LocalDate.of(2022, 12, 31); // Date before the issue date
+        // Issue the book first
+        book.issueBook(issueDate, person);
+        // Attempt to return the book with a date before the issue date
+        assertThrows(BookUnavailableException.class, () -> book.returnBook(returnDate));
+    }
 }
