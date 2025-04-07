@@ -22,6 +22,7 @@ Class Phone
 Class Tag
 Class BookName
 Class BookStatus
+Class OverdueFee
 }
 
 Class I #FFFFFF
@@ -52,9 +53,11 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> OverdueFee
 
 Book *--> BookName
 Book *--> BookStatus
+Book *--> DueDate
 
 Book o--> "0..1" Person : "borrower"
 Person *--> "0..*" Book : "borrowedBooks"
