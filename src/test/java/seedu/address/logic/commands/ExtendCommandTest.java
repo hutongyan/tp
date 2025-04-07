@@ -89,7 +89,7 @@ public class ExtendCommandTest {
     public void execute_returnThrowsUnexpectedBookUnavailableException_fallbackMessage() {
         Book badBook = new Book(new BookName("Bad Book"), new HashSet<>()) {
             @Override
-            public void extendBook(LocalDate localDate, Person borrower) throws BookUnavailableException {
+            public void extendBook(Book bookToExtend, Person borrower) throws BookUnavailableException {
                 throw new BookUnavailableException("Weird error");
             }
         };

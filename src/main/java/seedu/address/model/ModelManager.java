@@ -175,13 +175,17 @@ public class ModelManager implements Model {
         return temp;
     }
 
-    @Override
-    public void extendBook(BookName book, Email email, LocalDate localDate) {
-        addressBook.extendBook(book, email, localDate);
+    /**
+     * Extends the return date of a borrowed book by 14 days.
+     * @param bookName
+     * @param email
+     */
+    public void extendBook(BookName bookName, Email email) {
+        addressBook.extendBook(bookName, email);
         Person borrower = addressBook.getPerson(email);
         setPerson(borrower, borrower);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
+    };
 
     //=========== Filtered Person List Accessors =============================================================
 

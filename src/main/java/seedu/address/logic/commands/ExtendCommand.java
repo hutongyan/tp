@@ -63,7 +63,7 @@ public class ExtendCommand extends Command {
 
 
         try {
-            model.extendBook(bookName, email, localDate);
+            model.extendBook(bookName, email);
             return new CommandResult(String.format(MESSAGE_SUCCESS,
                     bookName, model.getPersonName(email)));
         } catch (BookNotBorrowedException e) {

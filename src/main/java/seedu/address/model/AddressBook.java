@@ -224,24 +224,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Extends the duration for which a book can be borrowed without overdue fees
-     *
+     * Extends the return date of a borrowed book by 14 days.
      * @param bookName
      * @param email
-     * @param localDate
-     *
-     * @throws BookNotBorrowedException if the book is not already borrowed
-     * @throws DifferentBorrowerException if the book is borrowed by a different person
+     * @throws BookNotBorrowedException
+     * @throws DifferentBorrowerException
      */
-    public void extendBook(BookName bookName, Email email, LocalDate localDate) throws BookNotBorrowedException,
-            DifferentBorrowerException {
+    public void extendBook(BookName bookName, Email email)
+            throws BookNotBorrowedException, DifferentBorrowerException {
         requireNonNull(bookName);
         requireNonNull(email);
-        requireNonNull(localDate);
         Book bookToExtend = getBook(bookName);
         Person personToExtend = getPerson(email);
-        bookToExtend.extendBook(localDate, personToExtend);
+        bookToExtend.extendBook(bookToExtend, personToExtend);
     }
+
 
     /**
      * Returns a string representation of the list of books borrowed by the specified user.
