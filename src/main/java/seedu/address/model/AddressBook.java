@@ -296,4 +296,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.hashCode();
     }
 
+    public Person getBorrower(BookName bookName) {
+        return getBook(bookName).getStatus().getBorrower();
+    }
 }

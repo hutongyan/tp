@@ -91,7 +91,7 @@ public class BookStatus {
 
         this.status = Status.BORROWED;
         this.issueDate = issueDate;
-        this.returnDate = issueDate.plusDays(14);
+        this.returnDate = returnDate.plusDays(14);
     }
 
     /**

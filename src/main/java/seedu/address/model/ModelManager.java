@@ -161,16 +161,26 @@ public class ModelManager implements Model {
     @Override
     public void issueBook(BookName book, Email email, LocalDate localDate) {
         addressBook.issueBook(book, email, localDate);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public int returnBook(BookName bookName, LocalDate returnDate) {
-        return addressBook.returnBook(bookName, returnDate);
+        Person borrower = addressBook.getBorrower(bookName);
+        int temp = addressBook.returnBook(bookName, returnDate);
+        if (borrower != null) {
+            setPerson(borrower, borrower);
+        }
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return temp;
     }
 
     @Override
     public void extendBook(BookName book, Email email, LocalDate localDate) {
         addressBook.extendBook(book, email, localDate);
+        Person borrower = addressBook.getPerson(email);
+        setPerson(borrower, borrower);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     //=========== Filtered Person List Accessors =============================================================
