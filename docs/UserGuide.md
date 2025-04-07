@@ -165,10 +165,10 @@ Examples:
 
 Adds a book to the catalog.
 
-Format: `add_book b/BOOK_NAME`
+Format: `add_book b/BOOK_NAME [t/TAG]…​`
 
 Example:
-`add_book b/Harry Potter`
+`add_book b/Harry Potter t/JKR`
 
 ### Deleting a book : `delete_book`
 
@@ -183,13 +183,15 @@ Example:
 
 ### Listing all books : `list_books`
 
-Lists all books in the catalog.
+Lists all books in the catalog
+
+* All existing books including borrowed books are listed.
 
 Format: `list_books`
 
 ### Issuing a book : `issue`
 
-Issues a book to a user. The issue duration is 2 weeks.
+Issues a book to a user. The issue duration is 2 weeks from starting from current date time.
 
 **Format:**  
 `issue b/BOOK_NAME e/EMAIL`

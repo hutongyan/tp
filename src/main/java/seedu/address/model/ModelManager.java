@@ -190,9 +190,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public int updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+        return filteredPersons.size();
     }
     @Override
     public void updateFilteredBookList(Predicate<Book> predicate) {

@@ -554,6 +554,10 @@ This project involved moderate-to-high difficulty due to managing multiple entit
     *Current:* Users not notified of overdue books/ outstanding fines.
     *Planned:* Notify users by sending an email.
 
+6. **Implement filter functionality for Book Search**
+   *Current:* Existing command to list all books.  
+   *Planned:* Add functionality to filter the search by book name, author and tags.
+   
 
 
 
