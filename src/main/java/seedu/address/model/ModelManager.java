@@ -175,11 +175,7 @@ public class ModelManager implements Model {
         return temp;
     }
 
-    /**
-     * Extends the return date of a borrowed book by 14 days.
-     * @param bookName
-     * @param email
-     */
+    @Override
     public void extendBook(BookName bookName, Email email) {
         addressBook.extendBook(bookName, email);
         Person borrower = addressBook.getPerson(email);
