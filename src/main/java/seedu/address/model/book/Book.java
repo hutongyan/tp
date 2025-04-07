@@ -90,8 +90,8 @@ public class Book extends Entity {
     /**
      * Extends the duration for which the book can be borrowed without paying overdue fees
      */
-    public void extendBook(LocalDate localDate, Person personToExtend) {
-        status.extendBook(localDate, personToExtend);
+    public void extendBook(Person personToExtend) {
+        status.extendBook(personToExtend);
     }
 
     /**

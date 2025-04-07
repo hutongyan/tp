@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 
-import java.time.LocalDate;
-
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -37,7 +35,6 @@ public class ExtendCommand extends Command {
     public static final String MESSAGE_FAILURE = "Failed to extend %s because %s";
     private final BookName bookName;
     private final Email email;
-    private final LocalDate localDate = LocalDate.now();
 
     /**
      * Creates an ExtendCommand to extend the duration for the specified {@code Book} to the specified {@code Person}
@@ -63,7 +60,7 @@ public class ExtendCommand extends Command {
 
 
         try {
-            model.extendBook(bookName, email, localDate);
+            model.extendBook(bookName, email);
             return new CommandResult(String.format(MESSAGE_SUCCESS,
                     bookName, model.getPersonName(email)));
         } catch (BookNotBorrowedException e) {
@@ -85,8 +82,7 @@ public class ExtendCommand extends Command {
         }
         ExtendCommand otherExtendCommand = (ExtendCommand) other;
         return bookName.equals(otherExtendCommand.bookName)
-                && email.equals(otherExtendCommand.email)
-                && localDate.equals(otherExtendCommand.localDate);
+                && email.equals(otherExtendCommand.email);
     }
 
     @Override
@@ -94,8 +90,6 @@ public class ExtendCommand extends Command {
         return new ToStringBuilder(this)
                 .add("book", bookName)
                 .add("person", email)
-                .add("localDate", localDate)
                 .toString();
     }
-
 }
