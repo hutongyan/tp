@@ -253,6 +253,7 @@ Displays a list of overdue books and the users who have borrowed them.
 
 * Lists all books that are overdue and the users who have borrowed them.
 * If no books are overdue, a message will indicate that there are no overdue books.
+- _Note: A book is classified as overdue only if it has been issued for a minimum of 14 days. This approach aligns with standard practices in real-world library systems and maintains consistency with our issuing logic. As such, testing this feature may be limited, as issue dates cannot be manually adjusted._
 
 **Examples:**
 * `display_overdue`

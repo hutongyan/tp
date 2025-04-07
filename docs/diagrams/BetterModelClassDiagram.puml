@@ -21,11 +21,13 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person --> "*" Book
+
 
 Book *--> BookName
 Book *--> BookStatus
 
 BookStatus *--> "1" Status
-BookStatus *--> "1" Person
+BookStatus --> "0..1" Person
 
 @enduml
