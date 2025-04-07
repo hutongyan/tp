@@ -141,7 +141,6 @@ public class ExtendCommandTest {
     public void toString_containsExpectedFields() {
         BookName bookName = new BookName("Some Book");
         Email email = new Email("user@example.com");
-        LocalDate localDate = LocalDate.now();
 
         ExtendCommand command = new ExtendCommand(bookName, email);
         String output = command.toString();
@@ -151,8 +150,7 @@ public class ExtendCommandTest {
         assertTrue(output.contains("Some Book"));
         assertTrue(output.contains("person"));
         assertTrue(output.contains("user@example.com"));
-        assertTrue(output.contains("localDate"));
-        assertTrue(output.contains(localDate.toString()));
+
     }
 }
 

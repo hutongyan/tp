@@ -118,6 +118,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) throws AddressBookException {
         persons.remove(key);
+        UniqueList<Book> booksToRemove = key.getBorrowedBooks();
+        for (Book book : booksToRemove) {
+            book.returnBook(LocalDate.now());
+        }
+        key.clearBorrowedBooks();
     }
     /**
      * Returns the person with the same email as {@code email} exists in the address book.
@@ -224,21 +229,22 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Extends the return date of a borrowed book by 14 days.
+     * Extends the duration for which a book can be borrowed without overdue fees
+     *
      * @param bookName
      * @param email
-     * @throws BookNotBorrowedException
-     * @throws DifferentBorrowerException
+     *
+     * @throws BookNotBorrowedException if the book is not already borrowed
+     * @throws DifferentBorrowerException if the book is borrowed by a different person
      */
-    public void extendBook(BookName bookName, Email email)
-            throws BookNotBorrowedException, DifferentBorrowerException {
+    public void extendBook(BookName bookName, Email email) throws BookNotBorrowedException,
+            DifferentBorrowerException {
         requireNonNull(bookName);
         requireNonNull(email);
         Book bookToExtend = getBook(bookName);
         Person personToExtend = getPerson(email);
         bookToExtend.extendBook(bookToExtend, personToExtend);
     }
-
 
     /**
      * Returns a string representation of the list of books borrowed by the specified user.
