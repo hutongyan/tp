@@ -94,6 +94,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/MEMBERSHIP_STATUS [t/TAG]
 
 **Membership Status** can only be **_ACTIVE, EXPIRED_** or **_NON-MEMBER_**
 
+**Phone numbers** should not include extensions.
+
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/ACTIVE`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 m/NON-MEMBER t/criminal `
@@ -131,7 +133,7 @@ Examples:
 
 ### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose **names** contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -156,6 +158,7 @@ Format: `delete INDEX`
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* Deleting a person also automatically returns all books they have currently borrowed.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.

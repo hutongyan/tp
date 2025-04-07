@@ -554,9 +554,9 @@ This project involved moderate-to-high difficulty due to managing multiple entit
     *Current:* Users not notified of overdue books/ outstanding fines.
     *Planned:* Notify users by sending an email.
 
-6. **Implement filter functionality for Book Search**
+6. **Implement filter by tags functionality for Book Search**
    *Current:* Existing command to list all books.  
-   *Planned:* Add functionality to filter the search by book name, author and tags.
+   *Planned:* Add functionality to filter the search by relevant tags such as book name, author and tags.
    
 7. **Implement long term tracking of book status and borrow history**
    *Current:* Existing version does not store book status and borrow history in memory after each run. 
