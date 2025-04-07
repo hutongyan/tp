@@ -558,6 +558,9 @@ This project involved moderate-to-high difficulty due to managing multiple entit
    *Current:* Existing command to list all books.  
    *Planned:* Add functionality to filter the search by book name, author and tags.
    
+7. **Implement long term tracking of book status and borrow history**
+   *Current:* Existing version does not store book status and borrow history in memory after each run. 
+   *Planned:* Store book status and borrow history in memory to increase long term usability.
 
 
 
