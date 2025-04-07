@@ -100,8 +100,7 @@ public class BookStatus {
             return "Available";
         } else {
             return "Currently borrowed by " + borrower.getName()
-                    + " from " + issueDate + " till " + returnDate
-                        + " email: " + borrower.getEmail();
+                    + " from " + issueDate + " till " + returnDate;
         }
     }
 

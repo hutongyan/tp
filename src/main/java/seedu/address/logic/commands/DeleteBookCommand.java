@@ -40,9 +40,9 @@ public class DeleteBookCommand extends Command {
 
         for (Book book : lastShownList) {
             if (bookName.equals(book.getName())) {
-                if(book.isIssued()) {
-                    throw new CommandException(String.format
-                            ("Failed to delete book %s since: %s", bookName, book.checkStatus()));
+                if (book.isIssued()) {
+                    throw new CommandException(String.format("Failed to delete book %s since: %s",
+                            bookName, book.checkStatus()));
                 }
                 model.deleteBook(book);
                 return new CommandResult(String.format(MESSAGE_DELETE_BOOK_SUCCESS, Messages.format(book)));

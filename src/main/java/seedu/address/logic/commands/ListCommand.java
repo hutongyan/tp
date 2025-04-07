@@ -16,8 +16,6 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 
-    public static final String MESSAGE_FAILURE = "No persons found";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists users in the system. "
                                                + "Optional filters: \n"
                                                + "Parameters: [e/EMAIL] [n/NAME] [m/MEMBERSHIP] [b/BOOK] [t/TAG]\n"
@@ -57,16 +55,15 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        int size;
         if (email.isEmpty()
             && name.isEmpty()
             && membership.isEmpty()
             && borrowedBook.isEmpty()
             && tag.isEmpty()) {
-            size = model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         } else {
-            size = model.updateFilteredPersonList(new UserMatchesPredicate(email, name, membership, borrowedBook, tag));
+            model.updateFilteredPersonList(new UserMatchesPredicate(email, name, membership, borrowedBook, tag));
         }
-        return size == 0 ? new CommandResult(MESSAGE_FAILURE) : new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }
