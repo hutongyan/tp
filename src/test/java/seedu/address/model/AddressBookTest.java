@@ -28,7 +28,6 @@ import seedu.address.model.exceptions.AddressBookException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.util.UniqueList;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -179,7 +178,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void removePerson_personHasBorrowedBooks_returnsBooksAndClearsBorrowedBooks() throws AddressBookException, BookUnavailableException {
+    public void removePerson_personHasBorrowedBooks_returnsBooksAndClearsBorrowedBooks() throws AddressBookException {
         Book book = new Book(new BookName("Test Book"), new HashSet<>());
         Person person = new PersonBuilder().withEmail("test@example.com").build();
         addressBook.addBook(book);
