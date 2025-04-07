@@ -58,7 +58,7 @@ public class ReturnCommandTest {
         ReturnCommand cmd = new ReturnCommand(new BookName("Borrowed Book"), LocalDate.of(2025, 2, 20));
         CommandResult result = cmd.execute(model);
 
-        assertEquals("Marked Borrowed Book as returned. Overdue Fines: 5", result.getFeedbackToUser());
+        assertEquals("Marked Borrowed Book as returned. Overdue Fines: S$5", result.getFeedbackToUser());
     }
 
     @Test
