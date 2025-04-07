@@ -23,6 +23,7 @@ public class Index {
         }
 
         this.zeroBasedIndex = zeroBasedIndex;
+        assert zeroBasedIndex >= 0 : "Index must be non-negative";
     }
 
     public int getZeroBased() {

@@ -48,6 +48,7 @@ public class Person extends Entity {
     }
 
     public Name getName() {
+        assert name != null : "Name should not be null";
         return name;
     }
 
@@ -56,6 +57,7 @@ public class Person extends Entity {
     }
 
     public Email getEmail() {
+        assert email != null : "Email should not be null";
         return email;
     }
 
