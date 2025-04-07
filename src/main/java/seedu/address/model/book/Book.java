@@ -82,6 +82,9 @@ public class Book extends Entity {
      * Return the book to the library.
      */
     public int returnBook(LocalDate localDate) throws BookUnavailableException {
+        if (localDate.isBefore(status.getIssueDate())) {
+            throw new BookUnavailableException("Date is before today.");
+        }
         int fine = status.calculateFines(localDate);
         status.returnBook();
         return fine;
@@ -90,8 +93,8 @@ public class Book extends Entity {
     /**
      * Extends the duration for which the book can be borrowed without paying overdue fees
      */
-    public void extendBook(LocalDate localDate, Person personToExtend) {
-        status.extendBook(localDate, personToExtend);
+    public void extendBook(Person personToExtend) {
+        status.extendBook(personToExtend);
     }
 
     /**

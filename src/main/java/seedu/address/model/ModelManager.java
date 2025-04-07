@@ -169,8 +169,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void extendBook(BookName book, Email email, LocalDate localDate) {
-        addressBook.extendBook(book, email, localDate);
+    public void extendBook(BookName book, Email email) {
+        addressBook.extendBook(book, email);
     }
 
     //=========== Filtered Person List Accessors =============================================================

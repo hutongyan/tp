@@ -149,7 +149,7 @@ public interface Model {
     /**
      * Extends the duration for which a book can be borrowed without overdue fees
      */
-    void extendBook(BookName bookName, Email email, LocalDate localDate);
+    void extendBook(BookName bookName, Email email);
 
     /** Returns an unmodifiable view of the filtered book list */
     ObservableList<Book> getFilteredBookList();

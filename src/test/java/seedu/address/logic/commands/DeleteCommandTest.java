@@ -10,6 +10,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -17,7 +19,11 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.book.Book;
+import seedu.address.model.exceptions.AddressBookException;
 import seedu.address.model.person.Person;
+import seedu.address.model.util.UniqueList;
+import seedu.address.testutil.BookBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -77,6 +83,23 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    void removePerson_personHasBorrowedBooks_returnsBooks() throws AddressBookException {
+        Book hp = new BookBuilder().withName("Harry Potter").build();
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        model.addBook(hp);
+        model.issueBook(hp.getName(), personToDelete.getEmail(), LocalDate.now());
+        model.deletePerson(personToDelete);
+        assertEquals(new UniqueList<>(), personToDelete.getBorrowedBooks());
+    }
+
+    @Test
+    void removePerson_personHasNoBorrowedBooks_doesNotThrowException() throws AddressBookException {
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        model.deletePerson(personToDelete);
+        assertFalse(model.hasPerson(personToDelete));
     }
 
     @Test

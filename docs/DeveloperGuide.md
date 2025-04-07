@@ -300,7 +300,6 @@ _{Explain here how the data archiving feature will be implemented}_
   * Streamline membership management by automating activations, renewals, and suspensions.
   * Centralize book inventory and user records for a more organized, real-time system.
 
-
 ### Value Proposition
 A streamlined library management system designed for librarians to track book loans,
 overdue fines, and membership status in a fast and efficient way. Real-time updates, centralized records, and keyboard-friendly navigation ensure that Emma and her team can manage patrons
@@ -331,7 +330,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **BookVault** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -346,9 +345,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. No persons exist in AddressBook.
+  * 2a1. AddressBook shows an error message.
 
-  Use case ends.
+    Use case ends.
 
 * 3a. The given index is invalid.
 
@@ -407,13 +407,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. No persons exist in the AddressBook.
+  * 2a1. AddressBook shows an error message.
 
-  Use case ends.
+    Use case ends.
 
-* 4a. The list is empty.
+* 4a. No books exist in AddressBook.
+  * 4a1. AddressBook shows an error message.
 
-  Use case ends.
+    Use case ends.
 
 * 5a. Given index for person is invalid.
 

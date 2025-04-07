@@ -89,7 +89,7 @@ public class ExtendCommandTest {
     public void execute_returnThrowsUnexpectedBookUnavailableException_fallbackMessage() {
         Book badBook = new Book(new BookName("Bad Book"), new HashSet<>()) {
             @Override
-            public void extendBook(LocalDate localDate, Person borrower) throws BookUnavailableException {
+            public void extendBook(Person borrower) throws BookUnavailableException {
                 throw new BookUnavailableException("Weird error");
             }
         };
@@ -151,8 +151,6 @@ public class ExtendCommandTest {
         assertTrue(output.contains("Some Book"));
         assertTrue(output.contains("person"));
         assertTrue(output.contains("user@example.com"));
-        assertTrue(output.contains("localDate"));
-        assertTrue(output.contains(localDate.toString()));
     }
 }
 
