@@ -21,7 +21,7 @@ BookVault is a **desktop app for managing library users and books**, optimized f
 
 1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-W13-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ (main folder)for your BookVault.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar bookvault.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
