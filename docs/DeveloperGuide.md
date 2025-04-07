@@ -302,13 +302,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**: A streamlined library management system designed for librarians to track book loans,
 overdue fines, and membership status in a fast and efficient way. Real-time updates, centralized records,
-<<<<<<< HEAD
-and keyboard-friendly navigation ensure that Emma and her team can manage patrons and books seamlessly
-without relying on scattered spreadsheets or outdated systems.
-=======
 and keyboard-friendly navigation ensure that Emma and her team can manage patrons
 and books seamlessly without relying on scattered spreadsheets or outdated systems.
->>>>>>> upstream/master
+
 
 
 ### User stories
