@@ -206,7 +206,7 @@ public class AddBookCommandTest {
         }
 
         @Override
-        public void extendBook(BookName bookName, Email email, LocalDate localDate) {
+        public void extendBook(BookName bookName, Email email) {
             throw new AssertionError("This method should not be called.");
         }
     }
