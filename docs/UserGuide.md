@@ -167,8 +167,11 @@ Adds a book to the catalog.
 
 Format: `add_book b/BOOK_NAME [t/TAG]…​`
 
+* `book name` is case-sensitive and unique throughout the library.
+* `book name` should only contain alphanumeric characters or spaces, and it should not be blank.
+
 Example:
-`add_book b/Harry Potter t/JKR`
+* `add_book b/Harry Potter t/JKR`
 
 ### Deleting a book : `delete_book`
 
@@ -179,7 +182,7 @@ Deletes a book from the catalog.
 Format: `delete_book b/BOOK_NAME`
 
 Example:
-`delete_book b/Harry Potter`
+* `delete_book b/Harry Potter`
 
 ### Listing all books : `list_books`
 
