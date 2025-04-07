@@ -174,6 +174,8 @@ Example:
 
 Deletes a book from the catalog.
 
+* Only books **not** currently issued to a user can be deleted from the library.
+
 Format: `delete_book b/BOOK_NAME`
 
 Example:
