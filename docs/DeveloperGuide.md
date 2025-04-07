@@ -349,9 +349,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. No persons exist in AddressBook.
+  * 2a1. AddressBook shows an error message.
 
-  Use case ends.
+    Use case ends.
 
 * 3a. The given index is invalid.
 
@@ -410,13 +411,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. No persons exist in the AddressBook.
+  * 2a1. AddressBook shows an error message.
 
-  Use case ends.
+    Use case ends.
 
-* 4a. The list is empty.
+* 4a. No books exist in AddressBook.
+  * 4a1. AddressBook shows an error message.
 
-  Use case ends.
+    Use case ends.
 
 * 5a. Given index for person is invalid.
 
