@@ -23,6 +23,7 @@ Class Tag
 Class BookName
 Class BookStatus
 Class OverdueFee
+Class Membership
 }
 
 Class I #FFFFFF
@@ -54,6 +55,7 @@ Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
 Person *--> OverdueFee
+Person *--> Membership
 
 Book *--> BookName
 Book *--> BookStatus
