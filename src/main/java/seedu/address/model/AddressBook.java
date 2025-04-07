@@ -120,11 +120,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
         UniqueList<Book> booksToRemove = key.getBorrowedBooks();
         for (Book book : booksToRemove) {
-            try {
-                book.returnBook(LocalDate.now());
-            } catch (NullPointerException e) {
-                throw new BookUnavailableException("Book not borrowed");
-            }
+            book.returnBook(LocalDate.now());
         }
         key.clearBorrowedBooks();
     }

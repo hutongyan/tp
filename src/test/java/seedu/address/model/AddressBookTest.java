@@ -28,6 +28,7 @@ import seedu.address.model.exceptions.AddressBookException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.util.UniqueList;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -175,6 +176,32 @@ public class AddressBookTest {
     public void listBorrowedBook_personNotInAddressBook_throwsAddressBookException() {
         Email email = new Email("nonexistent@example.com");
         assertThrows(AddressBookException.class, () -> addressBook.listBorrowedBook(email));
+    }
+
+    @Test
+    public void removePerson_personHasBorrowedBooks_returnsBooksAndClearsBorrowedBooks() throws AddressBookException, BookUnavailableException {
+        Book book = new Book(new BookName("Test Book"), new HashSet<>());
+        Person person = new PersonBuilder().withEmail("test@example.com").build();
+        addressBook.addBook(book);
+        addressBook.addPerson(person);
+        addressBook.issueBook(book.getName(), person.getEmail(), LocalDate.now());
+        addressBook.removePerson(person);
+        assertFalse(person.hasBorrowed(book));
+        assertFalse(book.isIssued());
+    }
+
+    @Test
+    public void removePerson_personHasNoBorrowedBooks_doesNotThrowException() throws AddressBookException {
+        Person person = new PersonBuilder().withEmail("test@example.com").build();
+        addressBook.addPerson(person);
+        addressBook.removePerson(person);
+        assertFalse(addressBook.hasPerson(person));
+    }
+
+    @Test
+    public void removePerson_personNotInAddressBook_throwsAddressBookException() {
+        Person person = new PersonBuilder().withEmail("test@example.com").build();
+        assertThrows(AddressBookException.class, () -> addressBook.removePerson(person));
     }
 
     @Test
