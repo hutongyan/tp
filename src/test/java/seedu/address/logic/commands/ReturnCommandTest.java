@@ -95,4 +95,11 @@ public class ReturnCommandTest {
         assertEquals("Failed to return Bad Book because Weird error", thrown.getMessage());
     }
 
+    @Test
+    public void execute_returnBeforeIssueDate_failure() {
+        ReturnCommand cmd = new ReturnCommand(new BookName("Borrowed Book"), LocalDate.of(2024, 12, 31));
+        CommandException thrown = assertThrows(CommandException.class, () -> cmd.execute(model));
+        assertEquals("Failed to return Borrowed Book because return date is before issue date", thrown.getMessage());
+    }
+
 }
