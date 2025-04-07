@@ -63,7 +63,7 @@ public class ReturnCommandTest {
 
     @Test
     public void execute_returnAvailableBook_failure() {
-        ReturnCommand cmd = new ReturnCommand(new BookName("Available Book"), LocalDate.of(2025, 2, 20));
+        ReturnCommand cmd = new ReturnCommand(new BookName("Available Book"), LocalDate.of(2026, 2, 20));
 
         CommandException thrown = assertThrows(CommandException.class, () -> cmd.execute(model));
         assertEquals("Failed to return Available Book because the book is already marked as available.",
@@ -93,6 +93,13 @@ public class ReturnCommandTest {
 
         CommandException thrown = assertThrows(CommandException.class, () -> cmd.execute(model));
         assertEquals("Failed to return Bad Book because Weird error", thrown.getMessage());
+    }
+
+    @Test
+    public void execute_returnBeforeIssueDate_failure() {
+        ReturnCommand cmd = new ReturnCommand(new BookName("Borrowed Book"), LocalDate.of(2024, 12, 31));
+        CommandException thrown = assertThrows(CommandException.class, () -> cmd.execute(model));
+        assertEquals("Failed to return Borrowed Book because return date is before issue date", thrown.getMessage());
     }
 
 }

@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# BookVault Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -300,15 +300,10 @@ _{Explain here how the data archiving feature will be implemented}_
   * Centralize book inventory and user records for a more organized, real-time system.
 
 
-**Value proposition**: A streamlined library management system designed for librarians to track book loans,
-overdue fines, and membership status in a fast and efficient way. Real-time updates, centralized records,
-<<<<<<< HEAD
-and keyboard-friendly navigation ensure that Emma and her team can manage patrons and books seamlessly
-without relying on scattered spreadsheets or outdated systems.
-=======
-and keyboard-friendly navigation ensure that Emma and her team can manage patrons
+### Value Proposition
+A streamlined library management system designed for librarians to track book loans,
+overdue fines, and membership status in a fast and efficient way. Real-time updates, centralized records, and keyboard-friendly navigation ensure that Emma and her team can manage patrons
 and books seamlessly without relying on scattered spreadsheets or outdated systems.
->>>>>>> upstream/master
 
 
 ### User stories
