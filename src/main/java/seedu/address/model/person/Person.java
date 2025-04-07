@@ -45,6 +45,7 @@ public class Person extends Entity {
         this.address = address;
         this.tags.addAll(tags);
         this.membership = membership;
+        assert email != null : "Email should not be null";
     }
 
     public Name getName() {
