@@ -13,7 +13,21 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+This project was developed using a **brownfield approach**, building upon existing architecture, structure, and utility components from the [AddressBook-Level3](https://github.com/se-edu/addressbook-level3) project by the [SE-EDU initiative](https://se-education.org/).
+
+### Core Libraries and Tools Used
+
+- **[JavaFX](https://openjfx.io/)** (v17.0.7): Used for building the graphical user interface.
+- **[JUnit 5](https://junit.org/junit5/)** (v5.4.0): Used for unit and integration testing.
+- **[Jackson](https://github.com/FasterXML/jackson)** (v2.7.x): Used for JSON serialization and deserialization.
+    - `jackson-databind`
+    - `jackson-datatype-jsr310`
+- **[Gradle Shadow Plugin](https://github.com/johnrengelman/shadow)** (v7.1.2): For creating an executable fat JAR (`bookvault.jar`).
+- **[Checkstyle](https://checkstyle.org/)** (v10.2): For enforcing coding standards and static analysis.
+- **[JaCoCo](https://www.jacoco.org/jacoco/)**: For generating test coverage reports.
+
+We gratefully acknowledge the contributions of the SE-EDU team for the foundational codebase and thank our professors, TAs, PE Dry Run testers, coursemates, and friends for their support throughout the development of this project.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -123,14 +137,15 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the library user data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) and all `Book` objects.
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* contains logic to track overdue fees and the borrowing status of books.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <box type="info" seamless>
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` or `Book`  references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` or `Book` needing their own `Tag` objects.<br>
 
 <puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
 
@@ -299,7 +314,6 @@ _{Explain here how the data archiving feature will be implemented}_
   * Streamline membership management by automating activations, renewals, and suspensions.
   * Centralize book inventory and user records for a more organized, real-time system.
 
-
 **Value proposition**: A streamlined library management system designed for librarians to track book loans,
 overdue fines, and membership status in a fast and efficient way. 
 
@@ -307,26 +321,27 @@ overdue fines, and membership status in a fast and efficient way.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​   | I want to …​                                                  | So that I can…​                                                |
-|--------|-----------|---------------------------------------------------------------|----------------------------------------------------------------|
+| Priority | As a …​   | I want to …​                                                  | So that I can…​                                               |
+|--------|-----------|---------------------------------------------------------------|---------------------------------------------------------------|
 | `* * *` | new user  | see usage instructions                                        | refer to instructions when I forget how to use the application |
-| `* * *` | librarian | add a new library user                                        | register new users and allow them to borrow books              |
-| `* * *` | librarian | delete the details of a library users                         | remove users that no longer use the library                    |
-| `* * ` | librarian | check the membership status of a user                         | cancel or renew memberships easily                             |
-| `* *`  | librarian | mark that a user has borrowed a certain book                  | lend books to users and keep track of them                     |
-| `* *`  | librarian | edit/update details of a user                                 | keep the information accurate and up to date                   |
-| `* *`  | librarian | mark that a user has returned a certain book                  | keep track of returned books                                   |
-| `* *`  | librarian | list users based on a filter                                  | look at users based on a certain criteria                      |
-| `* *`  | librarian | check the due fees of a member                                | ensure members pay the correct fee                             |
-| `*`    | librarian | see a list of overdue books and their corresponding users     | monitor the status of borrowed books                           |
-| `* *`  | librarian | update book information                                       | ensure that book records remain accurate                       |
-| `*`    | librarian | send automated reminders for overdue books or membership fees | keep members updates on overdue books/fees                     |
+| `* * *` | librarian | add a new library user                                        | register new users and allow them to borrow books             |
+| `* * *` | librarian | delete the details of a library users                         | remove users that no longer use the library                   |
+| `* * ` | librarian | check the membership status of a user                         | cancel or renew memberships easily                            |
+| `* *`  | librarian | issue a certain book to a certain user                        | lend books to users and keep track of them                    |
+| `* *`  | librarian | edit/update details of a user                                 | keep the information accurate and up to date                  |
+| `* *`  | librarian | mark that a user has returned a certain book                  | keep track of returned books                                  |
+| `* *`  | librarian | let users extends their book return dates                     | ensure users have the option of avoiding overdue fees         |
+| `* *`  | librarian | list users based on a filter                                  | look at users based on a certain criteria                     |
+| `* *`  | librarian | check the due fees of a member                                | ensure members pay the correct fee                            |
+| `*`    | librarian | see a list of overdue books and their corresponding users     | monitor the status of borrowed books                          |
+| `* *`  | librarian | update book information                                       | ensure that book records remain accurate                      |
+| `*`    | librarian | send automated reminders for overdue books or membership fees | keep members updates on overdue books/fees                    |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **BookVault** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -341,9 +356,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. No persons exist in AddressBook.
+  * 2a1. AddressBook shows an error message.
 
-  Use case ends.
+    Use case ends.
 
 * 3a. The given index is invalid.
 
@@ -402,13 +418,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. No persons exist in the AddressBook.
+  * 2a1. AddressBook shows an error message.
 
-  Use case ends.
+    Use case ends.
 
-* 4a. The list is empty.
+* 4a. No books exist in AddressBook.
+  * 4a1. AddressBook shows an error message.
 
-  Use case ends.
+    Use case ends.
 
 * 5a. Given index for person is invalid.
 
@@ -546,6 +564,14 @@ This project involved moderate-to-high difficulty due to managing multiple entit
 5. **Implement feature for automated reminders**  
     *Current:* Users not notified of overdue books/ outstanding fines.
     *Planned:* Notify users by sending an email.
+
+6. **Implement filter by tags functionality for Book Search**
+   *Current:* Existing command to list all books.  
+   *Planned:* Add functionality to filter the search by relevant tags such as book name, author and tags.
+   
+7. **Implement long term tracking of book status and borrow history**
+   *Current:* Existing version does not store book status and borrow history in memory after each run. 
+   *Planned:* Store book status and borrow history in memory to increase long term usability.
 
 
 

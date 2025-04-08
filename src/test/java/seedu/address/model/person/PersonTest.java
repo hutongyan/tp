@@ -152,4 +152,15 @@ public class PersonTest {
                 + ", membership=" + ALICE.getMembership() + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
+
+    @Test
+    public void clearBorrowedBooks_clearsAllBorrowedBooks() {
+        Person person = new PersonBuilder().build();
+        Book book1 = new Book(new BookName("Test Book 1"), new HashSet<>());
+        Book book2 = new Book(new BookName("Test Book 2"), new HashSet<>());
+        person.borrows(book1);
+        person.borrows(book2);
+        person.clearBorrowedBooks();
+        assertTrue(person.getBorrowedBooks().asUnmodifiableObservableList().isEmpty());
+    }
 }

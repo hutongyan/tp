@@ -3,8 +3,6 @@ package seedu.address.model.person;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import seedu.address.model.tag.Tag;
-
 /**
  * Represents a predicate that tests whether a {@code Person} matches the given filter criteria.
  */
@@ -47,8 +45,9 @@ public class UserMatchesPredicate implements Predicate<Person> {
                 person.getName().fullName.toLowerCase().contains(n.toLowerCase())).orElse(true);
         boolean membershipMatches = membership.map(m ->
                 person.getMembership().toString().equalsIgnoreCase(m)).orElse(true);
-        boolean borrowedBookMatches = borrowedBook.map(b ->
-                person.getTags().contains(new Tag("Borrowed: " + b))).orElse(true);
+        boolean borrowedBookMatches = !borrowedBook.isPresent()
+                                      || person.getBorrowedBooks().containsField(
+                                              borrowedBook.get(), b -> b.getName().toString());
         boolean tagMatches = tag.map(t ->
                 person.getTags().stream().anyMatch(tagObj -> tagObj.tagName.equalsIgnoreCase(t))).orElse(true);
 

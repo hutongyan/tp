@@ -26,7 +26,7 @@ public class IssueCommand extends Command {
             + PREFIX_EMAIL + "EMAIL"
             + "\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_BOOK + "Percy Jackson"
+            + PREFIX_BOOK + "Percy Jackson" + " "
             + PREFIX_EMAIL + "alexyeoh@example.com";
 
     public static final String MESSAGE_SUCCESS = "Book: %1$s issued to user: %2$s";

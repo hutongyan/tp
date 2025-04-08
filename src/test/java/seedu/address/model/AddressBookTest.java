@@ -178,6 +178,32 @@ public class AddressBookTest {
     }
 
     @Test
+    public void removePerson_personHasBorrowedBooks_returnsBooksAndClearsBorrowedBooks() throws AddressBookException {
+        Book book = new Book(new BookName("Test Book"), new HashSet<>());
+        Person person = new PersonBuilder().withEmail("test@example.com").build();
+        addressBook.addBook(book);
+        addressBook.addPerson(person);
+        addressBook.issueBook(book.getName(), person.getEmail(), LocalDate.now());
+        addressBook.removePerson(person);
+        assertFalse(person.hasBorrowed(book));
+        assertFalse(book.isIssued());
+    }
+
+    @Test
+    public void removePerson_personHasNoBorrowedBooks_doesNotThrowException() throws AddressBookException {
+        Person person = new PersonBuilder().withEmail("test@example.com").build();
+        addressBook.addPerson(person);
+        addressBook.removePerson(person);
+        assertFalse(addressBook.hasPerson(person));
+    }
+
+    @Test
+    public void removePerson_personNotInAddressBook_throwsAddressBookException() {
+        Person person = new PersonBuilder().withEmail("test@example.com").build();
+        assertThrows(AddressBookException.class, () -> addressBook.removePerson(person));
+    }
+
+    @Test
     public void toStringMethod() {
         String expected = AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPersonList() + "}";
         assertEquals(expected, addressBook.toString());

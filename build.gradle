@@ -20,6 +20,10 @@ run {
     enableAssertions = true
 }
 
+test {
+    jvmArgs '-ea'
+}
+
 checkstyle {
     toolVersion = '10.2'
 }

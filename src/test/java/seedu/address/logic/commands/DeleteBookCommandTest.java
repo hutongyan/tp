@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_DELETE_BOOK_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -34,6 +35,14 @@ public class DeleteBookCommandTest {
         expectedModel.deleteBook(bookToDelete);
         CommandResult result = deleteBookCommand.execute(model);
         assertEquals(expectedMessage, result.getFeedbackToUser());
+    }
+    @Test
+    public void execute_borrowedBook_throwsCommandException() throws CommandException {
+        Book bookToDelete = model.getFilteredBookList().get(0);
+        IssueCommand cmd = new IssueCommand(bookToDelete.getName(), ALICE.getEmail());
+        cmd.execute(model);
+        DeleteBookCommand deleteBookCommand = new DeleteBookCommand(bookToDelete.getName());
+        assertThrows(CommandException.class, () -> deleteBookCommand.execute(model));
     }
 
     @Test

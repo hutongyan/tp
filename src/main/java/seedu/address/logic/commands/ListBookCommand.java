@@ -17,6 +17,9 @@ public class ListBookCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         List<Book> books = model.getFilteredBookList();
+        if (books.isEmpty()) {
+            return new CommandResult("No books found in the library.");
+        }
         StringBuilder bookList = new StringBuilder(MESSAGE_SUCCESS);
         for (Book book : books) {
             bookList.append("\n").append(book.getName().toString());

@@ -118,6 +118,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) throws AddressBookException {
         persons.remove(key);
+        UniqueList<Book> booksToRemove = key.getBorrowedBooks();
+        for (Book book : booksToRemove) {
+            book.returnBook(LocalDate.now());
+        }
+        key.clearBorrowedBooks();
     }
     /**
      * Returns the person with the same email as {@code email} exists in the address book.
@@ -228,19 +233,17 @@ public class AddressBook implements ReadOnlyAddressBook {
      *
      * @param bookName
      * @param email
-     * @param localDate
      *
      * @throws BookNotBorrowedException if the book is not already borrowed
      * @throws DifferentBorrowerException if the book is borrowed by a different person
      */
-    public void extendBook(BookName bookName, Email email, LocalDate localDate) throws BookNotBorrowedException,
+    public void extendBook(BookName bookName, Email email) throws BookNotBorrowedException,
             DifferentBorrowerException {
         requireNonNull(bookName);
         requireNonNull(email);
-        requireNonNull(localDate);
         Book bookToExtend = getBook(bookName);
         Person personToExtend = getPerson(email);
-        bookToExtend.extendBook(localDate, personToExtend);
+        bookToExtend.extendBook(bookToExtend, personToExtend);
     }
 
     /**
@@ -296,4 +299,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.hashCode();
     }
 
+    public Person getBorrower(BookName bookName) {
+        return getBook(bookName).getStatus().getBorrower();
+    }
 }

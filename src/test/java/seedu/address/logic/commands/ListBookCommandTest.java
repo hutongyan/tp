@@ -37,5 +37,18 @@ public class ListBookCommandTest {
         assert model.equals(expectedModel)
                 : "Model state changed unexpectedly after executing ListBookCommand.";
     }
+    @Test
+    public void execute_emptyBookList_returnsNoBooksFoundMessage() {
+        model = new ModelManager(new seedu.address.model.AddressBook(), new UserPrefs());
+        expectedModel = new ModelManager(new seedu.address.model.AddressBook(), new UserPrefs());
+
+        ListBookCommand command = new ListBookCommand();
+        CommandResult result = command.execute(model);
+
+        assert result.getFeedbackToUser().equals("No books found in the library.")
+                : "Expected feedback does not match actual.";
+        assert model.equals(expectedModel)
+                : "Model state changed unexpectedly after executing ListBookCommand.";
+    }
 
 }

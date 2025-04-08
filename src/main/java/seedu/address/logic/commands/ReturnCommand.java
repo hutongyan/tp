@@ -16,7 +16,7 @@ public class ReturnCommand extends Command {
 
     public static final String COMMAND_WORD = "return";
 
-    public static final String MESSAGE_SUCCESS = "Marked %s as returned. Overdue Fines: %d";
+    public static final String MESSAGE_SUCCESS = "Marked %s as returned. Overdue Fines: S$%d";
     public static final String MESSAGE_FAILURE = "Failed to return %s because %s";
     private static final String STATUS_AVAILABLE = "Available";
     private static final String HUMAN_READABLE_AVAILABLE_ERROR =
@@ -42,6 +42,15 @@ public class ReturnCommand extends Command {
         }
 
         try {
+            for (var b : model.getAddressBook().getBookList()) {
+                if (b.getName().equals(bookName)) {
+                    var issueDate = b.getStatus().getIssueDate();
+                    if (issueDate != null && returnDate.isBefore(issueDate)) {
+                        throw new CommandException(String.format(
+                                MESSAGE_FAILURE, bookName, "return date is before issue date"));
+                    }
+                }
+            }
             int fine = model.returnBook(bookName, returnDate);
             return new CommandResult(String.format(MESSAGE_SUCCESS, bookName, fine));
         } catch (BookUnavailableException e) {
