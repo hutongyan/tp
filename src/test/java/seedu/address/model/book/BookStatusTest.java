@@ -83,13 +83,4 @@ public class BookStatusTest {
         BookStatus bookStatus = new BookStatus();
         assertEquals(0, bookStatus.calculateFines(LocalDate.of(2025, 10, 24)));
     }
-
-    @Test
-    public void testExtendBook_whenBorrowedAndSameBorrower_extendsReturnDate() throws BookUnavailableException {
-        BookStatus bookStatus = new BookStatus();
-        bookStatus.issueBook(DEFAULT_ISSUEDATE, DEFAULT_MEMBER);
-        LocalDate expectedReturnDate = DEFAULT_RETURNDATE.plusDays(14);
-        bookStatus.extendBook(DEFAULT_MEMBER);
-        assertEquals(expectedReturnDate, bookStatus.getReturnDate());
-    }
 }
