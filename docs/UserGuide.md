@@ -94,6 +94,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/MEMBERSHIP_STATUS [t/TAG]
 
 **Membership Status** can only be **_ACTIVE, EXPIRED_** or **_NON-MEMBER_**
 
+**Phone numbers** should not include extensions.
+
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/ACTIVE`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 m/NON-MEMBER t/criminal `
@@ -131,7 +133,7 @@ Examples:
 
 ### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose **names** contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -156,6 +158,7 @@ Format: `delete INDEX`
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* Deleting a person also automatically returns all books they have currently borrowed.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
@@ -165,29 +168,36 @@ Examples:
 
 Adds a book to the catalog.
 
-Format: `add_book b/BOOK_NAME`
+Format: `add_book b/BOOK_NAME [t/TAG]…​`
+
+* `book name` is case-sensitive and unique throughout the library.
+* `book name` should only contain alphanumeric characters or spaces, and it should not be blank.
 
 Example:
-`add_book b/Harry Potter`
+* `add_book b/Harry Potter t/JKR`
 
 ### Deleting a book : `delete_book`
 
 Deletes a book from the catalog.
 
+* Only books **not** currently issued to a user can be deleted from the library.
+
 Format: `delete_book b/BOOK_NAME`
 
 Example:
-`delete_book b/Harry Potter`
+* `delete_book b/Harry Potter`
 
 ### Listing all books : `list_books`
 
-Lists all books in the catalog.
+Lists all books in the catalog
+
+* All existing books including borrowed books are listed.
 
 Format: `list_books`
 
 ### Issuing a book : `issue`
 
-Issues a book to a user. The issue duration is 2 weeks.
+Issues a book to a user. The issue duration is 2 weeks from starting from current date time.
 
 **Format:**  
 `issue b/BOOK_NAME e/EMAIL`
@@ -251,6 +261,7 @@ Displays a list of overdue books and the users who have borrowed them.
 
 * Lists all books that are overdue and the users who have borrowed them.
 * If no books are overdue, a message will indicate that there are no overdue books.
+- _Note: A book is classified as overdue only if it has been issued for a minimum of 14 days. This approach aligns with standard practices in real-world library systems and maintains consistency with our issuing logic. As such, testing this feature may be limited, as issue dates cannot be manually adjusted._
 
 **Examples:**
 * `display_overdue`

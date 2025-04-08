@@ -121,7 +121,7 @@ public class Person extends Entity {
     }
 
     /**
-     * Returns a cleared list of borrowed books.
+     * Clears list of borrowed books.
      */
     public void clearBorrowedBooks() {
         this.books = new UniqueList<>();

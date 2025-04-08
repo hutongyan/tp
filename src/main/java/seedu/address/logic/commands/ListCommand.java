@@ -55,7 +55,6 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-
         if (email.isEmpty()
             && name.isEmpty()
             && membership.isEmpty()
@@ -65,7 +64,6 @@ public class ListCommand extends Command {
         } else {
             model.updateFilteredPersonList(new UserMatchesPredicate(email, name, membership, borrowedBook, tag));
         }
-
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

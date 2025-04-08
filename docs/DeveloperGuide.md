@@ -131,7 +131,7 @@ The `Model` component,
 
 <box type="info" seamless>
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` or `Book`  references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` or `Book` needing their own `Tag` objects.<br>
 
 <puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
 
@@ -553,6 +553,14 @@ This project involved moderate-to-high difficulty due to managing multiple entit
 5. **Implement feature for automated reminders**  
     *Current:* Users not notified of overdue books/ outstanding fines.
     *Planned:* Notify users by sending an email.
+
+6. **Implement filter by tags functionality for Book Search**
+   *Current:* Existing command to list all books.  
+   *Planned:* Add functionality to filter the search by relevant tags such as book name, author and tags.
+   
+7. **Implement long term tracking of book status and borrow history**
+   *Current:* Existing version does not store book status and borrow history in memory after each run. 
+   *Planned:* Store book status and borrow history in memory to increase long term usability.
 
 
 

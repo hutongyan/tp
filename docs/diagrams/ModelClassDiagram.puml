@@ -23,6 +23,7 @@ Class Tag
 Class BookName
 Class BookStatus
 Class OverdueFee
+Class DueDate
 Class Membership
 }
 
