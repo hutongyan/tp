@@ -13,7 +13,21 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+This project was developed using a **brownfield approach**, building upon existing architecture, structure, and utility components from the [AddressBook-Level3](https://github.com/se-edu/addressbook-level3) project by the [SE-EDU initiative](https://se-education.org/).
+
+### Core Libraries and Tools Used
+
+- **[JavaFX](https://openjfx.io/)** (v17.0.7): Used for building the graphical user interface.
+- **[JUnit 5](https://junit.org/junit5/)** (v5.4.0): Used for unit and integration testing.
+- **[Jackson](https://github.com/FasterXML/jackson)** (v2.7.x): Used for JSON serialization and deserialization.
+    - `jackson-databind`
+    - `jackson-datatype-jsr310`
+- **[Gradle Shadow Plugin](https://github.com/johnrengelman/shadow)** (v7.1.2): For creating an executable fat JAR (`bookvault.jar`).
+- **[Checkstyle](https://checkstyle.org/)** (v10.2): For enforcing coding standards and static analysis.
+- **[JaCoCo](https://www.jacoco.org/jacoco/)**: For generating test coverage reports.
+
+We gratefully acknowledge the contributions of the SE-EDU team for the foundational codebase and thank our professors, TAs, PE Dry Run testers, coursemates, and friends for their support throughout the development of this project.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
