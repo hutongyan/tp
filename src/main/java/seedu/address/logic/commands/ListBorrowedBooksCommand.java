@@ -25,7 +25,7 @@ public class ListBorrowedBooksCommand extends Command {
     public static final String MESSAGE_SUCCESS = "%1$s"
         + "\n"
         + "Listed all borrowed books by: %2$s";
-    public static final String MESSAGE_FAILURE = "Failed to list books: ";
+    public static final String MESSAGE_FAILURE = "Failed to list books: %1$s";
     public static final String MESSAGE_NO_BORROWED_BOOKS = "User is currently not borrowing any books.";
     private final Email email;
 
